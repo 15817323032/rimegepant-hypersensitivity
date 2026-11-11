@@ -2,14 +2,27 @@
   "n_total": 9094154,
   "n_ps": 8962,
   "n_ref": 9085192,
+  "n_mig": 75155,
+  "n_ps_mig": 4477,
   "age_median_cohort": 51.0,
   "age_median_ref": 59.0,
+  "age_median_mig": 48.0,
   "age_missing_cohort": 4514,
   "age_missing_ref": 4052616,
+  "age_missing_mig": 28138,
   "female_cohort": 5654,
   "female_ref": 4491884,
+  "female_mig": 54151,
   "serious_cohort": 941,
   "serious_ref": 5247712,
+  "serious_mig": 29114,
   "reac_cases_ref": 9085333,
-  "runtime_s": 390
+  "reac_cases_mig": 75156,
+  "smd_sensitivity_cm_vs_m": {
+    "female": 0.0013,
+    "consumer_reporter": 0.6311,
+    "country_us": 0.6363,
+    "serious_any": -0.6088
+  },
+  "runtime_s": 454
 }
