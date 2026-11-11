@@ -1,0 +1,37 @@
+{
+  "title": "Rimegepant ODT Oral/Hypersensitivity FAERS Pipeline: disproportionality, machine learning, bridged network toxicology, and molecular docking",
+  "description": "<p>Four-layer, fully reproducible Python pipeline for post-marketing safety analysis of rimegepant orally disintegrating tablets using FAERS/AEMS 2020Q2\u20132026Q2 (25 quarters, N = 9,094,154 deduplicated cases; n = 8,962 primary-suspect cases). Layers: (1) four-algorithm disproportionality analysis (ROR, PRR, BCPNN, MGPS; BH-FDR) against a pre-specified five-subset oral/hypersensitivity composite endpoint; (2) machine-learning reporting-feature profiling (LR/RF/XGBoost/LightGBM, repeated 5\u00d73 CV, SHAP, TRIPOD+AI); (3) bridged network toxicology (ChEMBL anchors \u2192 STRING BFS \u2192 Enrichr GO-BP/KEGG); (4) AutoDock Vina 1.2.5 molecular docking (CALCRL 6Z2V positive control; SYK 1A81 / BTK 1B55 off-target tests); plus a pre/post 2025Q3 label-revision notoriety-bias comparison.</p>",
+  "creators": [
+    {
+      "name": "Chen, LiQing",
+      "affiliation": "Department of Otolaryngology, Head and Neck Surgery, Shenzhen University General Hospital, Shenzhen, China",
+      "orcid": "0000-0002-2285-3704"
+    },
+    {
+      "name": "Luo, Yunfan",
+      "orcid": "0000-0001-5370-6777"
+    }
+  ],
+  "keywords": [
+    "pharmacovigilance",
+    "FAERS",
+    "rimegepant",
+    "CGRP antagonist",
+    "disproportionality analysis",
+    "machine learning",
+    "network toxicology",
+    "molecular docking",
+    "hypersensitivity"
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/USERNAME/rimegepant-hypersensitivity",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "language": "eng"
+}

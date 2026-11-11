@@ -1,0 +1,20 @@
+{
+  "pref_name": "RIMEGEPANT",
+  "chembl_id_salt": "CHEMBL2178422",
+  "chembl_id_active": "CHEMBL2178422",
+  "max_phase": "4.0",
+  "first_approval": 2020,
+  "formula": "C28H28F2N6O3",
+  "mw": "534.57",
+  "alogp": "4.49",
+  "hbd": 2,
+  "hba": 7,
+  "smiles": "N[C@@H]1c2cccnc2[C@H](OC(=O)N2CCC(n3c(=O)[nH]c4ncccc43)CC2)CC[C@H]1c1cccc(F)c1F",
+  "mechanisms_of_action": [
+    {
+      "action": "ANTAGONIST",
+      "mechanism": "Calcitonin gene-related peptide type 1 receptor antagonist",
+      "target_chembl_id": "CHEMBL3798"
+    }
+  ]
+}

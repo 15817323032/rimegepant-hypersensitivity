@@ -1,0 +1,66 @@
+[
+  {
+    "target": "CALCRL",
+    "pdb": "6Z2V",
+    "note": "CGRP receptor (CALCRL+RAMP1) 冷冻电镜结构",
+    "center": [
+      78.52,
+      14.07,
+      93.58
+    ],
+    "size": [
+      34.8,
+      24.1,
+      37.4
+    ],
+    "box_source": "co-crystal ligand"
+  },
+  {
+    "target": "RAMP1",
+    "pdb": "6Z2V",
+    "note": "同上，RAMP1 为共受体",
+    "center": [
+      78.52,
+      14.07,
+      93.58
+    ],
+    "size": [
+      34.8,
+      24.1,
+      37.4
+    ],
+    "box_source": "co-crystal ligand"
+  },
+  {
+    "target": "SYK",
+    "pdb": "1A81",
+    "note": "SYK  tandem SH2",
+    "center": [
+      34.03,
+      69.3,
+      73.43
+    ],
+    "size": [
+      86.0,
+      86.9,
+      78.2
+    ],
+    "box_source": "co-crystal ligand"
+  },
+  {
+    "target": "BTK",
+    "pdb": "1B55",
+    "note": "BTK 激酶域",
+    "center": [
+      2.33,
+      3.32,
+      54.43
+    ],
+    "size": [
+      41.6,
+      41.1,
+      79.9
+    ],
+    "box_source": "co-crystal ligand"
+  }
+]
