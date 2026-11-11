@@ -15,7 +15,7 @@ weight,Q1,2241,0.1254
 weight,Q2,2240,0.0674
 weight,Q3,2240,0.0942
 weight,Q4,2241,0.129
-report_year_centered,Q1,2241,0.1187
-report_year_centered,Q2,2240,0.0772
-report_year_centered,Q3,2240,0.1054
-report_year_centered,Q4,2241,0.1147
+report_year,Q1,2241,0.1187
+report_year,Q2,2240,0.0772
+report_year,Q3,2240,0.1054
+report_year,Q4,2241,0.1147

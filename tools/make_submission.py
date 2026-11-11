@@ -137,9 +137,9 @@ TITLES = {
     6: ("Sensitivity analyses: indication-PT exclusion and triple exposure roles",
         "Indication-bias control: migraine-symptom PTs (nausea, vomiting, headache, migraine, photophobia, phonophobia) excluded in recalculation. Exposure roles: PS (primary), PS+SS, ALL.", False),
     7: ("Machine-learning model comparison (repeated stratified 5-fold × 3 cross-validation)",
-        "Label = composite-endpoint positivity (932/8,962, 10.4%); 29 features; serious outcomes and event counts excluded (leakage control). AUC, area under the ROC curve (mean ± SD); AP, average precision; Brier, Brier score.", False),
-    8: ("SHAP global feature importance of the best model (random forest), top 15",
-        "Mean absolute SHAP values over cross-validation folds.", False),
+        "Label = composite-endpoint positivity (932/8,962, 10.4%); 23 features (demographics, report year and country, concomitant drug classes, time to onset and its missing indicators); serious outcomes and event counts excluded (leakage control). A sensitivity model that also included reporter category and formulation reached a random-forest AUC of 0.618 ± 0.017, with no model changing by more than 0.01 AUC. AUC, area under the ROC curve (mean ± SD); AP, average precision; Brier, Brier score.", False),
+    8: ("SHAP global feature importance of the best model (random forest)",
+        "Mean absolute SHAP values over cross-validation folds; all 23 features of the primary model are shown. Reporter category, formulation and country completeness were not entered in the primary model because they describe how a report reached the database rather than the patient; they were evaluated in the sensitivity model (Table 7 footnote).", False),
     9: ("Bridge genes from the bridged network-toxicology analysis",
         "BFS ≤ 4 hops from drug anchors (CALCRL/RAMP1/CALCA) on the anchor ∪ event-module STRING network (score ≥ 700); ranked by shortest-path traversal counts.", False),
     10: ("KEGG pathway enrichment of the bridged network (Enrichr, BH-corrected)",
@@ -350,7 +350,7 @@ def build_main_manuscript():
 LEGENDS = [
     ("Figure 1.", "Forest plot of positive disproportionality signals within the oral/hypersensitivity focus cluster (FAERS/AEMS 2020Q2\u20132026Q2, primary-suspect role). Points represent ROR; horizontal bars represent 95% CIs; the vertical line marks ROR = 1."),
     ("Figure 2.", "Quarterly reporting proportions of the six hypersensitivity-spectrum families, 2020Q2\u20132026Q2. The dashed vertical line marks the August 2025 label revision (2025Q3 cut-off)."),
-    ("Figure 3.", "Receiver operating characteristic (left) and precision\u2013recall (right) curves of the four machine-learning models under repeated stratified 5-fold \u00d7 3 cross-validation. Random forest performed best (AUC 0.622 \u00b1 0.017)."),
+    ("Figure 3.", "Receiver operating characteristic (left) and precision\u2013recall (right) curves of the four machine-learning models under repeated stratified 5-fold \u00d7 3 cross-validation. Random forest performed best (AUC 0.621 \u00b1 0.015)."),
     ("Figure 4.", "SHAP summary plot of the best-performing model (random forest). Female sex dominates global feature importance; positivity was 12.9% in the top SHAP quartile vs 6.2% in the bottom quartile."),
     ("Figure 5.", "Bridged network-toxicology overview: drug anchors (CALCRL/RAMP1/CALCA), bridge genes (GNG2/GNB1/GNAS; C3/C5; PLCG1/SRC/MAPK1), event modules (Fc\u03b5RI signalling, complement and coagulation cascades, inflammatory mediator regulation of TRP channels), and KEGG enrichment of the bridged network."),
 ]

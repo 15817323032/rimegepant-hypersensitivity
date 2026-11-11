@@ -89,18 +89,11 @@ DECLARATIONS = [
      "final manuscript."),
 ]
 
-EXTRA_REFS = [
-    "28. Fusaroli M, Salvo F, Begaud B, et al. The REporting of A Disproportionality Analysis for "
-    "DrUg Safety Signal Detection Using Individual Case Safety Reports in PharmacoVigilance "
-    "(READUS-PV): development and statement. Drug Saf. 2024;47(6):575\u2013584. PMID 38713346.",
-    "29. Fusaroli M, Salvo F, Begaud B, et al. The REporting of A Disproportionality Analysis for "
-    "DrUg Safety Signal Detection Using Individual Case Safety Reports in PharmacoVigilance "
-    "(READUS-PV): explanation and elaboration. Drug Saf. 2024;47(6):585\u2013599. PMID 38713347.",
-]
+EXTRA_REFS = []
 
 READUS_SENTENCE = (
     "Reporting follows the READUS-PV guideline for disproportionality analyses based on individual "
-    "case safety reports [28,29], and the completed checklist is provided as Supplementary "
+    "case safety reports [14,15], and the completed checklist is provided as Supplementary "
     "Table S1."
 )
 

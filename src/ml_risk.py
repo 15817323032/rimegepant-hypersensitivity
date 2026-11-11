@@ -68,8 +68,14 @@ DRUG_CLASSES = {
 }
 
 
-def build_features(demo, drug, reac, ther, ids) -> pd.DataFrame:
-    """构造报告层特征矩阵。"""
+def build_features(demo, drug, reac, ther, ids, with_reporter: bool = False) -> pd.DataFrame:
+    """构造报告层特征矩阵。
+
+    with_reporter=False（主分析）：只保留患者层与用药层特征。报告者类别与剂型
+    描述的是"谁在报、报的是哪种剂型"，在单产品 PS 队列里近乎常量（消费者 88.6%，
+    ODT 79%），纳入主模型只会让模型描述报告渠道而非患者风险；它们放在
+    敏感性模型（with_reporter=True）中单独评估。
+    """
     ids = {str(i) for i in ids}
     r = reac[reac["primaryid"].astype(str).isin(ids)].copy()
     r["pt_n"] = r["pt"].astype(str).map(normalize)
@@ -100,9 +106,12 @@ def build_features(demo, drug, reac, ther, ids) -> pd.DataFrame:
     X["weight"] = wt.where(wt.between(20, 250))
 
     # --- 报告特征 ---
-    rept = d.get("rept_cod", pd.Series("", index=d.index)).astype(str).str.upper()
-    for c in ("MD", "CN", "PH", "OT"):
-        X[f"rept_{c}"] = rept.eq(c).astype(int)
+    # FAERS rept_cod 取值：EXP=医师/专家, PER=消费者, DIR=厂商, OTH/UNK=其他
+    if with_reporter:
+        rept = (d.get("rept_cod", pd.Series("", index=d.index))
+                .fillna("").astype(str).str.upper().str.strip())
+        for c in ("EXP", "PER", "DIR"):
+            X[f"rept_{c}"] = rept.eq(c).astype(int)
 
     yr = parse_faers_date(d.get("fda_dt", pd.Series(dtype=str))).dt.year
     X["report_year"] = yr
@@ -110,7 +119,8 @@ def build_features(demo, drug, reac, ther, ids) -> pd.DataFrame:
 
     ctry = d.get("reporter_country", pd.Series("", index=d.index)).astype(str).str.upper()
     X["country_us"] = ctry.eq("US").astype(int)
-    X["country_missing"] = ctry.isin(["", "NAN", "UNK"]).astype(int)
+    if with_reporter:
+        X["country_missing"] = ctry.isin(["", "NAN", "UNK"]).astype(int)
 
     # --- 用药与事件负荷 ---
     dg = drug[drug["primaryid"].astype(str).isin(ids)].copy()
@@ -129,10 +139,11 @@ def build_features(demo, drug, reac, ther, ids) -> pd.DataFrame:
             m |= dg["nm"].str.contains(p, regex=True, na=False)
         X[cname] = X["pid"].isin(set(dg.loc[m, "pid"])).astype(int)
 
-    # 剂型：ODT 是本研究切口的核心暴露特征
-    form = dg.get("dose_form", pd.Series("", index=dg.index)).fillna("").astype(str).str.upper()
-    odt_ids = set(dg.loc[form.str.contains("DISINTEGRAT|ORALLY DISINTEGRAT|ODT", na=False), "pid"])
-    X["dose_form_odt"] = X["pid"].isin(odt_ids).astype(int)
+    # 剂型：ODT 是本研究切口的核心暴露特征（FAERS 记录为 ORODISPERSIBLE TABLET/FILM）
+    if with_reporter:
+        form = dg.get("dose_form", pd.Series("", index=dg.index)).fillna("").astype(str).str.upper()
+        odt_ids = set(dg.loc[form.str.contains("DISINTEGRAT|ORODISPERS|ODT", na=False), "pid"])
+        X["dose_form_odt"] = X["pid"].isin(odt_ids).astype(int)
 
     # --- TTO（时序特征，单独模型使用）---
     t = ther[ther["primaryid"].astype(str).isin(ids)].copy()
@@ -150,6 +161,15 @@ def build_features(demo, drug, reac, ther, ids) -> pd.DataFrame:
     X["tto_days"] = X["pid"].map(tto)
     X["tto_days"] = X["tto_days"].where(X["tto_days"].between(0, 730))
     X["tto_missing"] = X["tto_days"].isna().astype(int)
+
+    # 常数特征护栏：任何在队列内零方差的特征对树模型无贡献、对 SHAP 也无贡献，
+    # 保留它们只会让 Table 8 出现整列为 0 的假特征（历史上曾因 rept_cod 取值
+    # 词表写错而静默产生过这种情况），因此此处直接剔除并打印。
+    const = [c for c in X.columns
+             if c not in ("pid", "y") and X[c].nunique(dropna=False) <= 1]
+    if const:
+        print(f"[ML] 剔除零方差特征 {len(const)} 个: {', '.join(const)}")
+        X = X.drop(columns=const)
 
     return X
 
@@ -342,6 +362,8 @@ def main():
     ap.add_argument("--out", default="results")
     ap.add_argument("--include-naes", action="store_true",
                     help="把事件总数纳入特征（有机械性泄漏风险，不建议）")
+    ap.add_argument("--with-reporter", action="store_true",
+                    help="敏感性模型：额外纳入报告者类别、剂型与国家缺失指示")
     a = ap.parse_args()
 
     raw = ROOT / "data/demo" if a.demo else Path(a.raw)
@@ -352,7 +374,8 @@ def main():
     d = load_faers(raw, quarters)
     ids = flag_drug(d["DRUG"], DRUG_PATTERNS, "PS")
     print(f"[ML] rimegepant PS 病例 {len(ids):,}")
-    X = build_features(d["DEMO"], d["DRUG"], d["REAC"], d["THER"], ids)
+    X = build_features(d["DEMO"], d["DRUG"], d["REAC"], d["THER"], ids,
+                       with_reporter=a.with_reporter)
 
     (out / "ml_feature_table.csv").write_text(X.to_csv(index=False), encoding="utf-8-sig")
     run_models(X, out, use_tto=True, include_naes=a.include_naes)
