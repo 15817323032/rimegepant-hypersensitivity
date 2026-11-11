@@ -82,7 +82,7 @@ FAERS/AEMS public ASCII quarterly extracts are freely downloadable from the FDA 
 
 ## Citation / DOI
 
-[![DOI](https://zenodo.org/badge/DOI_PLACEHOLDER.svg)](https://zenodo.org/records/DOI_PLACEHOLDER)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24134724.svg)](https://doi.org/10.5281/zenodo.24134724)
 
 ## License
 
