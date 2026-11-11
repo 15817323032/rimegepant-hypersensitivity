@@ -58,8 +58,8 @@ KEY_POINTS = [
 
 DECLARATIONS = [
     ("I. Funding",
-     "No specific grant from any funding agency in the public, commercial, or not-for-profit "
-     "sectors was received for this work."),
+     "This work was supported by the 2025 HaiYa Young Scientist Foundation of Shenzhen "
+     "University General Hospital (Grant No. 2025-HY007)."),
     ("II. Conflicts of interest",
      "The authors have no relevant financial or non-financial interests to disclose."),
     ("III. Availability of data and material",
@@ -143,17 +143,18 @@ def build_markdown():
     parts = []
     parts.append(f"**Title:** {TITLE}\n")
     parts.append(f"**Running head:** {RUNNING_HEAD}\n")
-    parts.append("**Authors:** LiQing Chen, MD\u00b9*; Yunfan Luo, MD\u00b2*; "
+    parts.append("**Authors:** LiQing Chen, MD\u00b9*; Yunfan Luo, MD\u00b9*; "
                  "Qing Yuan, MD\u00b9; Xiaoyan Zhang, BS\u00b9\n")
     parts.append("\u00b9 Department of Otolaryngology, Head and Neck Surgery, Shenzhen University "
                  "General Hospital, No. 1298 Xueyuan Boulevard, Xili University Town, Shenzhen, "
                  "Guangdong 518055, China")
-    parts.append("\u00b2 Affiliation to be confirmed by the author\n")
     parts.append("**Corresponding author:** LiQing Chen, MD (ORCID 0000-0002-2285-3704), "
                  "Department of Otolaryngology, Head and Neck Surgery, Shenzhen University General "
                  "Hospital, No. 1298 Xueyuan Boulevard, Xili University Town, Shenzhen, Guangdong "
                  "518055, China. Tel +86 137 6047 9274; E-mail 2536020202@stu.ahmu.edu.cn\n")
-    parts.append("**Co-corresponding author:** Yunfan Luo, MD (ORCID 0000-0001-5370-6777)\n")
+    parts.append("**Co-corresponding author:** Yunfan Luo, MD (ORCID 0000-0001-5370-6777), "
+                 "Department of Otolaryngology, Head and Neck Surgery, Shenzhen University General "
+                 "Hospital, Shenzhen, China; E-mail 786675880@qq.com\n")
     parts.append("**Article type:** Original Research Article\n")
     parts.append(f"**Word count:** abstract {abs_words}; main text {body_words}; "
                  f"tables 12; figures 5; references 29\n")
