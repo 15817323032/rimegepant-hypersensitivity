@@ -1,0 +1,37 @@
+# --- Data (FAERS raw extracts are public; re-download, never commit) ---
+data/
+*.zip
+
+# --- Virtual env / caches ---
+.venv/
+__pycache__/
+*.pyc
+.cache/
+*.cache
+
+# --- Internal test artifacts ---
+results_stream_test/
+results_mem_test/
+results_real_2020Q2/
+
+# --- Unpublished manuscript materials (not part of the code release) ---
+docs/manuscript_en.md
+docs/results_draft.md
+docs/methods_draft.md
+docs/discussion_intro_draft.md
+docs/cover_letter.md
+docs/tripod_ai_checklist.md
+
+# --- External binaries ---
+tools/vina.exe
+
+# --- Submission working copies ---
+submission/
+
+# --- OS / editor ---
+Thumbs.db
+.DS_Store
+*.tmp
+
+# Local-only helper (proxy workaround; not part of the released code)
+tools/push_via_api.py

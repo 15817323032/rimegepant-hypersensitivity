@@ -1,0 +1,5 @@
+﻿gene,n_neighbors,max_pchembl,mean_pchembl,sim_weighted,target_name,score
+CALCRL,52,10.57,8.236953642384107,77.617985278368,Calcitonin gene-related peptide type 1 receptor,77.617985278368
+RAMP1,1,9.11,8.775,2.0219781398773193,"Calcitonin-gene-related peptide receptor, CALCRL/RAMP1",2.0219781398773193
+CALCA,1,9.11,8.885,1.0109890699386597,Calcitonin gene-related peptide 1,1.0109890699386597
+CYP51,1,6.5,6.5,0.4749999940395355,Sterol 14-alpha demethylase,0.17812499776482582

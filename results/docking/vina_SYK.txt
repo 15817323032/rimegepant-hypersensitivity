@@ -1,0 +1,12 @@
+receptor = 1A81_rec.pdbqt
+ligand = ligand.pdbqt
+center_x = 34.03
+center_y = 69.30
+center_z = 73.43
+size_x = 22.5
+size_y = 22.5
+size_z = 22.5
+exhaustiveness = 16
+num_modes = 9
+energy_range = 4
+seed = 42
