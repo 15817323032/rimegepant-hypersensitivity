@@ -76,6 +76,11 @@ def table1(demo, drug_ids, reac, outc) -> pd.DataFrame:
     n_ae = reac_s.groupby("primaryid").size()
     outc_s = outc[outc["primaryid"].astype(str).isin(ids)]
 
+    # sex 列可能为 object/float（np.nan）或 StringDtype（pd.NA）；
+    # 统一走 astype("string").fillna("") 再比较，否则 pd.NA→"<NA>" 会被漏计
+    sex_s = (d.get("sex", pd.Series("", index=d.index))
+             .astype("string").fillna("").str.upper().str.strip())
+
     def pct(n, tot):
         return f"{n:,} ({100*n/tot:.1f}%)" if tot else "-"
 
@@ -89,10 +94,9 @@ def table1(demo, drug_ids, reac, outc) -> pd.DataFrame:
         ("18-44", pct(int((agegrp == "18-44").sum()), n)),
         ("45-64", pct(int((agegrp == "45-64").sum()), n)),
         (">=65", pct(int((agegrp == ">=65").sum()), n)),
-        ("女性", pct(int(d.get("sex", pd.Series(dtype=str)).astype(str).str.upper().eq("F").sum()), n)),
-        ("男性", pct(int(d.get("sex", pd.Series(dtype=str)).astype(str).str.upper().eq("M").sum()), n)),
-        ("性别缺失/未知", pct(int(d.get("sex", pd.Series(dtype=str)).astype(str).str.upper()
-                              .isin(["", "UNK", "NAN"]).sum()), n)),
+        ("女性", pct(int(sex_s.eq("F").sum()), n)),
+        ("男性", pct(int(sex_s.eq("M").sum()), n)),
+        ("性别缺失/未知", pct(int((~sex_s.isin(["F", "M"])).sum()), n)),
         # FAERS rept_cod 取值：EXP=医师/专家, PER=消费者, DIR=厂商代表,
         # LAW=律师, CSM=公司医学部, OTH/空=其他
         ("报告者 医师 (EXP)", pct(int(d.get("rept_cod", pd.Series(dtype=str)).astype(str).str.upper().eq("EXP").sum()), n)),

@@ -50,7 +50,7 @@ METADATA = {
                  "molecular docking", "hypersensitivity"],
     "license": "MIT",
     "access_right": "open",
-    "version": "1.0.0",
+    "version": os.environ.get("RELEASE_VERSION", "1.0.1"),
     "language": "eng",
     "related_identifiers": [
         {"identifier": GITHUB_URL, "relation": "isSupplementTo", "resource_type": "software"}

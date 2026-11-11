@@ -110,7 +110,7 @@ DRUG 表 drugname / prod_ai 匹配：`RIMEGEPANT`、`RIMEGEPANT SULFATE/BENZOATE
 
 ### 5.2 描述性分析
 
-- Table 1 病例基线（年龄/性别/报告者/国家/事件数/严重结局）
+- Table 1 病例基线（年龄/性别/报告者/国家/事件数/严重结局）＋ FAERS 参考人群对照列（SMD，READUS-PV 8b）
 - Table 4 发病时间（TTO = event_dt − THER.start_dt），分段 ≤1d / 2–7d / 8–30d / 31–90d / >90d
 - Table 5 亚组（性别、年龄组、报告者、年份），Wilson 95%CI
 
@@ -191,7 +191,7 @@ FAERS 为公开去标识化自发报告数据库，不含可识别个人信息�
 
 | 编号 | 内容 | 来源 |
 |---|---|---|
-| Table 1 | 病例基线特征 | `table1_baseline.csv` |
+| Table 1 | 病例基线特征（含参考人群对照列与 SMD） | `table1_with_reference.csv`（`src/reference_population.py`） |
 | Table 2 | 全谱 PT 信号（四算法 + FDR） | `table2_all_signals.csv` |
 | Table 3 | 口腔/超敏切口信号（含子集与层级） | `table3_focus_signals.csv` |
 | Table 4 | 发病时间分布 | `table4_tto.csv` |

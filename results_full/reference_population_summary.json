@@ -1,0 +1,15 @@
+{
+  "n_total": 9094154,
+  "n_ps": 8962,
+  "n_ref": 9085192,
+  "age_median_cohort": 51.0,
+  "age_median_ref": 59.0,
+  "age_missing_cohort": 4514,
+  "age_missing_ref": 4052616,
+  "female_cohort": 5654,
+  "female_ref": 4491884,
+  "serious_cohort": 941,
+  "serious_ref": 5247712,
+  "reac_cases_ref": 9085333,
+  "runtime_s": 390
+}

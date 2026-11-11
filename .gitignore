@@ -21,12 +21,16 @@ docs/methods_draft.md
 docs/discussion_intro_draft.md
 docs/cover_letter.md
 docs/tripod_ai_checklist.md
+docs/manuscript_drugsafety.md
+docs/cover_letter_drugsafety.md
+docs/readus_pv_checklist.md
 
 # --- External binaries ---
 tools/vina.exe
 
 # --- Submission working copies ---
 submission/
+submission_drugsafety/
 
 # --- OS / editor ---
 Thumbs.db

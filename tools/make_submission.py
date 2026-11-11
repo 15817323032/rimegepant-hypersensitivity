@@ -124,8 +124,8 @@ def csv_rows(path, max_rows=None):
     return rows
 
 TITLES = {
-    1: ("Baseline characteristics of rimegepant primary-suspect reports (n = 8,962)",
-        "FAERS/AEMS 2020Q2–2026Q2 after FDA-recommended deduplication (N = 9,094,154); exposure role primary suspect (PS). Percentages are of non-missing values.", False),
+    1: ("Baseline characteristics of rimegepant primary-suspect reports compared with the FAERS reference population",
+        "Cohort = rimegepant primary-suspect cases; reference population = all other deduplicated reports in the same 25 quarterly extracts, i.e. the denominator of the disproportionality analysis. Percentages take all reports in the column as the denominator, with missing values shown as separate rows. SMD, standardised mean difference (cohort minus reference) calculated on row proportions; |SMD| > 0.10 indicates a meaningful imbalance. p values are deliberately not reported: with more than nine million reference reports, any difference regardless of size reaches significance. \u2014 = not applicable.", False),
     2: ("All positive disproportionality signals for rimegepant (a ≥ 3, BH-FDR corrected)",
         "ROR, reporting odds ratio; PRR, proportional reporting ratio; IC025, lower bound of the Bayesian confidence propagation neural network information component; EB05, lower bound of the empirical Bayes geometric mean. Positive: ROR025 > 1, PRR ≥ 2 & χ² ≥ 4, IC025 > 0, EB05 > 2. 'Robust' = positive in ≥ 2 algorithms. Focus = within the pre-specified oral/hypersensitivity composite endpoint.", True),
     3: ("Core disproportionality signals in the oral/hypersensitivity focus cluster",
@@ -151,7 +151,7 @@ TITLES = {
 }
 
 SOURCES = {
-    1: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table1_baseline", None),
+    1: ("csv", ROOT / "results_full/table1_with_reference.csv", None, None),
     2: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table2_all_signals", None),
     3: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table3_focus_signals", None),
     4: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table4_tto", None),
@@ -347,16 +347,17 @@ def build_main_manuscript():
     doc.save(out)
     print("saved", out)
 
+LEGENDS = [
+    ("Figure 1.", "Forest plot of positive disproportionality signals within the oral/hypersensitivity focus cluster (FAERS/AEMS 2020Q2\u20132026Q2, primary-suspect role). Points represent ROR; horizontal bars represent 95% CIs; the vertical line marks ROR = 1."),
+    ("Figure 2.", "Quarterly reporting proportions of the six hypersensitivity-spectrum families, 2020Q2\u20132026Q2. The dashed vertical line marks the August 2025 label revision (2025Q3 cut-off)."),
+    ("Figure 3.", "Receiver operating characteristic (left) and precision\u2013recall (right) curves of the four machine-learning models under repeated stratified 5-fold \u00d7 3 cross-validation. Random forest performed best (AUC 0.622 \u00b1 0.017)."),
+    ("Figure 4.", "SHAP summary plot of the best-performing model (random forest). Female sex dominates global feature importance; positivity was 12.9% in the top SHAP quartile vs 6.2% in the bottom quartile."),
+    ("Figure 5.", "Bridged network-toxicology overview: drug anchors (CALCRL/RAMP1/CALCA), bridge genes (GNG2/GNB1/GNAS; C3/C5; PLCG1/SRC/MAPK1), event modules (Fc\u03b5RI signalling, complement and coagulation cascades, inflammatory mediator regulation of TRP channels), and KEGG enrichment of the bridged network."),
+]
+
 def add_figure_legends(doc):
     doc.add_heading("Figure legends", level=1)
-    legends = [
-        ("Figure 1.", "Forest plot of positive disproportionality signals within the oral/hypersensitivity focus cluster (FAERS/AEMS 2020Q2–2026Q2, primary-suspect role). Points represent ROR; horizontal bars represent 95% CIs; the vertical line marks ROR = 1."),
-        ("Figure 2.", "Quarterly reporting proportions of the six hypersensitivity-spectrum families, 2020Q2–2026Q2. The dashed vertical line marks the August 2025 label revision (2025Q3 cut-off)."),
-        ("Figure 3.", "Receiver operating characteristic (left) and precision–recall (right) curves of the four machine-learning models under repeated stratified 5-fold × 3 cross-validation. Random forest performed best (AUC 0.622 ± 0.017)."),
-        ("Figure 4.", "SHAP summary plot of the best-performing model (random forest). Female sex dominates global feature importance; positivity was 12.9% in the top SHAP quartile vs 6.2% in the bottom quartile."),
-        ("Figure 5.", "Bridged network-toxicology overview: drug anchors (CALCRL/RAMP1/CALCA), bridge genes (GNG2/GNB1/GNAS; C3/C5; PLCG1/SRC/MAPK1), event modules (FcεRI signalling, complement and coagulation cascades, inflammatory mediator regulation of TRP channels), and KEGG enrichment of the bridged network."),
-    ]
-    for tag, txt in legends:
+    for tag, txt in LEGENDS:
         p = doc.add_paragraph()
         r = p.add_run(tag + " "); r.bold = True
         add_runs(p, txt)
