@@ -1,0 +1,4 @@
+﻿target,pdb,best_affinity,mean_top3,n_modes,box_volume_A3,exhaustiveness,seed,receptor,delta_vs_on_target,interpretation
+CALCRL,6Z2V,-8.879,-8.774,9,31367,16,42,6Z2V_rec.pdbqt,0.0,on-target 阳性对照（≤−8 判据通过）
+SYK,1A81,-3.189,-3.13,9,11391,16,42,1A81_rec.pdbqt,5.69,无受体级 off-target（弱于 CALCRL ≥2 kcal/mol）
+BTK,1B55,-7.071,-6.855,9,11391,16,42,1B55_rec.pdbqt,1.808,Δ<2 kcal/mol：不能单凭分值下结论，需结合药物警戒证据

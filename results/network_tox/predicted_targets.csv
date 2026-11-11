@@ -1,0 +1,4 @@
+﻿gene,n_neighbors,max_pchembl,mean_pchembl,sim_weighted,target_name,score
+CALCRL,25,10.57,8.583855421686748,45.50235551595688,Calcitonin gene-related peptide type 1 receptor,45.50235551595688
+RAMP1,1,9.11,8.775,2.0219781398773193,"Calcitonin-gene-related peptide receptor, CALCRL/RAMP1",2.0219781398773193
+CALCA,1,9.11,8.885,1.0109890699386597,Calcitonin gene-related peptide 1,1.0109890699386597

@@ -1,0 +1,12 @@
+receptor = 6Z2V_rec.pdbqt
+ligand = ligand.pdbqt
+center_x = 78.52
+center_y = 14.07
+center_z = 93.58
+size_x = 34.8
+size_y = 24.1
+size_z = 37.4
+exhaustiveness = 16
+num_modes = 9
+energy_range = 4
+seed = 42

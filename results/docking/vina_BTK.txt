@@ -1,0 +1,12 @@
+receptor = 1B55_rec.pdbqt
+ligand = ligand.pdbqt
+center_x = 2.33
+center_y = 3.32
+center_z = 54.43
+size_x = 22.5
+size_y = 22.5
+size_z = 22.5
+exhaustiveness = 16
+num_modes = 9
+energy_range = 4
+seed = 42

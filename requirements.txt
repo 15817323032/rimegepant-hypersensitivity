@@ -1,0 +1,18 @@
+# 核心科学计算
+pandas>=2.2
+numpy>=1.26
+scipy>=1.11
+statsmodels>=0.14
+scikit-learn>=1.4
+openpyxl>=3.1
+requests>=2.31
+matplotlib>=3.8
+
+# 机器学习
+xgboost>=2.0
+lightgbm>=4.3
+shap>=0.45
+
+# 分子对接准备（可选，Module 4 用）
+rdkit>=2024.03
+meeko>=0.6          # 配体 PDBQT 转换；无则退回 openbabel 或 MGLTools

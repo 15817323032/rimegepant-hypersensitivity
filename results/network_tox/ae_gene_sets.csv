@@ -1,0 +1,1091 @@
+﻿source,pathway,rationale,gene
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,AKT1
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,AKT2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,ALOX5
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,ALOX5AP
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,BTK
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,CSF2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,FCER1A
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,FCER1G
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,FYN
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,GAB2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,GRB2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,HRAS
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,IL13
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,IL3
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,IL4
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,IL5
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,INPP5D
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,KRAS
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,LAT
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,LCP2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,LYN
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAP2K1
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAP2K2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAP2K3
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAP2K4
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAP2K6
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAP2K7
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAPK1
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAPK10
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAPK11
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAPK12
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAPK13
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAPK14
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAPK3
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAPK8
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MAPK9
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,MS4A2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,NRAS
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PDPK1
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PIK3CA
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PIK3CB
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PIK3CD
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PIK3R1
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PIK3R2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PIK3R3
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PLA2G4A
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PLA2G4B
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PLA2G4C
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PLA2G4D
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PLA2G4E
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PLA2G4F
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PLCG1
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PLCG2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,PRKCA
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,RAC1
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,RAC2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,RAC3
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,RAF1
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,SOS1
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,SOS2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,SYK
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,TNF
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,VAV1
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,VAV2
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,VAV3
+KEGG:hsa04664,Fc epsilon RI signaling pathway,肥大细胞 IgE 受体活化 —— I 型超敏核心,[KO:K06856]
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,A2M
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,ADTRP
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,BDKRB1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,BDKRB2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C1QA
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C1QB
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C1QC
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C1R
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C1S
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C3
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C3AR1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C4A
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C4A_2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C4B
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C4BPA
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C4BPB
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C5
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C5AR1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C6
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C7
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C8A
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C8B
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C8G
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,C9
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CD46
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CD55
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CD59
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CFB
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CFD
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CFH
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CFHR1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CFHR2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CFHR3
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CFHR4
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CFHR5
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CFI
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CLU
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CPB2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CR1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CR1L
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,CR2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F10
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F11
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F12
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F13A1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F13B
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F2R
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F2RL2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F2RL3
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F3
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F5
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F7
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F8
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,F9
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,FGA
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,FGB
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,FGG
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,ITGAM
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,ITGAX
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,ITGB2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,KLKB1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,KNG1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,MASP1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,MASP2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,MBL2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,PLAT
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,PLAU
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,PLAUR
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,PLG
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,PROC
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,PROCR
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,PROS1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,SERPINA1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,SERPINA5
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,SERPINB2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,SERPINC1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,SERPIND1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,SERPINE1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,SERPINE2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,SERPINF2
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,SERPING1
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,TFPI
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,THBD
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,VSIG4
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,VTN
+KEGG:hsa04610,Complement and coagulation cascades,补体/激肽系统 —— 血管性水肿与咽部肿胀,VWF
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ADCY1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ADCY2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ADCY3
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ADCY4
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ADCY5
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ADCY6
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ADCY7
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ADCY8
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ADCY9
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ALOX12
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ASIC1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ASIC2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ASIC3
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ASIC4
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ASIC5
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,BDKRB1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,BDKRB2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CALM1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CALM2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CALM3
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CALML3
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CALML4
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CALML5
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CALML6
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CAMK2A
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CAMK2B
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CAMK2D
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CAMK2G
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,CYP2J2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,F2RL1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,GNAQ
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,GNAS
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,HRH1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,HTR2A
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,HTR2B
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,HTR2C
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,IGF1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,IL1B
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,IL1R1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,IL1RAP
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ITPR1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ITPR2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,ITPR3
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,KNG1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,MAP2K3
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,MAP2K6
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,MAPK10
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,MAPK11
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,MAPK12
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,MAPK13
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,MAPK14
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,MAPK8
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,MAPK9
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,NGF
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,NTRK1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,P2RY2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PIK3CA
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PIK3CB
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PIK3CD
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PIK3R1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PIK3R2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PIK3R3
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLA2G4A
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLA2G4C
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLA2G4D
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLA2G4E
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLA2G4F
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLA2G6
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLCB1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLCB2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLCB3
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLCB4
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLCG1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PLCG2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PPP1CA
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PPP1CB
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PPP1CC
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PRKACA
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PRKACB
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PRKACG
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PRKCA
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PRKCB
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PRKCD
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PRKCE
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PRKCG
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PRKCH
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PRKCQ
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PTGER2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,PTGER4
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,SRC
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,TRPA1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,TRPM8
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,TRPV1
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,TRPV2
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,TRPV3
+KEGG:hsa04750,Inflammatory mediator regulation of TRP channels,TRPV1/TRPA1 —— 口部灼烧感与感觉异常,TRPV4
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,AKT1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,AKT2
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CASP8
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CCL3
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CCL3L1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CCL3L3
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CCL4
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CCL4L1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CCL4L2
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CCL5
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CD14
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CD40
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CD80
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CD86
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CHUK
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CTSK
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CXCL10
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CXCL11
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CXCL8
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,CXCL9
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,FADD
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,FOS
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA10
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA13
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA14
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA16
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA17
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA2
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA21
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA4
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA5
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA6
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA7
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNA8
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNAR1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNAR2
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IFNB1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IKBKB
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IKBKE
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IKBKG
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IL12A
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IL12B
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IL1B
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IL6
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IRAK1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IRAK4
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IRF3
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IRF5
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IRF7
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,IRF9
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,JAK1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,JUN
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,LBP
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,LY96
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAP2K1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAP2K2
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAP2K3
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAP2K4
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAP2K6
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAP2K7
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAP3K7
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAP3K8
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAPK1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAPK10
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAPK11
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAPK12
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAPK13
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAPK14
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAPK3
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAPK8
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MAPK9
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,MYD88
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,NFKB1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,NFKBIA
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,PIK3CA
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,PIK3CB
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,PIK3CD
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,PIK3R1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,PIK3R2
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,PIK3R3
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,RAC1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,RELA
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,RIPK1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,SPP1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,STAT1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,STAT2
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TAB1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TAB2
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TBK1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TICAM1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TICAM2
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TIRAP
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TLR1
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TLR2
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TLR3
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TLR4
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TLR5
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TLR6
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TLR7
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TLR8
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TLR9
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TNF
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TOLLIP
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TRAF3
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TRAF6
+KEGG:hsa04620,Toll-like receptor signaling pathway,固有免疫活化 —— 佐剂样炎症放大,TYK2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ADCY1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ADCY2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ADCY3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ADCY4
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ADCY5
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ADCY6
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ADCY7
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ADCY8
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ADCY9
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,AKT1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,AKT2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ARRB1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ARRB2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,BAD
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,BCAR1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,BRAF
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL11
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL13
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL14
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL15
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL16
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL17
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL18
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL19
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL20
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL21
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL22
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL23
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL24
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL25
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL26
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL27
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL28
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL3L1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL3L3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL4
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL4L1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL4L2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL5
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL7
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCL8
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCR1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCR10
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCR2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCR3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCR4
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCR5
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCR6
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCR7
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCR8
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CCR9
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CDC42
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CHUK
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CRK
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CRKL
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CX3CL1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CX3CR1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL10
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL11
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL12
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL13
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL14
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL16
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL5
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL6
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL8
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCL9
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCR1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCR2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCR3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCR4
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCR5
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,CXCR6
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,DOCK2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ELMO1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,FGR
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,FOXO3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNAI1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNAI2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNAI3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNAQ
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNB1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNB2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNB3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNB4
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNB5
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNG10
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNG11
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNG12
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNG13
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNG2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNG3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNG4
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNG5
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNG7
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNG8
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNGT1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GNGT2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GRB2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GRK1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GRK2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GRK3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GRK4
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GRK5
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GRK6
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GRK7
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GSK3A
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,GSK3B
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,HCK
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,HRAS
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,IKBKB
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,IKBKG
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ITK
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,JAK2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,JAK3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,KRAS
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,LYN
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,MAP2K1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,MAPK1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,MAPK3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,NCF1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,NFKB1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,NFKBIA
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,NFKBIB
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,NRAS
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PAK1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PARD3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PF4
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PF4V1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PIK3CA
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PIK3CB
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PIK3CD
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PIK3CG
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PIK3R1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PIK3R2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PIK3R3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PIK3R5
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PIK3R6
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PLCB1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PLCB2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PLCB3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PLCB4
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PLCG1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PLCG2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PPBP
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PREX1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PRKACA
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PRKACB
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PRKACG
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PRKCB
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PRKCD
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PRKCZ
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PTK2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PTK2B
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,PXN
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,RAC1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,RAC2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,RAC3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,RAF1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,RAP1A
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,RAP1B
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,RASGRP2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,RELA
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,RHOA
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ROCK1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,ROCK2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,SHC1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,SHC2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,SHC3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,SHC4
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,SOS1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,SOS2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,SRC
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,STAT1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,STAT2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,STAT3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,STAT5B
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,TIAM1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,VAV1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,VAV2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,VAV3
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,WAS
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,XCL1
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,XCL2
+KEGG:hsa04062,Chemokine signaling pathway,肥大细胞/嗜碱粒细胞趋化,XCR1
+KEGG:hsa05310,Asthma,气道高反应性参照通路,CCL11
+KEGG:hsa05310,Asthma,气道高反应性参照通路,CD40
+KEGG:hsa05310,Asthma,气道高反应性参照通路,CD40LG
+KEGG:hsa05310,Asthma,气道高反应性参照通路,EPX
+KEGG:hsa05310,Asthma,气道高反应性参照通路,FCER1A
+KEGG:hsa05310,Asthma,气道高反应性参照通路,FCER1G
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DMA
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DMB
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DOA
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DOB
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DPA1
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DPB1
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DQA1
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DQA2
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DQB1
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DQB2
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DRA
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DRB1
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DRB3
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DRB4
+KEGG:hsa05310,Asthma,气道高反应性参照通路,HLA-DRB5
+KEGG:hsa05310,Asthma,气道高反应性参照通路,IL10
+KEGG:hsa05310,Asthma,气道高反应性参照通路,IL13
+KEGG:hsa05310,Asthma,气道高反应性参照通路,IL3
+KEGG:hsa05310,Asthma,气道高反应性参照通路,IL4
+KEGG:hsa05310,Asthma,气道高反应性参照通路,IL5
+KEGG:hsa05310,Asthma,气道高反应性参照通路,IL9
+KEGG:hsa05310,Asthma,气道高反应性参照通路,MS4A2
+KEGG:hsa05310,Asthma,气道高反应性参照通路,PRG2
+KEGG:hsa05310,Asthma,气道高反应性参照通路,RNASE3
+KEGG:hsa05310,Asthma,气道高反应性参照通路,TNF
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,AICDA
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CCL25
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CCL28
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CCR10
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CCR9
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CD28
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CD40
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CD40LG
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CD80
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CD86
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CXCL12
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,CXCR4
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DMA
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DMB
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DOA
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DOB
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DPA1
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DPB1
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DQA1
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DQA2
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DQB1
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DQB2
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DRA
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DRB1
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DRB3
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DRB4
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,HLA-DRB5
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,ICOS
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,ICOSLG
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,IL10
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,IL15
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,IL15RA
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,IL2
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,IL4
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,IL5
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,IL6
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,ITGA4
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,ITGB7
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,LTBR
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,MADCAM1
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,MAP3K14
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,PIGR
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,TGFB1
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,TNFRSF13B
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,TNFRSF13C
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,TNFRSF17
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,TNFSF13
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,TNFSF13B
+KEGG:hsa04672,Intestinal immune network for IgA production,黏膜免疫，解释口咽部黏膜反应,[KO:K06710]
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADCY2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADCY3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADCY4
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADCY5
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADCY6
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADCY7
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADCY8
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADCY9
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADRA1A
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADRA1B
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADRA1D
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADRB1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADRB2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ADRB3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,AMY1A
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,AMY1B
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,AMY1C
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,AMY2A
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,AMY2B
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,AQP5
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP1A1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP1A2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP1A3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP1A4
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP1B1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP1B2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP1B3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP1B4
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP2B1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP2B2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP2B3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ATP2B4
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,BEST2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,BST1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CALM1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CALM2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CALM3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CALML3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CALML4
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CALML5
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CALML6
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CAMP
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CD38
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CHRM3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CST1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CST2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CST3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CST4
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,CST5
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,DMBT1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,FXYD2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,GNAQ
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,GNAS
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,GUCY1A1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,GUCY1A2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,GUCY1B1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,HTN1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,HTN3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ITPR1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ITPR2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,ITPR3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,KCNMA1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,KCNN4
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,LPO
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,LYZ
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,MUC5AC
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,MUC5B
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,MUC7
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,NOS1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PLCB1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PLCB2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PLCB3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PLCB4
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRB1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRB2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRH1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRH2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRKACA
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRKACB
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRKACG
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRKCA
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRKCB
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRKCG
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRKG1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,PRKG2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,RYR3
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,SLC12A2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,SLC4A2
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,SLC9A1
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,STATH
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,TRPV6
+KEGG:hsa04970,Salivary secretion,唾液腺反应（口干/唾液增多）,VAMP2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADCYAP1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADCYAP1R1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADM
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADM2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADORA1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADORA2A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADORA2B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADORA3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADRA1A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADRA1B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADRA1D
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADRA2A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADRA2B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADRA2C
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADRB1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADRB2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,ADRB3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,AGT
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,AGTR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,AGTR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,APELA
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,APLN
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,APLNR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,AVP
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,AVPR1A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,AVPR1B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,AVPR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,BDKRB1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,BDKRB2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,BRS3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,C3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,C3AR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,C5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,C5AR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CALCA
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CALCB
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CALCR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CALCRL
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CCK
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CCKAR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CCKBR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CGA
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRFAM7A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRM1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRM2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRM3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRM4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRM5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNA1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNA10
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNA2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNA3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNA4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNA5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNA6
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNA7
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNA9
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNB1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNB2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNB3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNB4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRND
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNE
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CHRNG
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CNR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CNR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CORT
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CRH
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CRHR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CRHR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CSH1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CSH2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CSHL1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CTSG
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CYSLTR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,CYSLTR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,DRD1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,DRD2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,DRD3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,DRD4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,DRD5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,EDN1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,EDN2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,EDN3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,EDNRA
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,EDNRB
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,F2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,F2R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,F2RL1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,F2RL2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,F2RL3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,FPR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,FPR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,FPR3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,FSHB
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,FSHR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABBR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABBR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRA1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRA2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRA3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRA4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRA5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRA6
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRB1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRB2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRB3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRD
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRE
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRG1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRG2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRG3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRP
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRQ
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GABRR3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GAL
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GALP
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GALR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GALR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GALR3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GCG
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GCGR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GH1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GH2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GHR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GHRH
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GHRHR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GHRL
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GHSR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GIP
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GIPR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GLP1R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GLP2R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GLRA1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GLRA2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GLRA3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GLRB
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GNRH1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GNRH2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GNRHR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GPHA2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GPHB5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GPR156
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GPR35
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GPR50
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GPR83
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIA1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIA2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIA3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIA4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRID1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRID2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIK1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIK2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIK3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIK4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIK5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIN1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIN2A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIN2B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIN2C
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIN2D
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIN3A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRIN3B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRM1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRM2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRM3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRM4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRM5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRM6
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRM7
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRM8
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRP
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GRPR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,GZMA
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HCRT
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HCRTR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HCRTR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HRH1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HRH2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HRH3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HRH4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR1A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR1B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR1D
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR1E
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR1F
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR2A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR2B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR2C
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR5A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR6
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,HTR7
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,IAPP
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,INSL3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,INSL5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,KISS1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,KISS1R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,KNG1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LEP
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LEPR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LHB
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LHCGR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LPAR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LPAR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LPAR3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LPAR4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LPAR6
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LTB4R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LTB4R2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LYNX1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LYPD6
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,LYPD6B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MAS1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MC1R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MC2R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MC3R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MC4R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MC5R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MCHR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MCHR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MLN
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MLNR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MTNR1A
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,MTNR1B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NMB
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NMBR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NMS
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NMU
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NMUR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NMUR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPB
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPBWR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPBWR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPFF
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPFFR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPFFR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPS
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPSR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPVF
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPW
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPY
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPY1R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPY2R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPY4R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPY4R2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NPY5R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NR3C1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NTS
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NTSR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,NTSR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,OGFR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,OGFRL1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,OPRD1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,OPRK1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,OPRL1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,OPRM1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,OXT
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,OXTR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RX1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RX2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RX3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RX4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RX5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RX6
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RX7
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RY1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RY10
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RY11
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RY13
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RY14
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RY2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RY4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RY6
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,P2RY8
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PAQR6
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PAQR9
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PATE1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PATE2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PATE4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PDYN
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PENK
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PGRMC1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PGRMC2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PLG
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PMCH
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PNOC
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,POMC
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PPY
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PRL
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PRLH
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PRLHR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PRLR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PRSS1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PRSS2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PRSS3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTAFR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTGDR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTGER1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTGER2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTGER3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTGER4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTGFR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTGIR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTH
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTH1R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTH2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PTH2R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,PYY
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,QRFP
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,QRFPR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,RLN1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,RLN2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,RLN3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,RXFP1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,RXFP2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,RXFP3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,RXFP4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,S1PR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,S1PR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,S1PR3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,S1PR4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,S1PR5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SCT
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SCTR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SLURP1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SLURP2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SPX
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SST
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SSTR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SSTR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SSTR3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SSTR4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,SSTR5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TAAR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TAAR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TAAR5
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TAAR6
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TAAR8
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TAAR9
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TAC1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TAC3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TAC4
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TACR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TACR2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TACR3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TBXA2R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,THRA
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,THRB
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TMEM97
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TRH
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TRHR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TRPV1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TSHB
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TSHR
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TSPO
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,TSPO2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,UCN
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,UCN2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,UCN3
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,UTS2
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,UTS2B
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,UTS2R
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,VGF
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,VIP
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,VIPR1
+KEGG:hsa04080,Neuroactive ligand-receptor interaction,CGRP 受体下游与神经源性炎症,VIPR2
