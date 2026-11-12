@@ -39,11 +39,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 # 靶点 → 推荐 PDB 结构（有共结晶配体的优先，便于定义对接盒）
-# 说明：CALCRL/RAMP1 的 CGRP 受体结构为 6Z2V（冷冻电镜，含 CGRP 肽）；
+# 说明：CGRP 受体（CALCRL/RAMP1）正构口袋结构为 3N7S（CLR/RAMP1 胞外域与
+# olcegepant 共晶，2.10 Å，ter Haar 2010；对接盒取 olcegepant 几何中心）。
+# 注意：6Z2V 是 CLK3 激酶结构，不是 CGRP 受体，勿再使用。
 # 其他靶点结构需按 Module 3 的交集结果补充，此处给出常用备份。
 TARGET_PDB = {
-    "CALCRL": ("6Z2V", "CGRP receptor (CALCRL+RAMP1) 冷冻电镜结构"),
-    "RAMP1": ("6Z2V", "同上，RAMP1 为共受体"),
+    "CALCRL": ("3N7S", "CGRP receptor ectodomain (CALCRL+RAMP1) + olcegepant, 2.10 A"),
+    "RAMP1": ("3N7S", "同上，RAMP1 为共受体"),
     "MS4A2": ("", "无实验结构，建议 AlphaFold DB: AF-P24380-F1"),
     "KIT": ("1T45", "KIT 激酶域 + 抑制剂"),
     "SYK": ("1A81", "SYK  tandem SH2"),

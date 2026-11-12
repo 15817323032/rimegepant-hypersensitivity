@@ -162,7 +162,7 @@ PLCG1、MAPK1、SRC（肥大细胞/IgE 下游）、CX3CL1。这些将构成 Disc
 ### 5.5 分子对接（次要目的 B-2）
 
 - 配体：瑞美吉泮游离碱，RDKit ETKDGv3 生成 50 构象、MMFF94s 优化取最低能量
-- 受体：优先共结晶结构（CGRP 受体 6Z2V），去水去杂原子
+- 受体：优先共结晶结构（CGRP 受体 CALCRL/RAMP1 胞外域 3N7S，与 olcegepant 共晶；6Z2V 为 CLK3 激酶结构，不可用），去水去杂原子
 - 工具：AutoDock Vina（exhaustiveness 32，seed 42，取 mode 1 亲和力）；零安装替代 CB-Dock2 盲对接（与 Zheng 2026 范文一致）
 - 报告：结合能（kcal/mol）+ 关键残基相互作用（PyMOL/LigPlot+ 出图）
 

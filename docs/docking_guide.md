@@ -11,7 +11,7 @@
 ```
 results/docking/
 ├── ligand.pdbqt            # 瑞美吉泮 50 构象（RDKit ETKDGv3 + MMFF94s，meeko 转换）
-├── 6Z2V_rec.pdbqt          # CGRP 受体（CALCRL+RAMP1）柔性侧链已预处理  ← 受体
+├── 3N7S_rec.pdbqt           # CGRP 受体（CALCRL+RAMP1）柔性侧链已预处理  ← 受体
 ├── 1A81_rec.pdbqt          # SYK tandem SH2
 ├── 1B55_rec.pdbqt          # BTK 激酶域
 ├── vina_CALCRL.txt 等      # 三个对接配置（盒子中心/尺寸/exhaustiveness/seed）
@@ -21,7 +21,7 @@ results/docking/
 ```
 
 三个靶点的角色：
-- **CALCRL（6Z2V）**：on-target 阳性对照——瑞美吉泮共晶受体，打分应最强；
+- **CALCRL/RAMP1（3N7S）**：on-target 阳性对照——CLR/RAMP1 胞外域与 olcegepant 共晶（ter Haar 2010），正构口袋，打分应最强；（注意：6Z2V 是 CLK3 激酶结构，不是 CGRP 受体，勿用）；
 - **SYK（1A81）/ BTK（1B55）**：off-target 检验——肥大细胞活化激酶，
   若瑞美吉泮对它们打分显著弱于 CALCRL（ΔG 差 > 2 kcal/mol），
   支持"超敏谱非受体直接 off-target"的结论。
@@ -94,7 +94,7 @@ cd results/docking
 
 1. 打开 https://cadd.labshare.cn/cb-dock2/php/index.php
 2. **Ligand** 页上传 `results/docking/ligand_best.sdf`（瑞美吉泮 3D 构象）；
-3. **Receptor** 页分别上传 `6Z2V_clean.pdb` / `1A81_clean.pdb` / `1B55_clean.pdb`
+3. **Receptor** 页分别上传 `3N7S_clean.pdb` / `1A81_clean.pdb` / `1B55_clean.pdb`
    （CB-Dock2 自动找 cavity，无需手动设盒子——与本地 Vina 的差异需在
    Methods 注明）；
 4. 提交后任务排队 1–4 小时，邮箱/页面取结果：关注 **Vina score** 与

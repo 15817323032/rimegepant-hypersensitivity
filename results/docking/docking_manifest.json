@@ -1,33 +1,33 @@
 [
   {
     "target": "CALCRL",
-    "pdb": "6Z2V",
-    "note": "CGRP receptor (CALCRL+RAMP1) 冷冻电镜结构",
+    "pdb": "3N7S",
+    "note": "CGRP receptor ectodomain (CALCRL+RAMP1) + olcegepant co-crystal, ter Haar 2010",
     "center": [
-      78.52,
-      14.07,
-      93.58
+      20.78,
+      21.37,
+      72.7
     ],
     "size": [
-      34.8,
-      24.1,
-      37.4
+      26.3,
+      30.3,
+      30.4
     ],
     "box_source": "co-crystal ligand"
   },
   {
     "target": "RAMP1",
-    "pdb": "6Z2V",
-    "note": "同上，RAMP1 为共受体",
+    "pdb": "3N7S",
+    "note": "CGRP receptor ectodomain (CALCRL+RAMP1) + olcegepant co-crystal, ter Haar 2010",
     "center": [
-      78.52,
-      14.07,
-      93.58
+      20.78,
+      21.37,
+      72.7
     ],
     "size": [
-      34.8,
-      24.1,
-      37.4
+      26.3,
+      30.3,
+      30.4
     ],
     "box_source": "co-crystal ligand"
   },
