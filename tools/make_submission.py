@@ -348,7 +348,7 @@ def build_main_manuscript():
     print("saved", out)
 
 LEGENDS = [
-    ("Figure 1.", "Forest plot of positive disproportionality signals within the oral/hypersensitivity focus cluster (FAERS/AEMS 2020Q2\u20132026Q2, primary-suspect role). Points represent ROR; horizontal bars represent 95% CIs; the vertical line marks ROR = 1."),
+    ("Figure 1.", "Forest plot of the 25 highest-ROR preferred terms within the oral/hypersensitivity focus cluster (49 PTs; FAERS/AEMS 2020Q2\u20132026Q2, primary-suspect role). Points represent ROR; horizontal bars represent 95% CIs; the vertical dashed line marks ROR = 1. Red points are robust positive signals (all four algorithms concordant); dark blue points did not meet the signal criterion. All 19 positive signals are shown."),
     ("Figure 2.", "Quarterly reporting proportions of the six hypersensitivity-spectrum families, 2020Q2\u20132026Q2. The dashed vertical line marks the August 2025 label revision (2025Q3 cut-off)."),
     ("Figure 3.", "Receiver operating characteristic (left) and precision\u2013recall (right) curves of the four machine-learning models under repeated stratified 5-fold \u00d7 3 cross-validation. Random forest performed best (AUC 0.621 \u00b1 0.015)."),
     ("Figure 4.", "SHAP summary plot of the best-performing model (random forest). Female sex dominates global feature importance; positivity was 12.9% in the top SHAP quartile vs 6.2% in the bottom quartile."),
