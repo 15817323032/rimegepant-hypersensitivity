@@ -43,3 +43,4 @@ Thumbs.db
 # Local-only helper (proxy workaround; not part of the released code)
 tools/push_via_api.py
 figure_data_package/
+raw_data_package/
