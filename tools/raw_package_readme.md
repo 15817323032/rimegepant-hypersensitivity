@@ -137,6 +137,13 @@ raw_data_package/
 | `dsg_drug_seq` | 对应用药序号 |
 | `start_dt` / `end_dt` / `dur` / `dur_cod` | 起止日期、持续时间及单位 |
 
+> **THER 里包含该病例的「全部用药」行，不只是瑞美吉泮**（12,983 行 / 5,536 例）。THER 表本身没有药名列，`dsg_drug_seq` 需回连 `DRUG.drug_seq` 才能知道是哪一种药。做 TTO 时必须只取瑞美吉泮那一行（`dsg_drug_seq` = 该病例 `DRUG` 中 `drugname`/`prod_ai` 命中 RIMEGEPANT/NURTEC 的 `drug_seq`），否则会把合并用药的开始日期当成瑞美吉泮的开始日期，算出的病例数与 Table 4 不符。
+>
+> **TTO 复算的完整口径**（与 `src/run_module1.py::table4_tto` 及 `src/ml_risk.py` 一致，可得表内 848 例）：
+> ① 限定 PS 队列（`02_case_id_map`，8,962 例）；② `DEMO.event_dt` 与瑞美吉泮行的 `start_dt` 都必须是**完整 8 位日期** `YYYYMMDD`——FAERS 中大量日期只精确到月（`YYYYMM`），这类记录按缺失处理，不插值；③ TTO = event_dt − start_dt；④ 剔除负值（事件早于用药，208 例）与 >730 天（4 例）。
+> 链条：8,962 → 两日期完整 1,060（11.8%）→ 可分析 848（9.5%），中位 0 天（IQR 0–5），67.3% 在 1 天内。
+> 注意：若不做 ②（用宽松解析把 `YYYYMM` 当月初）或 ④（保留负值），会分别多出约 200 例，这是复算时最常出现的两处偏差。
+
 > **编码说明**：`.txt` 与 FDA 原件完全一致（`$` 分隔、latin-1）；`.csv` 是同一份数据转 UTF-8-BOM 后的版本（Excel 可直接打开）。二者内容等价，行数相同。空值在 FAERS 里就是空字符串，不是 `NA`。
 
 ---

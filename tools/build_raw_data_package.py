@@ -150,7 +150,11 @@ def main() -> None:
                 "quarter_zip_url": f"https://fis.fda.gov/content/Exports/faers_ascii_{q[:4]}q{q[-1]}.zip",
             })
     man = pd.DataFrame(recs)
-    man.to_csv(MAN / "faers_source_manifest.csv", index=False, encoding="utf-8-sig")
+    try:
+        man.to_csv(MAN / "faers_source_manifest.csv", index=False, encoding="utf-8-sig")
+    except PermissionError:
+        # 文件可能正被表格编辑器打开；内容未变（季度清单稳定），跳过即可
+        print("  [manifest] target locked by another app; keeping the existing copy")
     print(f"  [manifest] {len(man)} files, {man.bytes.sum()/1e9:.1f} GB across {man.quarter.nunique()} quarters")
 
     # ---------- 5. code ----------

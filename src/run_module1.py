@@ -161,20 +161,23 @@ def table4_tto(demo, ther, reac, ids, focus_only=True) -> pd.DataFrame:
     t = t.dropna(subset=["start_dt"]).drop_duplicates("primaryid")
     mg = d.merge(t[["primaryid", "start_dt"]], on="primaryid", how="inner")
     mg["tto_days"] = (mg["event_dt"] - mg["start_dt"]).dt.days
-    mg = mg[(mg["tto_days"] >= 0) & (mg["tto_days"] <= 3650)]
+    n_both = int(mg["tto_days"].notna().sum())          # 两个日期均可解析
+    # 负值 = 事件早于用药（非 TEAE 或录入错误）；>730 d 对按需急性用药不可信，
+    # 且与 ml_risk.py 的 tto_days 窗口 (0-730) 保持一致。
+    mg = mg[(mg["tto_days"] >= 0) & (mg["tto_days"] <= 730)]
 
-    bins = [-0.1, 1, 7, 30, 90, 3650]
+    bins = [-0.1, 1, 7, 30, 90, 730]
     labels = ["<=1d", "2-7d", "8-30d", "31-90d", ">90d"]
     mg["tto_cat"] = pd.cut(mg["tto_days"], bins, labels=labels)
 
     tot = len(mg)
-    rows = [("可计算 TTO 的病例数", f"{tot:,}")]
+    rows = [("两日期均完整", f"{n_both:,} ({n_both/len(ids)*100:.1f}%)"),
+            ("可分析 TTO 的病例数", f"{tot:,} ({tot/len(ids)*100:.1f}%)")]
     if tot:
         rows += [
             ("TTO 中位数 (IQR)", f"{mg['tto_days'].median():.0f} "
                                  f"({mg['tto_days'].quantile(.25):.0f}-"
                                  f"{mg['tto_days'].quantile(.75):.0f}) 天"),
-            ("TTO 报告完整率", f"{tot/len(ids)*100:.1f}%"),
         ]
         for lab in labels:
             k = int((mg["tto_cat"] == lab).sum())
