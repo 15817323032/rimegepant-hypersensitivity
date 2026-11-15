@@ -80,6 +80,18 @@ python src/label_change.py --cutoff 2025Q3
 
 FAERS/AEMS public ASCII quarterly extracts are freely downloadable from the FDA ([direct-link pattern](https://fis.fda.gov/content/Exports/faers_ascii_YYYYQn.zip)); no data files are redistributed here. All derived counts, tables, and figures are included under `results*/`.
 
+## Pre-release verification
+
+Before tagging a release or submitting a revision, run the claim auditor. It checks every quantitative statement in `docs/manuscript_en.md` against its source file and fails on any mismatch, unsupported figure, or selectively quoted value (for example citing a docking RMSD lower bound without its upper bound):
+
+```bash
+python tools/verify_claims.py --strict --write-report
+```
+
+A non-zero exit code blocks the release. The report is written to `docs/claim_audit.md`.
+
+What is checked: docking scores and their derived Δ values, RMSD quotation completeness, signal counts and per-PT ROR, model AUCs, pre/post family ratios, cohort and reference sizes, the TTO filtering chain, every standardised mean difference (Table 1 both reference columns plus the INDI-subset sensitivity, with each SMD recomputed from the paired percentages), and every percentage — Table 1/4/5 are recomputed from their own numerators and denominators, each percentage in the prose must either trace to a table, be recomputed from counts at runtime, or be registered in `EXTERNAL_PCT` with its source (literature values and nominal 95% CI levels only), and each `a% vs b%` pair must correspond to one row or one column of a table. A new number that has no source therefore fails the gate instead of slipping through.
+
 ## Citation / DOI
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24134724.svg)](https://doi.org/10.5281/zenodo.24134724)

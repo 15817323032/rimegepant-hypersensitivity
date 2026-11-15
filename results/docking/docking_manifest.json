@@ -2,65 +2,27 @@
   {
     "target": "CALCRL",
     "pdb": "3N7S",
-    "note": "CGRP receptor ectodomain (CALCRL+RAMP1) + olcegepant co-crystal, ter Haar 2010",
-    "center": [
-      20.78,
-      21.37,
-      72.7
-    ],
-    "size": [
-      26.3,
-      30.3,
-      30.4
-    ],
-    "box_source": "co-crystal ligand"
-  },
-  {
-    "target": "RAMP1",
-    "pdb": "3N7S",
-    "note": "CGRP receptor ectodomain (CALCRL+RAMP1) + olcegepant co-crystal, ter Haar 2010",
-    "center": [
-      20.78,
-      21.37,
-      72.7
-    ],
-    "size": [
-      26.3,
-      30.3,
-      30.4
-    ],
-    "box_source": "co-crystal ligand"
+    "note": "CGRP receptor ectodomain (CALCRL+RAMP1) + olcegepant co-crystal, ter Haar 2010; on-target positive control",
+    "center": [20.78, 21.37, 72.7],
+    "size": [26.3, 30.3, 30.4],
+    "box_source": "co-crystal ligand (olcegepant) bbox"
   },
   {
     "target": "SYK",
     "pdb": "1A81",
-    "note": "SYK  tandem SH2",
-    "center": [
-      34.03,
-      69.3,
-      73.43
-    ],
-    "size": [
-      86.0,
-      86.9,
-      78.2
-    ],
-    "box_source": "co-crystal ligand"
+    "note": "SYK tandem SH2 domains + co-crystal doubly-phosphorylated ITAM peptide; NOT the kinase domain. Box re-centred on the co-crystal ligand at a standard 22.5 A edge (as implemented in vina_SYK.txt); the raw ligand bounding box (up to 86 A, sized for the phospho-peptide) is recorded for reference only.",
+    "center": [34.03, 69.3, 73.43],
+    "size": [22.5, 22.5, 22.5],
+    "box_source": "co-crystal ligand centre, standard 22.5 A edge",
+    "raw_ligand_bbox": [86.0, 86.9, 78.2]
   },
   {
     "target": "BTK",
     "pdb": "1B55",
-    "note": "BTK 激酶域",
-    "center": [
-      2.33,
-      3.32,
-      54.43
-    ],
-    "size": [
-      41.6,
-      41.1,
-      79.9
-    ],
-    "box_source": "co-crystal ligand"
+    "note": "BTK PH domain + co-crystal inositol-phosphate ligand; 1B55 is NOT the kinase domain. Box re-centred on the co-crystal ligand at a standard 22.5 A edge (as implemented in vina_BTK.txt); the raw ligand bounding box is recorded for reference only.",
+    "center": [2.33, 3.32, 54.43],
+    "size": [22.5, 22.5, 22.5],
+    "box_source": "co-crystal ligand centre, standard 22.5 A edge",
+    "raw_ligand_bbox": [41.6, 41.1, 79.9]
   }
 ]

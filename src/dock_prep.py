@@ -25,7 +25,7 @@ https://cadd.labshare.org/_api/apps/cb-dock2 （CB-Dock2 盲对接），
 用法
 ----
     python src/dock_prep.py --targets CALCRL RAMP1 --out results/docking
-    python src/dock_prep.py --pdb 6Z2V --out results/docking     # 指定结构
+    python src/dock_prep.py --pdb 3N7S --out results/docking     # 指定结构
 """
 from __future__ import annotations
 
@@ -48,8 +48,8 @@ TARGET_PDB = {
     "RAMP1": ("3N7S", "同上，RAMP1 为共受体"),
     "MS4A2": ("", "无实验结构，建议 AlphaFold DB: AF-P24380-F1"),
     "KIT": ("1T45", "KIT 激酶域 + 抑制剂"),
-    "SYK": ("1A81", "SYK  tandem SH2"),
-    "BTK": ("1B55", "BTK 激酶域"),
+    "SYK": ("1A81", "SYK tandem SH2 域 + 共晶磷酸化 ITAM 肽"),
+    "BTK": ("1B55", "BTK PH 结构域 + 共晶肌醇磷酸配体（1B55 不是激酶域）"),
     "PLCG2": ("2FJU", "PLC-gamma2"),
     "HRH1": ("3RZE", "H1 组胺受体 + doxepin"),
     "CYSLTR1": ("", "建议 AlphaFold DB"),

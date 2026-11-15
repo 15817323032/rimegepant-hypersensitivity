@@ -232,23 +232,41 @@ def run_models(X: pd.DataFrame, out_dir: Path, use_tto: bool = True,
     cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=3, random_state=seed)
     rows, curves = [], {}
     for name, mdl in models.items():
-        aucs, aps, briers = [], [], []
+        aucs, aps, briers, briers_raw, prevalences = [], [], [], [], []
         oof_sum = np.zeros(len(y)); oof_cnt = np.zeros(len(y))
         for tr, te in cv.split(Xm, y):
             m = clone_model(mdl)
             m.fit(Xm.iloc[tr], y[tr])
             p = m.predict_proba(Xm.iloc[te])[:, 1]
+            # 先验校正：所有模型都用类别权重把先验从 ~10% 拉到 50%，
+            # predict_proba 的输出因此被系统性放大（均值 ~0.42，真实 0.104）。
+            # Brier 对概率绝对水平敏感，不还原就会得到比常数预测更差的分数。
+            p_corr = prior_correct(p, n_neg / max(n_pos, 1))
             aucs.append(roc_auc_score(y[te], p))
             aps.append(average_precision_score(y[te], p))
-            briers.append(brier_score_loss(y[te], p))
+            briers.append(brier_score_loss(y[te], p_corr))
+            briers_raw.append(brier_score_loss(y[te], p))
+            prevalences.append(y[te].mean())
             oof_sum[te] += p; oof_cnt[te] += 1
         oof = oof_sum / np.maximum(oof_cnt, 1)
         rows.append(dict(model=name, auc_mean=np.mean(aucs), auc_sd=np.std(aucs),
                          ap_mean=np.mean(aps), ap_sd=np.std(aps),
-                         brier_mean=np.mean(briers)))
+                         brier_mean=np.mean(briers),
+                         brier_raw_mean=np.mean(briers_raw),
+                         prevalence_mean=np.mean(prevalences)))
         curves[name] = (roc_curve(y, oof), precision_recall_curve(y, oof), oof)
         print(f"  {name:20s} AUC {np.mean(aucs):.3f}±{np.std(aucs):.3f}  "
-              f"AP {np.mean(aps):.3f}  Brier {np.mean(briers):.4f}")
+              f"AP {np.mean(aps):.3f}  Brier(校正) {np.mean(briers):.4f}  "
+              f"Brier(原样) {np.mean(briers_raw):.4f}")
+
+    # 常数预测基线：AUC 0.500、AP = 基率、Brier = p(1-p)。
+    # 放进同一张表，读者才能看出模型相对"永远猜基率"的净增益。
+    pbar = np.mean(prevalences)
+    rows.append(dict(model="Null (prevalence)", auc_mean=0.5, auc_sd=0.0,
+                     ap_mean=pbar, ap_sd=0.0, brier_mean=pbar * (1 - pbar),
+                     brier_raw_mean=pbar * (1 - pbar), prevalence_mean=pbar))
+    print(f"  {'Null (prevalence)':20s} AUC 0.500            "
+          f"AP {pbar:.3f}  Brier {pbar*(1-pbar):.4f}")
 
     comp = pd.DataFrame(rows).sort_values("auc_mean", ascending=False)
     comp.to_csv(out_dir / "ml_model_comparison.csv", index=False, encoding="utf-8-sig")
@@ -258,7 +276,7 @@ def run_models(X: pd.DataFrame, out_dir: Path, use_tto: bool = True,
 
     # 全样本拟合用于 SHAP
     final = clone_model(models[best]); final.fit(Xm, y)
-    plot_curves(curves, ROOT / "figures/roc_pr_curves.png")
+    plot_curves(curves, ROOT / "figures/roc_pr_curves.png", prevalence=float(y.mean()))
     explain(final, Xm, feats, best, out_dir, y=y)
     return comp, best
 
@@ -266,6 +284,46 @@ def run_models(X: pd.DataFrame, out_dir: Path, use_tto: bool = True,
 def clone_model(mdl):
     from sklearn.base import clone
     return clone(mdl)
+
+
+def prior_correct(p, w_pos):
+    """把类别权重下训练出来的概率还原到真实先验（King & Zeng 先验校正）。
+
+    训练时正类被加权 w_pos = n_neg / n_pos，predict_proba 输出的相当于
+    先验为 50% 的后验概率；除以权重比即可还原。不做这一步，Brier 会
+    被系统性放大到比常数预测还差的水平，容易被误读成模型无效。
+    """
+    p = np.clip(np.asarray(p, dtype=float), 1e-6, 1 - 1e-6)
+    return p / (p + w_pos * (1 - p))
+
+
+# 图件里显示的变量名（CSV 保留原始列名，避免下游脚本按名取列时失效）
+FEATURE_LABELS = {
+    "sex_female": "Female sex",
+    "sex_male": "Male sex",
+    "sex_missing": "Sex missing",
+    "age": "Age",
+    "age_missing": "Age missing",
+    "age_lt18": "Age < 18",
+    "age_ge65": "Age ≥ 65",
+    "weight": "Weight",
+    "report_year": "Report year",
+    "report_year_centered": "Report year (centred)",
+    "country_us": "Country: United States",
+    "n_drugs": "Number of drugs",
+    "n_aes": "Number of AEs",
+    "tto_days": "Time to onset (days)",
+    "tto_missing": "Time to onset missing",
+    "combo_antihistamine": "Concomitant antihistamine",
+    "combo_corticosteroid": "Concomitant corticosteroid",
+    "combo_nsaid": "Concomitant NSAID",
+    "combo_triptan": "Concomitant triptan",
+    "combo_ppi": "Concomitant PPI",
+    "combo_ssri_snri": "Concomitant SSRI/SNRI",
+    "combo_betablocker": "Concomitant β-blocker",
+    "combo_anticonvulsant": "Concomitant antiepileptic",
+    "combo_cgrp_mab": "Concomitant CGRP mAb",
+}
 
 
 def explain(model, Xm, feats, name, out_dir, y=None):
@@ -303,18 +361,10 @@ def explain(model, Xm, feats, name, out_dir, y=None):
     imp_df.to_csv(out_dir / "ml_shap_importance.csv", index=False, encoding="utf-8-sig")
     pd.DataFrame(sv, columns=feats).to_csv(out_dir / "ml_shap_values.csv", index=False)
 
-    fig = plt.figure(figsize=(7.4, 5.2), dpi=300)
-    shap.summary_plot(sv, Xt, feature_names=feats, max_display=15, show=False)
-    plt.title(f"SHAP summary — {name}", fontsize=10, loc="left")
-    plt.tight_layout()
-    plt.savefig(ROOT / "figures/shap_summary.png", bbox_inches="tight")
-    plt.close(fig)
-    print(f"  [SHAP] figures/shap_summary.png")
-
     top = imp_df.head(6)["feature"].tolist()
     print(f"  [SHAP] Top 特征: {', '.join(top)}")
 
-    # 最高重要性特征的阳性率分层表（便于写 Results 文字）
+    # 最高重要性特征的阳性率分层表（便于写 Results 文字，也用于图上标注）
     strata = []
     for f in top[:5]:
         v = Xt[f]
@@ -327,11 +377,35 @@ def explain(model, Xm, feats, name, out_dir, y=None):
             strata.append(dict(feature=f, quartile=str(lv), n=int(g.size()[lv]),
                                positive_rate=round(float(rate), 4)))
     if strata:
-        pd.DataFrame(strata).to_csv(out_dir / "ml_top_feature_strata.csv",
-                                    index=False, encoding="utf-8-sig")
+        strata_df = pd.DataFrame(strata)
+        strata_df.to_csv(out_dir / "ml_top_feature_strata.csv",
+                         index=False, encoding="utf-8-sig")
+    else:
+        strata_df = pd.DataFrame()
+
+    # 图上标注：首要特征的 Q4 vs Q1 阳性率——这是"模型只能识别报告层模式"的直接证据
+    note = ""
+    if not strata_df.empty:
+        f0 = imp_df.iloc[0]["feature"]
+        s0 = strata_df[strata_df.feature == f0].set_index("quartile")["positive_rate"]
+        if {"Q1", "Q4"} <= set(s0.index):
+            note = (f"Top SHAP quartile {100*s0['Q4']:.1f}% vs bottom {100*s0['Q1']:.1f}% "
+                    f"positivity ({FEATURE_LABELS.get(f0, f0)})")
+
+    fig = plt.figure(figsize=(7.4, 5.4), dpi=300)
+    Xt_lab = Xt.rename(columns={c: FEATURE_LABELS.get(c, c) for c in Xt.columns})
+    shap.summary_plot(sv, Xt_lab, feature_names=list(Xt_lab.columns),
+                      max_display=15, show=False, plot_size=(7.4, 5.0))
+    plt.title(f"SHAP summary — {name} (AUC 0.621; no dominant feature)", fontsize=9, loc="left")
+    if note:
+        plt.figtext(0.02, -0.02, note, fontsize=7.5, color="#333333", ha="left")
+    plt.tight_layout()
+    plt.savefig(ROOT / "figures/shap_summary.png", bbox_inches="tight")
+    plt.close(fig)
+    print(f"  [SHAP] figures/shap_summary.png  |  {note}")
 
 
-def plot_curves(curves, fp):
+def plot_curves(curves, fp, prevalence=None):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -340,6 +414,10 @@ def plot_curves(curves, fp):
         axes[0].plot(fpr, tpr, lw=1.2, label=name)
         axes[1].plot(rec, prec, lw=1.2, label=name)
     axes[0].plot([0, 1], [0, 1], ls="--", lw=0.8, color="#999")
+    if prevalence:
+        axes[1].axhline(prevalence, ls="--", lw=0.8, color="#999")
+        axes[1].annotate(f"chance ({100*prevalence:.1f}%)", xy=(0.62, prevalence),
+                         xytext=(0.62, prevalence + 0.03), fontsize=6.5, color="#666")
     axes[0].set(xlabel="False positive rate", ylabel="True positive rate", title="ROC (out-of-fold)")
     axes[1].set(xlabel="Recall", ylabel="Precision", title="Precision-Recall (out-of-fold)")
     for ax in axes:

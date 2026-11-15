@@ -25,12 +25,15 @@ FIGS = [
      "results_full/forest_focus.png"),
     ("Figure_2.png", "Figure_2_label_change_trend.png",
      "results_label_change/label_change_trend.png"),
-    ("Figure_3.png", "Figure_3_roc_pr_curves.png",
-     "figures/roc_pr_curves.png"),
-    ("Figure_4.png", "Figure_4_shap_summary.png",
+    ("Figure_3.png", "Figure_3_shap_summary.png",
      "figures/shap_summary.png"),
-    ("Figure_5.png", "Figure_5_network_tox.png",
+    ("Figure_4.png", "Figure_4_network_tox.png",
      "results/network_tox/figures/network_tox_summary.png"),
+]
+
+# ROC/PR 曲线为补充材料图 S1（位于投稿包根目录，而非 figures/ 子目录）
+SUPP_FIGS = [
+    ("Supplementary_Figure_S1.png", "Supplementary_Figure_S1_roc_pr_curves.png"),
 ]
 
 
@@ -67,6 +70,11 @@ def main() -> None:
     # ---------------- figures ----------------
     for src_name, dst_name, _ in FIGS:
         shutil.copy2(ROOT / "submission_drugsafety" / "figures" / src_name, FIG / dst_name)
+    for src_name, dst_name in SUPP_FIGS:
+        shutil.copy2(ROOT / "submission_drugsafety" / src_name, FIG / dst_name)
+    stale = FIG / "Figure_5_network_tox.png"
+    if stale.exists():
+        stale.unlink()
 
     # ---------------- Fig 1 ----------------
     t1 = fig1_table()
@@ -81,44 +89,59 @@ def main() -> None:
     f2b.to_csv(SRC / "Fig2b_PT_detail.csv", index=False, encoding="utf-8-sig")
     f2c.to_csv(SRC / "Fig2c_quarterly_family.csv", index=False, encoding="utf-8-sig")
 
-    # ---------------- Fig 3 ----------------
-    f3 = pd.read_csv(ROOT / "results_ml_real" / "ml_model_comparison.csv")
-    f3 = f3[["model", "auc_mean", "auc_sd", "ap_mean", "ap_sd", "brier_mean"]]
-    f3 = f3.rename(columns={
+    # ---------------- Fig 3（SHAP，正文图） ----------------
+    ml = ROOT / "results_ml_real"
+    f3a = pd.read_csv(ml / "ml_shap_importance.csv").round(5)
+    f3b = pd.read_csv(ml / "ml_top_feature_strata.csv")
+    f3a.to_csv(SRC / "Fig3a_shap_importance.csv", index=False, encoding="utf-8-sig")
+    f3b.to_csv(SRC / "Fig3b_top_feature_strata.csv", index=False, encoding="utf-8-sig")
+    sv = pd.read_csv(ml / "ml_shap_values.csv")
+    sv.round(5).to_csv(SRC / "Fig3c_shap_values_per_report.csv", index=False, encoding="utf-8-sig")
+
+    # ---------------- Fig 4（网络毒理，正文图） ----------------
+    F4 = SRC / "Fig4_network"
+    F4.mkdir(exist_ok=True)
+    nt = ROOT / "results" / "network_tox"
+    for fn, new in [
+        ("bridge_genes.csv", "Fig4a_bridge_genes.csv"),
+        ("enrichment_kegg.csv", "Fig4b_KEGG_enrichment.csv"),
+        ("enrichment_go_bp.csv", "Fig4c_GO_BP_enrichment.csv"),
+        ("ppi_hubs.csv", "Fig4d_PPI_hubs.csv"),
+        ("ae_gene_sets.csv", "Fig4e_adverse_event_gene_sets.csv"),
+        ("predicted_targets.csv", "Fig4f_predicted_targets.csv"),
+        ("measured_targets.csv", "Fig4g_measured_targets.csv"),
+        ("intersection_genes.csv", "Fig4h_intersection_genes.csv"),
+    ]:
+        pd.read_csv(nt / fn).to_csv(F4 / new, index=False, encoding="utf-8-sig")
+    shutil.copy2(nt / "drug_info.json", F4 / "Fig4i_drug_info.json")
+    stale_net = SRC / "Fig5_network"
+    if stale_net.exists():
+        shutil.rmtree(stale_net)
+    stale_f5 = SRC / "Fig5a_bridge_genes.csv"
+    if stale_f5.exists():
+        stale_f5.unlink()
+
+    # ---------------- Supplementary Fig S1（模型性能表） ----------------
+    s1 = pd.read_csv(ml / "ml_model_comparison.csv")
+    s1 = s1[["model", "auc_mean", "auc_sd", "ap_mean", "ap_sd", "brier_mean", "brier_raw_mean"]]
+    s1 = s1.rename(columns={
         "model": "model",
         "auc_mean": "AUC_mean", "auc_sd": "AUC_SD",
         "ap_mean": "AP_mean", "ap_sd": "AP_SD",
-        "brier_mean": "Brier_mean",
+        "brier_mean": "Brier_prior_corrected", "brier_raw_mean": "Brier_raw_balanced_weights",
     })
-    for c in ("AUC_mean", "AUC_SD", "AP_mean", "AP_SD", "Brier_mean"):
-        f3[c] = f3[c].round(4)
-    f3.to_csv(SRC / "Fig3_model_performance.csv", index=False, encoding="utf-8-sig")
-
-    # ---------------- Fig 4 ----------------
-    ml = ROOT / "results_ml_real"
-    f4a = pd.read_csv(ml / "ml_shap_importance.csv").round(5)
-    f4b = pd.read_csv(ml / "ml_top_feature_strata.csv")
-    f4a.to_csv(SRC / "Fig4a_shap_importance.csv", index=False, encoding="utf-8-sig")
-    f4b.to_csv(SRC / "Fig4b_top_feature_strata.csv", index=False, encoding="utf-8-sig")
-    sv = pd.read_csv(ml / "ml_shap_values.csv")
-    sv.round(5).to_csv(SRC / "Fig4c_shap_values_per_report.csv", index=False, encoding="utf-8-sig")
-
-    # ---------------- Fig 5 ----------------
-    F5 = SRC / "Fig5_network"
-    F5.mkdir(exist_ok=True)
-    nt = ROOT / "results" / "network_tox"
-    for fn, new in [
-        ("bridge_genes.csv", "Fig5a_bridge_genes.csv"),
-        ("enrichment_kegg.csv", "Fig5b_KEGG_enrichment.csv"),
-        ("enrichment_go_bp.csv", "Fig5c_GO_BP_enrichment.csv"),
-        ("ppi_hubs.csv", "Fig5d_PPI_hubs.csv"),
-        ("ae_gene_sets.csv", "Fig5e_adverse_event_gene_sets.csv"),
-        ("predicted_targets.csv", "Fig5f_predicted_targets.csv"),
-        ("measured_targets.csv", "Fig5g_measured_targets.csv"),
-        ("intersection_genes.csv", "Fig5h_intersection_genes.csv"),
-    ]:
-        pd.read_csv(nt / fn).to_csv(F5 / new, index=False, encoding="utf-8-sig")
-    shutil.copy2(nt / "drug_info.json", F5 / "Fig5i_drug_info.json")
+    for c in ("AUC_mean", "AUC_SD", "AP_mean", "AP_SD",
+              "Brier_prior_corrected", "Brier_raw_balanced_weights"):
+        s1[c] = s1[c].round(4)
+    s1.to_csv(SRC / "SuppS1_model_performance.csv", index=False, encoding="utf-8-sig")
+    stale_f3perf = SRC / "Fig3_model_performance.csv"
+    if stale_f3perf.exists():
+        stale_f3perf.unlink()
+    for old in ("Fig4a_shap_importance.csv", "Fig4b_top_feature_strata.csv",
+                "Fig4c_shap_values_per_report.csv"):
+        p_old = SRC / old
+        if p_old.exists():
+            p_old.unlink()
 
     # ---------------- code ----------------
     for fn in ("run_module1.py", "label_change.py", "ml_risk.py", "network_tox.py"):
@@ -130,13 +153,13 @@ def main() -> None:
         "Fig2a_family": f2a,
         "Fig2b_PT_detail": f2b,
         "Fig2c_quarterly": f2c,
-        "Fig3_models": f3,
-        "Fig4a_shap_importance": f4a,
-        "Fig4b_strata": f4b,
-        "Fig5a_bridge_genes": pd.read_csv(F5 / "Fig5a_bridge_genes.csv"),
-        "Fig5b_KEGG": pd.read_csv(F5 / "Fig5b_KEGG_enrichment.csv"),
-        "Fig5c_GO_BP": pd.read_csv(F5 / "Fig5c_GO_BP_enrichment.csv"),
-        "Fig5d_PPI_hubs": pd.read_csv(F5 / "Fig5d_PPI_hubs.csv").head(100),
+        "Fig3a_shap_importance": f3a,
+        "Fig3b_strata": f3b,
+        "Fig4a_bridge_genes": pd.read_csv(F4 / "Fig4a_bridge_genes.csv"),
+        "Fig4b_KEGG": pd.read_csv(F4 / "Fig4b_KEGG_enrichment.csv"),
+        "Fig4c_GO_BP": pd.read_csv(F4 / "Fig4c_GO_BP_enrichment.csv"),
+        "Fig4d_PPI_hubs": pd.read_csv(F4 / "Fig4d_PPI_hubs.csv").head(100),
+        "SuppS1_models": s1,
     }
     with pd.ExcelWriter(PKG / "figure_source_data.xlsx", engine="openpyxl") as xw:
         for name, df in sheets.items():

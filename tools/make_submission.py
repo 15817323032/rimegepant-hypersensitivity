@@ -20,7 +20,8 @@ ROOT = Path(r"C:/Users/wu-ke/WorkBuddy/2026-11-09-16-31-05/rimegepant_hypersensi
 OUT = ROOT / "submission"
 TBL = OUT / "tables"
 FIG = OUT / "figures"
-for d in (TBL, FIG):
+SUP = OUT / "supplementary"
+for d in (TBL, FIG, SUP):
     d.mkdir(parents=True, exist_ok=True)
 
 FONT = "Times New Roman"
@@ -137,7 +138,7 @@ TITLES = {
     6: ("Sensitivity analyses: indication-PT exclusion and triple exposure roles",
         "Indication-bias control: migraine-symptom PTs (nausea, vomiting, headache, migraine, photophobia, phonophobia) excluded in recalculation. Exposure roles: PS (primary), PS+SS, ALL.", False),
     7: ("Machine-learning model comparison (repeated stratified 5-fold × 3 cross-validation)",
-        "Label = composite-endpoint positivity (932/8,962, 10.4%); 23 features (demographics, report year and country, concomitant drug classes, time to onset and its missing indicators); serious outcomes and event counts excluded (leakage control). A sensitivity model that also included reporter category and formulation reached a random-forest AUC of 0.618 ± 0.017, with no model changing by more than 0.01 AUC. AUC, area under the ROC curve (mean ± SD); AP, average precision; Brier, Brier score.", False),
+        "Label = composite-endpoint positivity (932/8,962, 10.4%); 23 features (demographics, report year and country, concomitant drug classes, time to onset and its missing indicators); serious outcomes and event counts excluded (leakage control). A sensitivity model that also included reporter category and formulation reached a random-forest AUC of 0.618 ± 0.017, with no model changing by more than 0.01 AUC. AUC, area under the ROC curve (mean ± SD); AP, average precision; Brier, Brier score computed after restoring the predicted probabilities to the observed 10.4% prevalence, because class weighting for an imbalanced label inflates them (uncorrected values are kept in the archived results file). Null model = a constant prediction at the observed prevalence, which has AUC 0.500 and AP equal to the prevalence by construction.", False),
     8: ("SHAP global feature importance of the best model (random forest)",
         "Mean absolute SHAP values over cross-validation folds; all 23 features of the primary model are shown. Reporter category, formulation and country completeness were not entered in the primary model because they describe how a report reached the database rather than the patient; they were evaluated in the sensitivity model (Table 7 footnote).", False),
     9: ("Bridge genes from the bridged network-toxicology analysis",
@@ -353,9 +354,12 @@ def build_main_manuscript():
 LEGENDS = [
     ("Figure 1.", "Forest plot of the 25 highest-ROR preferred terms within the oral/hypersensitivity focus cluster (49 PTs; FAERS/AEMS 2020Q2\u20132026Q2, primary-suspect role). Points represent ROR; horizontal bars represent 95% CIs; the vertical dashed line marks ROR = 1. Red points are robust positive signals (all four algorithms concordant); dark blue points did not meet the signal criterion. All 19 positive signals are shown."),
     ("Figure 2.", "Quarterly reporting proportions of the six hypersensitivity-spectrum families, 2020Q2\u20132026Q2. The dashed vertical line marks the August 2025 label revision (2025Q3 cut-off)."),
-    ("Figure 3.", "Receiver operating characteristic (left) and precision\u2013recall (right) curves of the four machine-learning models under repeated stratified 5-fold \u00d7 3 cross-validation. Random forest performed best (AUC 0.621 \u00b1 0.015)."),
-    ("Figure 4.", "SHAP summary plot of the best-performing model (random forest). Female sex dominates global feature importance; positivity was 12.9% in the top SHAP quartile vs 6.2% in the bottom quartile."),
-    ("Figure 5.", "Bridged network-toxicology overview: drug anchors (CALCRL/RAMP1/CALCA), bridge genes (GNG2/GNB1/GNAS; C3/C5; PLCG1/SRC/MAPK1), event modules (Fc\u03b5RI signalling, complement and coagulation cascades, inflammatory mediator regulation of TRP channels), and KEGG enrichment of the bridged network."),
+    ("Figure 3.", "SHAP summary plot of the best-performing model (random forest; AUC 0.621 \u00b1 0.015). Points are individual cases; the horizontal axis is the SHAP value in log-odds of the composite endpoint; colour encodes the feature value (red high, blue low). No feature dominates, and the largest mean absolute SHAP value is 0.030. Composite-endpoint positivity was 12.9% in the highest and 6.2% in the lowest quartile of the female-sex SHAP contribution."),
+    ("Figure 4.", "Bridged network-toxicology overview: drug anchors (CALCRL/RAMP1/CALCA), bridge genes (GNG2/GNB1/GNAS; C3/C5; PLCG1/SRC/MAPK1), event modules (Fc\u03b5RI signalling, complement and coagulation cascades, inflammatory mediator regulation of TRP channels), and KEGG enrichment of the bridged network."),
+]
+
+SUPP_LEGENDS = [
+    ("Supplementary Figure S1.", "Receiver operating characteristic (left) and precision\u2013recall (right) curves of the four machine-learning models under repeated stratified 5-fold \u00d7 3 cross-validation, computed from out-of-fold predictions. The dashed diagonal is the no-discrimination line in the ROC panel; the dashed horizontal line is chance precision at the observed prevalence of 10.4% in the precision\u2013recall panel. All four curves lie close to chance, which is the result reported in Table 7."),
 ]
 
 def add_figure_legends(doc):
@@ -370,14 +374,26 @@ def copy_figures():
     figs = {
         1: ROOT / "results_full/forest_focus.png",
         2: ROOT / "results_label_change/label_change_trend.png",
-        3: ROOT / "figures/roc_pr_curves.png",
-        4: ROOT / "figures/shap_summary.png",
-        5: ROOT / "results/network_tox/figures/network_tox_summary.png",
+        3: ROOT / "figures/shap_summary.png",
+        4: ROOT / "results/network_tox/figures/network_tox_summary.png",
     }
     for n, src in figs.items():
         dst = FIG / f"Figure_{n}.png"
         shutil.copy2(src, dst)
         print("copied", dst.name, "<-", src.name)
+
+    # ROC/PR 曲线改为补充材料图 S1（正文只留 SHAP）
+    SUP.mkdir(parents=True, exist_ok=True)
+    s1 = ROOT / "figures/roc_pr_curves.png"
+    if s1.exists():
+        shutil.copy2(s1, SUP / "Supplementary_Figure_S1.png")
+        print("copied Supplementary_Figure_S1.png <-", s1.name)
+
+    # 清理旧编号残留（原 Figure_5 已顺移为 Figure_4）
+    stale = FIG / "Figure_5.png"
+    if stale.exists():
+        stale.unlink()
+        print("removed stale Figure_5.png")
 
 if __name__ == "__main__":
     copy_figures()

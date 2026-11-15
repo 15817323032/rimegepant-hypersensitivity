@@ -157,7 +157,7 @@ def build_markdown():
                  "Hospital, Shenzhen, China; E-mail 786675880@qq.com\n")
     parts.append("**Article type:** Original Research Article\n")
     parts.append(f"**Word count:** abstract {abs_words}; main text {body_words}; "
-                 f"tables 12; figures 5; references 29\n")
+                 f"tables 12; figures 4; references 29\n")
     parts.append("* Joint first authors\n")
 
     parts.append("# Key Points\n")
@@ -186,6 +186,9 @@ def build_markdown():
 
     parts.append("# Figure legends\n")
     for tag, txt in mk.LEGENDS:
+        parts.append(f"**{tag}** {txt}\n")
+    parts.append("# Supplementary figure legend\n")
+    for tag, txt in mk.SUPP_LEGENDS:
         parts.append(f"**{tag}** {txt}\n")
 
     md = "\n".join(parts)
@@ -319,6 +322,10 @@ def copy_assets():
         shutil.copy2(f, tdir / f.name)
     for f in sorted((ROOT / "submission/figures").glob("Figure_*")):
         shutil.copy2(f, fdir / f.name)
+    sup_src = ROOT / "submission/supplementary"
+    if sup_src.exists():
+        for f in sorted(sup_src.glob("Supplementary_*")):
+            shutil.copy2(f, OUT / f.name)
     print("copied tables:", len(list(tdir.iterdir())), "figures:", len(list(fdir.iterdir())))
 
 
