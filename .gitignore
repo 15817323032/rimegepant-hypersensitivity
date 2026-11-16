@@ -47,3 +47,6 @@ raw_data_package/
 
 # --- Local rollback snapshots (not released) ---
 .backup_preage/
+
+# R figure preview output
+figures_r/

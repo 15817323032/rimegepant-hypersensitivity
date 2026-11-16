@@ -1,0 +1,267 @@
+# Render the four main figures from the canonical result CSVs -- R/ggplot2
+# Data sources and design tokens are identical to tools/make_figures.py.
+# Output: figures_r/  (preview; --install copies into the submission chain)
+#
+# Run: Rscript rfigs/make_figures.R [--install]
+
+suppressPackageStartupMessages({
+  library(ggplot2); library(dplyr); library(readr); library(scales)
+  library(patchwork); library(grid); library(tools)
+})
+
+args   <- commandArgs(TRUE)
+root   <- normalizePath(getwd())
+source(file.path(root, "rfigs", "figstyle.R"))
+
+OUT      <- file.path(root, "figures_r")
+do_install <- "--install" %in% args
+
+# ------------------------------------------------------------------ Fig 1 ---
+fig1_forest <- function() {
+  d <- read_csv(file.path(root, "results_full", "table3_focus_signals.csv"),
+                show_col_types = FALSE)
+  d <- d %>%
+    filter(is.finite(ROR), ROR > 0, is.finite(ROR025), is.finite(ROR975)) %>%
+    arrange(ROR) %>% tail(25) %>%
+    mutate(label = toTitleCase(tolower(PT)),
+           row   = dplyr::row_number() - 1,
+           lab   = ifelse(is_robust_signal, "Robust signal (4/4 algorithms)",
+                          "Signal not robust"))
+
+  XMAX <- 150
+  off  <- d$ROR975 > XMAX
+  d$plot_r <- pmin(d$ROR, XMAX * 0.93)
+  d$lo <- pmin(pmax(d$ROR025, 0.3), XMAX)
+  d$hi <- pmin(d$ROR975, XMAX)
+
+  n <- nrow(d)
+  ylim <- c(-0.8, n + 0.8)
+
+  pal <- c("Robust signal (4/4 algorithms)" = SIGNAL,
+           "Signal not robust"              = NEUTRAL,
+           "ROR = 1 (null)"                 = MUTED,
+           "95% CI (truncated at axis edge)" = CICOL)
+
+  p1 <- ggplot(d) +
+    # CI whiskers (legend key)
+    geom_segment(aes(x = lo, xend = hi, y = row, yend = row,
+                     colour = "95% CI (truncated at axis edge)"),
+                 linewidth = 0.28, show.legend = TRUE) +
+    # truncation arrows where the CI runs off the axis (no legend key)
+    geom_segment(data = d[off, ],
+                 aes(x = XMAX * 0.93, xend = XMAX * 0.99, y = row, yend = row),
+                 colour = CICOL, linewidth = 0.28, show.legend = FALSE,
+                 arrow = arrow(length = unit(4, "pt"), type = "closed")) +
+    geom_point(aes(x = plot_r, y = row, colour = lab), size = 1.25, stroke = 0) +
+    # null line (legend key)
+    geom_vline(aes(xintercept = 1, colour = "ROR = 1 (null)"),
+               linewidth = 0.25, linetype = "33") +
+    scale_colour_manual(values = pal, name = NULL, drop = FALSE) +
+    scale_x_log10(limits = c(0.3, XMAX * 1.02), labels = comma) +
+    scale_y_continuous(limits = ylim, breaks = 0:(n - 1), labels = d$label,
+                       expand = c(0, 0)) +
+    labs(x = "Reporting odds ratio (log scale; whiskers, 95% CI)", y = NULL) +
+    theme_pub() +
+    theme(panel.grid.major.y = element_blank(),
+          axis.text.y  = element_text(size = 6.5),
+          axis.ticks.y = element_blank(),
+          axis.line.y  = element_blank(),
+          legend.position = c(0.98, 0.02), legend.justification = c(1, 0),
+          legend.text.align = 0,
+          legend.key.height = unit(7, "pt"), legend.key.width = unit(16, "pt"),
+          legend.margin = margin(0, 0, 0, 0))
+
+  # right-hand count columns, synced through patchwork
+  counts <- data.frame(row = d$row, cases = comma(d$a), rest = comma(d$c))
+  hdr_y  <- n + 0.35
+  txt_panel <- function(x, col, hlabel, centered) {
+    ggplot(counts, aes(y = row)) +
+      annotate("text", x = x, y = hdr_y, label = hlabel, size = 6.5 / .pt,
+               fontface = "bold", colour = INK,
+               hjust = if (centered) 0.5 else 0) +
+      geom_text(aes_string(x = x, label = col), size = 6.5 / .pt,
+                colour = MUTED, hjust = if (centered) 0.5 else 0) +
+      scale_x_continuous(limits = c(0, 1)) +
+      scale_y_continuous(limits = ylim, expand = c(0, 0)) +
+      theme_void() + theme(plot.margin = margin(0, 0, 0, 0))
+  }
+
+  fig <- p1 +
+    txt_panel(0.5, "cases", "Cases", TRUE) +
+    txt_panel(0.08, "rest",  "Rest of database", FALSE) +
+    plot_layout(widths = c(5.8, 1.1, 2.0))
+  save_fig(fig, file.path(OUT, "Figure_1.png"), W_DOUBLE, 0.235 * n + 0.9)
+}
+
+# ------------------------------------------------------------------ Fig 2 ---
+fig2_trend <- function() {
+  ts <- read_csv(file.path(root, "results_label_change", "ts_quarterly_family.csv"),
+                 show_col_types = FALSE)
+  quarters <- ts$quarter
+  fams <- names(FAMILY_FULL)
+  nq <- length(quarters)
+  i_cut <- match("2025Q3", quarters)   # 1-based; x axis is 0-based
+
+  long <- do.call(rbind, lapply(fams, function(f)
+    data.frame(quarter = quarters, x = seq_len(nq) - 1, fam = f,
+               y = ts[[paste0(f, "_pct")]])))
+
+  # direct end labels with the same collision nudge as the Python version
+  ends <- sapply(fams, function(f) tail(ts[[paste0(f, "_pct")]], 1))
+  ord  <- names(sort(ends))
+  min_gap <- 0.9; placed <- numeric(0)
+  lab <- data.frame(fam = character(0), y = numeric(0))
+  for (f in ord) {
+    yy <- ends[[f]]
+    if (length(placed) && yy - placed[length(placed)] < min_gap)
+      yy <- placed[length(placed)] + min_gap
+    placed <- c(placed, yy)
+    lab <- rbind(lab, data.frame(fam = f, y = yy))
+  }
+  lab$full <- unname(FAMILY_FULL[lab$fam])
+
+  fig <- ggplot() +
+    annotate("rect", xmin = i_cut - 1.5, xmax = nq - 0.5,
+             ymin = -Inf, ymax = Inf, fill = BAND) +
+    annotate("text", x = i_cut - 1.3, y = 22.3, label = "Post-label revision",
+             hjust = 0, colour = MUTED, size = 6.5 / .pt, fontface = "italic") +
+    geom_line(data = long, aes(x, y, colour = fam), linewidth = 0.32) +
+    geom_point(data = long, aes(x, y, colour = fam), size = 0.65, stroke = 0) +
+    geom_text(data = lab, aes(x = nq - 1 + 0.35, y = y, label = full, colour = fam),
+              hjust = 0, size = 6.5 / .pt, fontface = "bold") +
+    scale_colour_manual(values = FAMILY_COLORS, guide = "none") +
+    coord_cartesian(xlim = c(-0.5, nq + 5.2), ylim = c(-0.6, 23.5), clip = "off") +
+    scale_x_continuous(breaks = seq_len(nq) - 1, labels = quarters) +
+    labs(x = "FAERS quarter", y = "Proportion of rimegepant reports (%)") +
+    theme_pub() +
+    theme(panel.grid.major.x = element_blank(),
+          axis.text.x = element_text(angle = 60, hjust = 1))
+  save_fig(fig, file.path(OUT, "Figure_2.png"), W_DOUBLE, 3.6)
+}
+
+# ------------------------------------------------------------------ Fig 3 ---
+fig3_shap <- function() {
+  sv <- read_csv(file.path(root, "results_ml_real", "ml_shap_values.csv"),
+                 show_col_types = FALSE)
+  ft <- read_csv(file.path(root, "results_ml_real", "ml_feature_table.csv"),
+                 show_col_types = FALSE)
+  feats <- setdiff(names(sv), SHAP_DROP)
+  sv <- sv[, feats]
+  order <- names(sort(colMeans(abs(sv))))   # ascending -> y from bottom up
+  n_feat <- length(order)
+
+  NBINS <- 60; LEVELS <- 13; STEP <- 0.055
+  pts <- do.call(rbind, lapply(seq_along(order), function(i) {
+    f  <- order[i]
+    x  <- as.numeric(sv[[f]])
+    v  <- as.numeric(ft[[f]])
+    uniq <- unique(v[!is.na(v)])
+    is_binary <- length(uniq) <= 2
+    vmax <- suppressWarnings(max(v[is.finite(v)], na.rm = TRUE))
+    vv <- if (is.finite(vmax) && vmax > 0) v / vmax else rep(0, length(v))
+    vv[is.na(vv)] <- 0.5     # NaN -> pale centre (mirrors the Python fix)
+    if (is_binary) x <- x + (vv - 0.5) * 0.03
+    df <- data.frame(x = x)
+    if (is_binary) {
+      # two clusters only: quantile bins collapse -> just cycle slots
+      df$offs <- ((seq_along(x) - 1) %% LEVELS - (LEVELS - 1) / 2) * STEP
+    } else {
+      bins <- unique(quantile(x, seq(0, 1, length.out = NBINS + 1)))
+      if (length(bins) < 2) {
+        df$offs <- ((seq_along(x) - 1) %% LEVELS - (LEVELS - 1) / 2) * STEP
+      } else {
+        idx <- as.integer(cut(x, bins, include.lowest = TRUE, labels = FALSE))
+        idx[is.na(idx)] <- 0
+        df$bin <- idx
+        df$within <- ave(seq_along(x), df$bin, FUN = function(w) seq_along(w) - 1)
+        df$offs <- (df$within %% LEVELS - (LEVELS - 1) / 2) * STEP
+      }
+    }
+    data.frame(x = df$x, y = (i - 1) + df$offs, v = vv, f = f)
+  }))
+
+  fig <- ggplot(pts, aes(x, y, colour = v)) +
+    geom_vline(xintercept = 0, colour = MUTED, linewidth = 0.25) +
+    geom_point(size = 0.4, stroke = 0, alpha = 0.40) +
+    scale_colour_gradientn(colours = SHAP_COLS, limits = c(0, 1),
+                           breaks = c(0, 1), labels = c("Low", "High"),
+                           name = "Feature value",
+                           guide = guide_colourbar(barwidth = 1.1,
+                                                   barheight = 2.4,
+                                                   ticks.linewidth = 0.2)) +
+    scale_y_continuous(breaks = 0:(n_feat - 1),
+                       labels = unname(FEATURE_LABELS[order]),
+                       expand = c(0, 0)) +
+    scale_x_continuous(expand = expansion(mult = c(0.02, 0.02))) +
+    labs(x = "SHAP value (impact on model output)", y = NULL,
+         caption = paste("Positivity in the top vs bottom quartile of the leading",
+                         "feature (female sex): 12.9% vs 6.2%.")) +
+    coord_cartesian(ylim = c(-0.9, n_feat - 0.1)) +
+    theme_pub() +
+    theme(panel.grid = element_blank(),
+          axis.text.y = element_text(size = 6.5),
+          plot.margin = margin(2, 8, 10, 2, unit = "pt"))
+  save_fig(fig, file.path(OUT, "Figure_3.png"), W_15, 0.26 * n_feat + 1.9)
+}
+
+# ------------------------------------------------------------------ Fig 4 ---
+fig4_network <- function() {
+  ntd <- file.path(root, "results", "network_tox")
+  tgt  <- read_csv(file.path(ntd, "predicted_targets.csv"), show_col_types = FALSE) %>% head(3)
+  hubs <- read_csv(file.path(ntd, "ppi_hubs.csv"), show_col_types = FALSE) %>% head(12)
+  go   <- read_csv(file.path(ntd, "enrichment_go_bp.csv"), show_col_types = FALSE) %>%
+    head(10) %>%
+    mutate(term = gsub("\\s*\\(GO:\\d+\\)", "", term),
+           term_wrap = vapply(term, function(t)
+             paste(strwrap(t, 24), collapse = "\n"), character(1)),
+           nlp = -log10(pmax(adj_p_value, 1e-300)))
+
+  tgt$hi <- tgt$gene == tgt$gene[which.max(tgt$score)]
+
+  p1 <- ggplot(tgt, aes(score, reorder(gene, score))) +
+    geom_col(aes(fill = hi), width = 0.55) +
+    scale_fill_manual(values = c(`FALSE` = ACCENT, `TRUE` = SIGNAL), guide = "none") +
+    scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
+    labs(x = "Similarity score", y = NULL,
+         title = "Predicted targets\n(ChEMBL similarity)") +
+    theme_pub() +
+    theme(axis.text.y = element_text(size = 7), axis.ticks.y = element_blank(),
+          axis.line.y = element_blank(), panel.grid.major.y = element_blank())
+
+  p2 <- ggplot(hubs, aes(degree, reorder(gene, degree))) +
+    geom_col(fill = ACCENT, width = 0.6) +
+    scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
+    labs(x = "STRING degree", y = NULL, title = "PPI hub genes") +
+    theme_pub() +
+    theme(axis.text.y = element_text(size = 7), axis.ticks.y = element_blank(),
+          axis.line.y = element_blank(), panel.grid.major.y = element_blank())
+
+  p3 <- ggplot(go, aes(nlp, reorder(term_wrap, nlp))) +
+    geom_col(fill = ACCENT, width = 0.6) +
+    scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
+    labs(x = expression(-log[10]*P[adj]), y = NULL, title = "GO-BP enrichment") +
+    theme_pub() +
+    theme(axis.text.y = element_text(size = 6.5), axis.ticks.y = element_blank(),
+          axis.line.y = element_blank(), panel.grid.major.y = element_blank())
+
+  fig <- (p1 | p2 | p3) + plot_layout(widths = c(1.0, 1.1, 1.3))
+  save_fig(fig, file.path(OUT, "Figure_4.png"), W_DOUBLE, 3.1)
+}
+
+# ------------------------------------------------------------------ main ----
+cat("Rendering to", OUT, "\n")
+fig1_forest()
+fig2_trend()
+fig3_shap()
+fig4_network()
+
+if (do_install) {
+  canon <- c("Figure_1.png" = file.path(root, "results_full", "forest_focus.png"),
+             "Figure_2.png" = file.path(root, "results_label_change", "label_change_trend.png"),
+             "Figure_3.png" = file.path(root, "figures", "shap_summary.png"),
+             "Figure_4.png" = file.path(root, "results", "network_tox", "figures", "network_tox_summary.png"))
+  for (nm in names(canon)) {
+    file.copy(file.path(OUT, nm), canon[[nm]], overwrite = TRUE)
+    cat("  [install]", canon[[nm]], "<-", nm, "\n")
+  }
+}
