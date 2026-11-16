@@ -146,23 +146,23 @@ def build_markdown():
     parts = []
     parts.append(f"**Title:** {TITLE}\n")
     parts.append(f"**Running head:** {RUNNING_HEAD}\n")
-    parts.append("**Authors:** LiQing Chen, MD\u00b9*; Yunfan Luo, MD\u00b9*; "
+    parts.append("**Authors:** LiQing Chen, MD\u00b9\u2020; Yunfan Luo, MD\u00b9\u2020; "
                  "Qing Yuan, MD\u00b9; Xiaoyan Zhang, BS\u00b9\n")
     parts.append("\u00b9 Department of Otolaryngology, Head and Neck Surgery, Shenzhen University "
                  "General Hospital, No. 1298 Xueyuan Boulevard, Xili University Town, Shenzhen, "
                  "Guangdong 518055, China")
-    parts.append("**Corresponding author:** LiQing Chen, MD (ORCID 0000-0002-2285-3704), "
+    parts.append("**Corresponding author:** Yunfan Luo, MD (ORCID 0000-0001-5370-6777), "
                  "Department of Otolaryngology, Head and Neck Surgery, Shenzhen University General "
                  "Hospital, No. 1298 Xueyuan Boulevard, Xili University Town, Shenzhen, Guangdong "
-                 "518055, China. Tel +86 137 6047 9274; E-mail 2536020202@stu.ahmu.edu.cn\n")
-    parts.append("**Co-corresponding author:** Yunfan Luo, MD (ORCID 0000-0001-5370-6777), "
+                 "518055, China. E-mail lyf92@szu.edu.cn\n")
+    parts.append("**Co-corresponding author:** LiQing Chen, MD (ORCID 0000-0002-2285-3704), "
                  "Department of Otolaryngology, Head and Neck Surgery, Shenzhen University General "
-                 "Hospital, Shenzhen, China; E-mail 786675880@qq.com\n")
+                 "Hospital, Shenzhen, China. Tel +86 137 6047 9274; E-mail 2536020202@stu.ahmu.edu.cn\n")
     parts.append("**Article type:** Original Research Article\n")
     n_refs = len([ln for ln in refs_lines if re.match(r"^\d+\.\s", ln)])
     parts.append(f"**Word count:** abstract {abs_words}; main text {body_words}; "
                  f"tables 12; figures 4; references {n_refs}\n")
-    parts.append("* Joint first authors\n")
+    parts.append("\u2020 Joint first authors\n")
 
     parts.append("# Key Points\n")
     for kp in KEY_POINTS:
