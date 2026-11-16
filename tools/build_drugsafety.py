@@ -333,34 +333,60 @@ def copy_assets():
     print("copied tables:", len(list(tdir.iterdir())), "figures:", len(list(fdir.iterdir())))
 
 
+def _md_table_rows(block: list[str]) -> list[list[str]]:
+    """把连续的 markdown 表格行转成单元格列表。
+
+    单元格内的字面竖线在源文件中写作 ``\\|``（如 ``\\|SMD\\| > 0.10``），
+    这里按「未被反斜杠转义的竖线」切分，再还原被转义的竖线。
+    """
+    rows = []
+    for line in block:
+        if re.match(r"^\|[\s\-:|]+\|$", line):     # 分隔行
+            continue
+        body = line.strip()[1:-1]                   # 去掉首尾竖线
+        cells = [c.replace("\\|", "|").strip()
+                 for c in re.split(r"(?<!\\)\|", body)]
+        rows.append(cells)
+    return rows
+
+
 def build_supplementary_readus():
     md = (DOCS / "readus_pv_checklist.md").read_text(encoding="utf-8")
     doc = Document()
     mk.set_normal_style(doc, spacing=1.0)
     mk.style_heading(doc)
+
+    # 单遍渲染，表格就地插入（不再全部堆到文末）：
+    # 文件里有两张表，若把所有 | 行揉成一张，第二张表的行会错位追加到第一张表尾部。
+    pending: list[str] = []
+
+    def flush():
+        if not pending:
+            return
+        rows = _md_table_rows(pending)
+        pending.clear()
+        if rows:
+            mk.add_md_table(doc, rows, landscape=True, font_size=8)
+
     for line in md.splitlines():
         s = line.rstrip()
+        if s.startswith("|"):
+            pending.append(s)
+            continue
+        flush()
         if not s.strip():
             continue
         if s.startswith("## "):
             doc.add_heading(s[3:].strip(), level=2)
         elif s.startswith("# "):
             doc.add_heading(s[2:].strip(), level=1)
-        elif s.startswith("|"):
-            continue  # tables are rebuilt below
         else:
             mk.add_para(doc, s, spacing=1.0)
+    flush()
 
-    # rebuild the item table from the markdown pipe table
-    rows = []
-    for line in md.splitlines():
-        if line.startswith("|") and not re.match(r"^\|[\s\-:|]+\|$", line):
-            cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            rows.append(cells)
-    if rows:
-        doc.add_page_break()
-        doc.add_heading("READUS-PV checklist (manuscript body, 14 items)", level=2)
-        mk.add_md_table(doc, rows, landscape=True, font_size=8)
+    out = OUT / "Supplementary_Table_S1_READUS-PV.docx"
+    safe_save(doc, out)
+    print("saved", out)
     out = OUT / "Supplementary_Table_S1_READUS-PV.docx"
     safe_save(doc, out)
     print("saved", out)
