@@ -28,14 +28,17 @@ METADATA = {
     "description": (
         "<p>Four-layer, fully reproducible Python pipeline for post-marketing safety analysis of "
         "rimegepant orally disintegrating tablets using FAERS/AEMS 2020Q2&ndash;2026Q2 "
-        "(25 quarters, N = 9,094,154 deduplicated cases; n = 8,962 primary-suspect cases).</p>"
+        "(25 quarters, N = 9,094,154 deduplicated cases; n = 8,962 primary-suspect cases), "
+        "benchmarked against an indication-matched reference population.</p>"
         "<p>Layers: (1) four-algorithm disproportionality analysis (ROR, PRR, BCPNN, MGPS; BH-FDR) "
         "against a pre-specified five-subset oral/hypersensitivity composite endpoint; "
         "(2) machine-learning reporting-feature profiling (LR/RF/XGBoost/LightGBM, repeated "
         "5&times;3 CV, SHAP, TRIPOD+AI); (3) bridged network toxicology (ChEMBL anchors &rarr; "
         "STRING BFS &rarr; Enrichr GO-BP/KEGG); (4) AutoDock Vina 1.2.5 molecular docking "
-        "(CALCRL 6Z2V positive control; SYK 1A81 / BTK 1B55 off-target tests); plus a pre/post "
-        "2025Q3 label-revision notoriety-bias comparison.</p>"
+        "(CALCRL 3N7S positive control; SYK 1A81 / BTK 1B55 off-target tests); plus a pre/post "
+        "2025Q3 label-revision notoriety-bias comparison. A claim verifier "
+        "(tools/verify_claims.py, strict mode) re-derives every number in the manuscript from "
+        "the archived results as a pre-release gate.</p>"
         "<p>FAERS/AEMS raw extracts are not redistributed; all derived tables and figures are included.</p>"
     ),
     "creators": [
@@ -50,7 +53,7 @@ METADATA = {
                  "molecular docking", "hypersensitivity"],
     "license": "MIT",
     "access_right": "open",
-    "version": os.environ.get("RELEASE_VERSION", "1.0.1"),
+    "version": os.environ.get("RELEASE_VERSION", "1.0.2"),
     "language": "eng",
     "related_identifiers": [
         {"identifier": GITHUB_URL, "relation": "isSupplementTo", "resource_type": "software"}
