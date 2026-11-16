@@ -44,3 +44,6 @@ Thumbs.db
 tools/push_via_api.py
 figure_data_package/
 raw_data_package/
+
+# --- Local rollback snapshots (not released) ---
+.backup_preage/

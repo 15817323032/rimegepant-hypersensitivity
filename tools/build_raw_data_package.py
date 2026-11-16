@@ -160,7 +160,8 @@ def main() -> None:
     # ---------- 5. code ----------
     CODE = PKG / "05_code"
     CODE.mkdir(parents=True, exist_ok=True)
-    for fn in ("download_faers.py", "faers_io.py", "extract_subset.py", "reference_population.py",
+    for fn in ("ageutil.py", "download_faers.py", "faers_io.py", "extract_subset.py",
+               "reference_population.py",
                "run_module1.py", "label_change.py", "ml_risk.py", "network_tox.py", "dock_prep.py"):
         shutil.copy2(ROOT / "src" / fn, CODE / fn)
 

@@ -49,6 +49,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from src.ageutil import age_years  # noqa: E402
 from src.faers_io import iter_chunks  # noqa: E402
 
 SERIOUS_CODES = ("DE", "LT", "HO", "DS")
@@ -179,9 +180,7 @@ def scan_demo(raw_dir: Path, quarters: list[str], chunksize: int,
                 return (ch[name] if name in ch
                         else pd.Series("", index=ch.index))
 
-            a = pd.to_numeric(col("age"), errors="coerce")
-            cod = col("age_cod").fillna("YR").astype(str).str.upper()
-            a = a.where(cod.eq("YR")).where(lambda s: s.between(0, 120))
+            a = age_years(col("age"), col("age_cod"))
             sx = col("sex").fillna("").astype(str).str.upper().str.strip()
             rp = col("rept_cod").fillna("").astype(str).str.upper().str.strip()
             ct = col("reporter_country").fillna("").astype(str).str.upper().str.strip()
@@ -292,8 +291,10 @@ def build_table(demo: dict, reac: dict, outc: dict,
         fmt_iqr(age["c"]), fmt_iqr(age["r"]), "\u2014", fmt_iqr(age["m"]), "\u2014")
 
     def bands(a):
-        return {"<18": int((a < 18).sum()), "18-44": int(((a >= 18) & (a <= 44)).sum()),
-                "45-64": int(((a >= 45) & (a <= 64)).sum()), ">=65": int((a >= 65).sum())}
+        # 半开区间，避免单位换算后的小数年龄（如 44.5 岁）落不进任何一档，
+        # 造成四档合计 ≠ 有记录例数
+        return {"<18": int((a < 18).sum()), "18-44": int(((a >= 18) & (a < 45)).sum()),
+                "45-64": int(((a >= 45) & (a < 65)).sum()), ">=65": int((a >= 65).sum())}
     bc, br, bm = bands(age["c"]), bands(age["r"]), bands(age["m"])
     ac, ar, am = age["c"].size, age["r"].size, age["m"].size
     row("Age missing", n_ps - ac, n_ref - ar, n_mig - am, n_ps, n_ref, n_mig)
@@ -360,6 +361,9 @@ def main() -> None:
                     help="仅用于快速调试：只跑指定季度，并跳过总例数对拍")
     ap.add_argument("--reuse", action="store_true",
                     help="复用上次扫描的中间统计（只重算表格），用于调整呈现口径")
+    ap.add_argument("--rescan-demo", action="store_true",
+                    help="保留归档的 REAC/OUTC 统计，只重扫 DEMO+INDI 以刷新人口学"
+                         "（年龄单位归一化后使用；比全量重扫省掉最重的 REAC 通道）")
     a = ap.parse_args()
 
     t0 = time.time()
@@ -377,7 +381,25 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     inter_fp = out / "ref_intermediate.pkl"
 
-    if a.reuse and inter_fp.exists():
+    if a.rescan_demo and inter_fp.exists():
+        with open(inter_fp, "rb") as f:
+            st = pickle.load(f)
+        n, reac, outc = st["n"], st["reac"], st["outc"]
+        n_total = st["n_total"]
+        log(f"[ref] 保留归档 REAC/OUTC 统计，重扫人口学（Pass 1/2/3）")
+        raw = ROOT / a.raw
+        quarters = sorted(p.name for p in Path(raw).glob("20*Q*")
+                          if p.is_dir() and len(p.name) == 6)
+        kept, n_total_fresh = build_kept(raw, quarters, a.chunksize, log)
+        if n_total_fresh != n_total:
+            raise SystemExit(f"重扫后 N 与归档不一致: {n_total_fresh:,} vs {n_total:,}")
+        mig, _ = scan_indi(raw, quarters, a.chunksize, kept, ps, log)
+        demo = scan_demo(raw, quarters, a.chunksize, kept, ps, mig, log)
+        with open(inter_fp, "wb") as f:
+            pickle.dump(dict(n=n, demo=demo, reac=reac, outc=outc,
+                             n_total=n_total), f, protocol=4)
+        log(f"[ref] 中间统计已更新 {inter_fp.name}")
+    elif a.reuse and inter_fp.exists():
         with open(inter_fp, "rb") as f:
             st = pickle.load(f)
         n, demo, reac, outc = st["n"], st["demo"], st["reac"], st["outc"]

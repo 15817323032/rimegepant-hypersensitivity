@@ -2,11 +2,10 @@
 
 源：`docs/manuscript_en.md`；工具：`tools/verify_claims.py`
 
-结果：PASS 76 / WARN 1 / FAIL 0
+结果：PASS 77 / WARN 0 / FAIL 0
 
 | 级别 | 区域 | 声明 | 说明 |
 |---|---|---|---|
-| WARN | cross-table | 表1/表5 年龄<18 | 表1 42（仅 age_cod=YR）vs 表5 85（任何数值化年龄）——口径不同，需脚注或统一 |
 | PASS | counts | TTO 1060 | 已回源 |
 | PASS | counts | TTO 848 | 已回源 |
 | PASS | counts | cohort PS | 8962 已回源 |
@@ -15,6 +14,7 @@
 | PASS | counts | full DB | 9094154 已回源 |
 | PASS | counts | reference | 9085192 已回源 |
 | PASS | counts | indication-matched | 75155 已回源 |
+| PASS | cross-table | 年龄<18 | 55 两表一致（均按 age_cod 单位归一化） |
 | PASS | cross-table | 性别分母 | 6562 两表一致 |
 | PASS | docking | BTK receptor | 1B55_rec.pdbqt |
 | PASS | docking | BTK box | 11391 Å³ 与 manifest 一致 |
@@ -36,7 +36,7 @@
 | PASS | ml | LogisticRegression AUC | 0.611 已回源 |
 | PASS | ml | XGBoost AUC | 0.610 已回源 |
 | PASS | ml | LightGBM AUC | 0.583 已回源 |
-| PASS | pct:coverage | 40 个百分比 | 全部可回源（表内 81 值 + 派生 7 值 + 外部登记 3 值） |
+| PASS | pct:coverage | 42 个百分比 | 全部可回源（表内 78 值 + 派生 7 值 + 外部登记 3 值） |
 | PASS | pct:pairing | 百分比配对 | 每个「a% vs b%」都能对应到表中同一行或同一列 |
 | PASS | pct:table1 | 72 个 n(%) 单元格 | 分母重算一致，四档求和与有记录数一致 |
 | PASS | pct:table4 | 7 个 TTO 百分比 | 分母 8,962 / 848 重算一致 |
@@ -63,7 +63,7 @@
 | PASS | smd | SMD -1.15 | 表1 Serious outcome (any) vs 全库 |
 | PASS | smd | SMD -1.06 | 表1 Reporter, physician vs 全库 |
 | PASS | smd | SMD -0.69 | 表1 Reporter, physician vs 适应证匹配；表1 Serious outcome (any) vs 适应证匹配 |
-| PASS | smd | SMD -0.44 | 表1 Age >=65 years (of recorded) vs 全库 |
+| PASS | smd | SMD -0.45 | 表1 Age >=65 years (of recorded) vs 全库；表1 Hospitalisation vs 适应证匹配 |
 | PASS | smd | SMD -0.30 | 表1 Disability vs 适应证匹配 |
 | PASS | smd | SMD -0.28 | 表1 Age <18 years (of recorded) vs 全库；表1 Life-threatening vs 适应证匹配 |
 | PASS | smd | SMD -0.18 | 表1 Life-threatening vs 全库；表1 Country GB vs 适应证匹配 |
@@ -71,7 +71,7 @@
 | PASS | smd | SMD -0.02 | 表1 Female (of sex recorded) vs 适应证匹配 |
 | PASS | smd | SMD +0.00 | INDI 子集敏感性 female |
 | PASS | smd | SMD +0.09 | 表1 Age >=65 years (of recorded) vs 适应证匹配 |
-| PASS | smd | SMD +0.12 | 表1 Age missing vs 全库 |
+| PASS | smd | SMD +0.13 | 表1 Age missing vs 全库 |
 | PASS | smd | SMD +0.27 | 表1 Sex missing/unknown vs 全库 |
 | PASS | smd | SMD +0.65 | 表1 Female (of sex recorded) vs 全库 |
 | PASS | smd | SMD +0.72 | 表1 Reporter, consumer vs 适应证匹配 |

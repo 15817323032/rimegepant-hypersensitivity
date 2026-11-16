@@ -31,6 +31,7 @@ from config.pt_sets import (  # noqa: E402
     COMPOSITE_SET, DRUG_PATTERNS, INDICATION_SET, PT_SETS,
     SEVERITY_TIERS, normalize,
 )
+from src.ageutil import age_group, age_years  # noqa: E402
 from src.faers_io import load_faers, parse_faers_date  # noqa: E402
 from src.stats_disproportionality import compute_all_signals  # noqa: E402
 
@@ -64,13 +65,8 @@ def table1(demo, drug_ids, reac, outc) -> pd.DataFrame:
     ids = {str(i) for i in drug_ids}
     d = demo[demo["primaryid"].astype(str).isin(ids)]
 
-    age = pd.to_numeric(d.get("age"), errors="coerce")
-    age_cod = d.get("age_cod", pd.Series("YR", index=d.index)).fillna("YR").astype(str).str.upper()
-    age_yr = age.where(age_cod.eq("YR"), np.nan)
-    age_yr = age_yr.where(age_yr.between(0, 120))
-
-    agegrp = pd.cut(age_yr, [-1, 17, 44, 64, 200],
-                    labels=["<18", "18-44", "45-64", ">=65"])
+    age_yr = age_years(d.get("age"), d.get("age_cod"))
+    agegrp = age_group(age_yr)
 
     reac_s = reac[reac["primaryid"].astype(str).isin(ids)]
     n_ae = reac_s.groupby("primaryid").size()
@@ -196,9 +192,8 @@ def table5_subgroup(demo, reac, ids) -> pd.DataFrame:
     hit = set(r.loc[r["is_focus"], "primaryid"].astype(str))
 
     d = demo[demo["primaryid"].astype(str).isin(ids)].copy()
-    d["age_n"] = pd.to_numeric(d.get("age"), errors="coerce")
-    d["agegrp"] = pd.cut(d["age_n"], [-1, 17, 44, 64, 200],
-                         labels=["<18", "18-44", "45-64", ">=65"])
+    d["age_n"] = age_years(d.get("age"), d.get("age_cod"))
+    d["agegrp"] = age_group(d["age_n"])
     d["sex_n"] = d.get("sex", pd.Series(dtype=str)).astype(str).str.upper()
     d["rept_n"] = d.get("rept_cod", pd.Series(dtype=str)).astype(str).str.upper()
     d["year"] = parse_faers_date(d.get("fda_dt", pd.Series(dtype=str))).dt.year

@@ -628,9 +628,11 @@ def audit_cross_table() -> None:
             add(WARN, "cross-table", "年龄<18", "表 5 无该水平")
         elif v5 != v1:
             add(WARN, "cross-table", "表1/表5 年龄<18",
-                f"表1 {v1}（仅 age_cod=YR）vs 表5 {v5}（任何数值化年龄）——口径不同，需脚注或统一")
+                f"表1 {v1} vs 表5 {v5}——两表须共用 src/ageutil.age_years 的口径"
+                f"（age_cod 单位归一化），出现差异说明有一处绕过了该函数")
         else:
-            add(PASS, "cross-table", "年龄<18", f"{v1} 两表一致")
+            add(PASS, "cross-table", "年龄<18",
+                f"{v1} 两表一致（均按 age_cod 单位归一化）")
 
     sex1 = (n1("Female (of sex recorded)") or 0) + (n1("Male (of sex recorded)") or 0)
     sg = t5[t5["变量"] == "性别"]["报告数"].sum()

@@ -94,6 +94,13 @@ Literature values cannot be traced to a result file, so they are locked a second
 
 What is checked: docking scores and their derived Δ values, RMSD quotation completeness, signal counts and per-PT ROR, model AUCs, pre/post family ratios, cohort and reference sizes, the TTO filtering chain, every standardised mean difference (Table 1 both reference columns plus the INDI-subset sensitivity, with each SMD recomputed from the paired percentages), and every percentage — Table 1/4/5 are recomputed from their own numerators and denominators, each percentage in the prose must either trace to a table, be recomputed from counts at runtime, or be registered in `EXTERNAL_PCT` with its source (literature values and nominal 95% CI levels only), and each `a% vs b%` pair must correspond to one row or one column of a table. A new number that has no source therefore fails the gate instead of slipping through.
 
+### Age units
+
+`DEMO.age` is a bare number; its unit lives in `DEMO.age_cod`. Reading the numeric field without the unit code turns `age = 5, age_cod = DEC` (50 years) into a 5-year-old. All age handling therefore goes through `src/ageutil.py`, which converts decades, months, weeks, days and hours to years and caps the result at 120. Table 1, Table 5 and both reference populations share it, and `verify_claims.py` cross-checks that the two tables report the same number of under-18 cases; a second, independent age derivation anywhere in the codebase fails that check.
+
+The age bands are half-open (`<18`, `[18,45)`, `[45,65)`, `>=65`) because converted ages are fractional: with integer-closed bins a 44.5-year-old fell into no band at all and the four bands silently stopped summing to the number of reports with age recorded. The same arithmetic self-check — bands must sum to the recorded total — runs on every release.
+
+
 ## Citation / DOI
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24134724.svg)](https://doi.org/10.5281/zenodo.24134724)
