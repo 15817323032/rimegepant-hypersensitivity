@@ -271,6 +271,16 @@ def run_models(X: pd.DataFrame, out_dir: Path, use_tto: bool = True,
     comp = pd.DataFrame(rows).sort_values("auc_mean", ascending=False)
     comp.to_csv(out_dir / "ml_model_comparison.csv", index=False, encoding="utf-8-sig")
 
+    # 曲线点落盘：Supp Fig S1（ROC/PR）的 R 版图件从这里取数，
+    # 不再依赖内存对象，保证"数据文件 -> 图"单向可追溯。
+    curve_rows = []
+    for name, ((fpr, tpr, _), (prec, rec, _), _oof) in curves.items():
+        for xx, yy, kind in ((fpr, tpr, "roc"), (rec, prec, "pr")):
+            curve_rows += [dict(model=name, curve=kind, x=float(a), y=float(b))
+                           for a, b in zip(xx, yy)]
+    pd.DataFrame(curve_rows).to_csv(out_dir / "ml_roc_pr_curves.csv",
+                                    index=False, encoding="utf-8-sig")
+
     best = comp.iloc[0]["model"]
     print(f"[ML] 最优模型: {best}")
 

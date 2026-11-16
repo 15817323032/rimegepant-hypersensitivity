@@ -242,8 +242,9 @@ fig3_shap <- function() {
          caption = paste("Positivity in the top vs bottom quartile of the leading",
                          "feature (female sex): 12.9% vs 6.2%.\n",
                          "Each point: one report. x: SHAP contribution (log-odds of the",
-                         "composite endpoint); colour: feature value (red high, blue low,",
-                         "grey missing). Rows ordered by mean |SHAP|.")) +
+                         "composite endpoint);\n",
+                         "colour: feature value (red high, blue low, grey missing).",
+                         "Rows ordered by mean |SHAP|.")) +
     coord_cartesian(ylim = c(-0.9, n_feat - 0.1)) +
     theme_pub() +
     theme(panel.grid = element_blank(),
@@ -296,12 +297,65 @@ fig4_network <- function() {
           axis.line.y = element_blank(), panel.grid.major.y = element_blank())
 
   fig <- (p1 | p2 | p3) + plot_layout(widths = c(1.0, 1.1, 1.3)) +
-    plot_annotation(caption = paste("Left: max Tanimoto similarity of predicted off-targets to the drug's",
-                                    "ChEMBL anchors. Centre: top hub genes by degree in the bridged PPI",
-                                    "network. Right: GO-BP enrichment of bridged genes.")) &
+    plot_annotation(caption = paste("Left: max Tanimoto similarity of predicted off-targets to the",
+                                    "drug's ChEMBL anchors.\nCentre: top hub genes by degree in the",
+                                    "bridged PPI network. Right: GO-BP enrichment of bridged genes.")) &
     theme(plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, margin = margin(t = 5)))
   save_fig(fig, file.path(OUT, "Figure_4.png"), W_DOUBLE, 3.35)
+}
+
+# ------------------------------------------------------------------ Fig S1 --
+figS1_rocpr <- function() {
+  cv   <- read_csv(file.path(root, "results_ml_real", "ml_roc_pr_curves.csv"),
+                   show_col_types = FALSE)
+  comp <- read_csv(file.path(root, "results_ml_real", "ml_model_comparison.csv"),
+                   show_col_types = FALSE)
+  prev <- comp$prevalence_mean[1]          # out-of-fold positive rate (~10.4%)
+  auc  <- setNames(round(comp$auc_mean, 3), comp$model)
+
+  morder <- c("RandomForest", "LogisticRegression", "XGBoost", "LightGBM")
+  pal <- c("RandomForest" = SIGNAL, "LogisticRegression" = ACCENT,
+           "XGBoost" = "#3D8B6E", "LightGBM" = "#D19A2F")
+  cv$model <- factor(cv$model, levels = morder)
+  lab <- paste0(morder, " (AUC ", sprintf("%.3f", auc[morder]), ")")
+  names(lab) <- morder
+
+  p_roc <- ggplot(cv[cv$curve == "roc", ], aes(x, y, colour = model)) +
+    geom_abline(slope = 1, intercept = 0, colour = MUTED,
+                linewidth = 0.25, linetype = "22") +
+    geom_line(linewidth = 0.32) +
+    scale_colour_manual(values = pal, labels = lab, name = NULL, drop = FALSE) +
+    scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.25)) +
+    scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.25)) +
+    labs(x = "False positive rate", y = "True positive rate",
+         title = "ROC (out-of-fold)") +
+    theme_pub() +
+    theme(legend.position = c(0.98, 0.02), legend.justification = c(1, 0),
+          legend.text.align = 0, legend.key.height = unit(7, "pt"))
+
+  p_pr <- ggplot(cv[cv$curve == "pr", ], aes(x, y, colour = model)) +
+    geom_hline(yintercept = prev, colour = MUTED, linewidth = 0.25,
+               linetype = "22") +
+    geom_line(linewidth = 0.32) +
+    annotate("text", x = 0.60, y = prev + 0.04,
+             label = sprintf("chance (%.1f%%)", 100 * prev),
+             size = 6.5 / .pt, colour = MUTED, hjust = 0) +
+    scale_colour_manual(values = pal, guide = "none") +
+    scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.25)) +
+    scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.25)) +
+    labs(x = "Recall", y = "Precision",
+         title = "Precision-Recall (out-of-fold)") +
+    theme_pub()
+
+  fig <- (p_roc | p_pr) +
+    plot_layout(widths = c(1, 1)) +
+    plot_annotation(caption = paste("Out-of-fold predictions (5x3 repeated stratified CV).",
+                                    "Dashed diagonal: chance (ROC); dashed horizontal: prevalence",
+                                    "(precision-recall). AUC values: mean across folds.")) &
+    theme(plot.caption = element_text(size = 6.5, colour = MUTED,
+                                      hjust = 0, margin = margin(t = 5)))
+  save_fig(fig, file.path(OUT, "Supplementary_Figure_S1.png"), W_DOUBLE, 3.5)
 }
 
 # ------------------------------------------------------------------ main ----
@@ -310,12 +364,14 @@ fig1_forest()
 fig2_trend()
 fig3_shap()
 fig4_network()
+figS1_rocpr()
 
 if (do_install) {
   canon <- c("Figure_1.png" = file.path(root, "results_full", "forest_focus.png"),
              "Figure_2.png" = file.path(root, "results_label_change", "label_change_trend.png"),
              "Figure_3.png" = file.path(root, "figures", "shap_summary.png"),
-             "Figure_4.png" = file.path(root, "results", "network_tox", "figures", "network_tox_summary.png"))
+             "Figure_4.png" = file.path(root, "results", "network_tox", "figures", "network_tox_summary.png"),
+             "Supplementary_Figure_S1.png" = file.path(root, "figures", "roc_pr_curves.png"))
   for (nm in names(canon)) {
     file.copy(file.path(OUT, nm), canon[[nm]], overwrite = TRUE)
     cat("  [install]", canon[[nm]], "<-", nm, "\n")
