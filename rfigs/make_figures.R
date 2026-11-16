@@ -93,7 +93,7 @@ fig1_forest <- function() {
     plot_annotation(caption = paste("Points: ROR. Bars: 95% CI (arrowheads mark CIs truncated at",
                                     "the axis limit). Red: positive signal under all four algorithms;",
                                     "blue: not robust.")) &
-    theme(plot.caption = element_text(size = 6.5 / .pt, colour = MUTED,
+    theme(plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, margin = margin(t = 5)))
   save_fig(fig, file.path(OUT, "Figure_1.png"), W_DOUBLE, 0.235 * n + 1.25)
 }
@@ -136,7 +136,9 @@ fig2_trend <- function() {
     scale_colour_manual(values = FAMILY_COLORS, guide = "none") +
     scale_fill_manual(values = FAMILY_COLORS, guide = "none") +
     facet_wrap(~fam, ncol = 2, scales = "fixed",
-               labeller = labeller(fam = FAMILY_FULL)) +
+               labeller = labeller(fam = function(f)
+                 paste0("<span style='color:", FAMILY_COLORS[f], ";'>",
+                        FAMILY_FULL[f], "</span>"))) +
     coord_cartesian(ylim = c(0, 40), clip = "off") +
     scale_y_continuous(breaks = c(0, 10, 20, 30, 40)) +
     scale_x_continuous(breaks = x, labels = quarters) +
@@ -145,8 +147,8 @@ fig2_trend <- function() {
     theme(panel.grid.major.x = element_blank(),
           strip.background = element_blank(),
           strip.placement = "outside",
-          strip.text = element_text(size = 9.5 / .pt, face = "bold",
-                                    colour = INK, hjust = 0),
+          strip.text = ggtext::element_markdown(size = 8.5, face = "bold",
+                                                hjust = 0),
           axis.text.x = element_text(angle = 60, hjust = 1))
 
   # denominators: a proportion is unreadable without its base
@@ -169,7 +171,7 @@ fig2_trend <- function() {
     theme_pub() +
     theme(panel.grid.major.x = element_blank(),
           axis.text.x = element_text(angle = 60, hjust = 1),
-          plot.title = element_text(size = 8.5 / .pt, face = "bold",
+          plot.title = element_text(size = 8.5, face = "bold",
                                     colour = INK, hjust = 0))
 
   fig <- p_small + p_denom +
@@ -177,7 +179,7 @@ fig2_trend <- function() {
     plot_annotation(caption = paste("Panels share a 0-40% scale. Ribbons: 95% Wilson",
                                     "interval. Shaded area: post-label-revision period",
                                     "(2025Q3 onward).")) &
-    theme(plot.caption = element_text(size = 6.5 / .pt, colour = MUTED,
+    theme(plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, margin = margin(t = 5)))
   save_fig(fig, file.path(OUT, "Figure_2.png"), W_DOUBLE, 7.3)
 }
@@ -246,7 +248,7 @@ fig3_shap <- function() {
     theme_pub() +
     theme(panel.grid = element_blank(),
           axis.text.y = element_text(size = 6.5),
-          plot.caption = element_text(size = 6.5 / .pt, colour = MUTED,
+          plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, lineheight = 1.5,
                                       margin = margin(t = 8)),
           plot.margin = margin(2, 8, 10, 2, unit = "pt"))
@@ -297,7 +299,7 @@ fig4_network <- function() {
     plot_annotation(caption = paste("Left: max Tanimoto similarity of predicted off-targets to the drug's",
                                     "ChEMBL anchors. Centre: top hub genes by degree in the bridged PPI",
                                     "network. Right: GO-BP enrichment of bridged genes.")) &
-    theme(plot.caption = element_text(size = 6.5 / .pt, colour = MUTED,
+    theme(plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, margin = margin(t = 5)))
   save_fig(fig, file.path(OUT, "Figure_4.png"), W_DOUBLE, 3.35)
 }
