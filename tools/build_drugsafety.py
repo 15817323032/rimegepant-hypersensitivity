@@ -137,8 +137,11 @@ def build_markdown():
     table_titles = [f"**Table {n}.** {mk.TITLES[n][0]}" for n in sorted(mk.TITLES)]
     table_notes = [f"*Table {n} footnote.* {mk.TITLES[n][1]}" for n in sorted(mk.TITLES)]
 
-    body_words = len(re.findall(r"[A-Za-z0-9][A-Za-z0-9'\-]*", body))
-    abs_words = len(re.findall(r"[A-Za-z0-9][A-Za-z0-9'\-]*", abstract))
+    # 词数口径：与 Word / 投稿系统的空白分词一致；正文不含内嵌表格（期刊按“不含表格”计），
+    # 摘要不含 Keywords（已在上面剔除）。
+    body_prose = re.sub(r"(?m)^\|.*$", "", body)
+    body_words = len(body_prose.split())
+    abs_words = len(abstract.split())
 
     parts = []
     parts.append(f"**Title:** {TITLE}\n")
@@ -156,8 +159,9 @@ def build_markdown():
                  "Department of Otolaryngology, Head and Neck Surgery, Shenzhen University General "
                  "Hospital, Shenzhen, China; E-mail 786675880@qq.com\n")
     parts.append("**Article type:** Original Research Article\n")
+    n_refs = len([ln for ln in refs_lines if re.match(r"^\d+\.\s", ln)])
     parts.append(f"**Word count:** abstract {abs_words}; main text {body_words}; "
-                 f"tables 12; figures 4; references 29\n")
+                 f"tables 12; figures 4; references {n_refs}\n")
     parts.append("* Joint first authors\n")
 
     parts.append("# Key Points\n")

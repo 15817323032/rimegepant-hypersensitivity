@@ -704,6 +704,35 @@ def audit_pct_pairing(md: str) -> None:
         add(PASS, "pct:pairing", "百分比配对", "每个「a% vs b%」都能对应到表中同一行或同一列")
 
 
+def audit_reference_binding(md: str) -> None:
+    """文献基准三方对齐：正文引用编号 ↔ 引用处数值 ↔ 参考文献条目；编号须连续。
+
+    数值型声明分两类：本项目的数（回源到结果文件）与文献的数（无法回源，
+    只能锁定"哪个数配哪条引用"）。后者一旦被改写而引用未变，这里会拦住。
+    """
+    block = md.split("# References", 1)[1]
+    block = re.split(r"\n# ", block, maxsplit=1)[0]
+    nums = [int(x) for x in re.findall(r"(?m)^(\d+)\.\s", block)]
+    if nums == list(range(1, len(nums) + 1)):
+        add(PASS, "references", "参考文献编号", f"1-{len(nums)} 连续，共 {len(nums)} 条")
+    else:
+        add(FAIL, "references", "参考文献编号", f"编号不连续：{nums}")
+
+    cited = [s for s in sentences(md) if "[30]" in s]
+    if not cited:
+        add(WARN, "references", "基准引用 [30]", "正文未出现该引用")
+    else:
+        s = cited[0]
+        ok = ("398" in s) and has_num(s, 0.69, 2) and ("OMOP" in s)
+        add(PASS if ok else FAIL, "references", "基准引用 [30]",
+            "OMOP 398 对 / AUC 0.69 与编号同位" if ok else "数值与编号不同位")
+
+    entry = "\n".join(ln for ln in block.splitlines() if ln.startswith("30."))
+    ok_ref = ("Pham" in entry) and ("Drug Saf" in entry) and ("s40264-018-00792-0" in entry)
+    add(PASS if ok_ref else FAIL, "references", "条目 30 完整性",
+        "Pham 2019 Drug Saf 42(6):743-750" if ok_ref else (entry[:70] or "缺失"))
+
+
 # ------------------------------------------------------------- 主流程
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -720,6 +749,7 @@ def main() -> int:
     audit_counts(md)
     audit_smd(md)
     audit_percentages(md)
+    audit_reference_binding(md)
 
     order = {FAIL: 0, WARN: 1, PASS: 2}
     findings.sort(key=lambda f: (order[f.level], f.area))

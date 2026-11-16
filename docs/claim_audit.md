@@ -2,7 +2,7 @@
 
 源：`docs/manuscript_en.md`；工具：`tools/verify_claims.py`
 
-结果：PASS 73 / WARN 1 / FAIL 0
+结果：PASS 76 / WARN 1 / FAIL 0
 
 | 级别 | 区域 | 声明 | 说明 |
 |---|---|---|---|
@@ -41,6 +41,9 @@
 | PASS | pct:table1 | 72 个 n(%) 单元格 | 分母重算一致，四档求和与有记录数一致 |
 | PASS | pct:table4 | 7 个 TTO 百分比 | 分母 8,962 / 848 重算一致 |
 | PASS | pct:table5 | 16 个亚组 | 占比=k/n 重算一致，均在 Wilson CI 内 |
+| PASS | references | 参考文献编号 | 1-30 连续，共 30 条 |
+| PASS | references | 基准引用 [30] | OMOP 398 对 / AUC 0.69 与编号同位 |
+| PASS | references | 条目 30 完整性 | Pham 2019 Drug Saf 42(6):743-750 |
 | PASS | signals | focus PT 数 | 49 已回源 |
 | PASS | signals | 其中阳性 | 19 已回源 |
 | PASS | signals | a>=3 PT 数 | 437 已回源 |

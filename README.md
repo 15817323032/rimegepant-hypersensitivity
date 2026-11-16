@@ -90,6 +90,8 @@ python tools/verify_claims.py --strict --write-report
 
 A non-zero exit code blocks the release. The report is written to `docs/claim_audit.md`.
 
+Literature values cannot be traced to a result file, so they are locked a second way: each cited benchmark must sit in the same sentence as its reference number and the reference entry must be complete, with reference numbering checked for continuity. Changing a quoted literature number without updating its citation therefore fails the gate as well.
+
 What is checked: docking scores and their derived Δ values, RMSD quotation completeness, signal counts and per-PT ROR, model AUCs, pre/post family ratios, cohort and reference sizes, the TTO filtering chain, every standardised mean difference (Table 1 both reference columns plus the INDI-subset sensitivity, with each SMD recomputed from the paired percentages), and every percentage — Table 1/4/5 are recomputed from their own numerators and denominators, each percentage in the prose must either trace to a table, be recomputed from counts at runtime, or be registered in `EXTERNAL_PCT` with its source (literature values and nominal 95% CI levels only), and each `a% vs b%` pair must correspond to one row or one column of a table. A new number that has no source therefore fails the gate instead of slipping through.
 
 ## Citation / DOI
