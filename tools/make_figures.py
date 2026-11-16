@@ -91,59 +91,101 @@ def fig1_forest() -> None:
     ax.legend(handles=handles, loc="lower right", fontsize=fs.S_SMALL,
               handletextpad=0.4, borderaxespad=0.3)
 
+    fs.note(fig, "Points: ROR. Bars: 95% CI (arrowheads mark CIs truncated at the "
+                 "axis limit). Red: positive signal under all four algorithms; "
+                 "blue: not robust.")
     fs.save(fig, OUT / "Figure_1.png")
 
 
 # ------------------------------------------------------------------ Fig 2 ---
+FAMILY_LABELS = {
+    "Anaphylactoid": "Anaphylactoid reactions",
+    "Systemic hypersensitivity": "Systemic hypersensitivity",
+    "Oral mucosal": "Oral mucosal",
+    "Oral sensory": "Oral sensory",
+    "Pharyngeal/airway": "Pharyngeal/airway",
+    "Excipient reaction": "Excipient reaction",
+}
+
+
+def _wilson(k: int, n: int, z: float = 1.959963985) -> tuple[float, float]:
+    """Wilson score interval for k of n, in percent."""
+    p = k / n
+    d = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / d
+    h = z * np.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
+    return max(0.0, (c - h) * 100), min(100.0, (c + h) * 100)
+
+
 def fig2_trend() -> None:
-    ts = pd.read_csv(ROOT / "results_label_change" / "ts_quarterly_family.csv")
-    quarters = ts["quarter"].tolist()
-    labels = {"Anaphylactoid": "Anaphylactoid reactions",
-              "Systemic hypersensitivity": "Systemic hypersensitivity",
-              "Oral mucosal": "Oral mucosal",
-              "Oral sensory": "Oral sensory",
-              "Pharyngeal/airway": "Pharyngeal/airway",
-              "Excipient reaction": "Excipient reaction"}
-    fams = list(labels)
+    ts = pd.read_csv(ROOT / "results_label_change" / "ts_quarterly_family.csv",
+                     encoding="utf-8-sig")
+    fams = list(FAMILY_LABELS)
+    q = ts["quarter"].tolist()
+    x = np.arange(len(q))
+    i_cut = q.index("2025Q3")
+    n_n = ts["n"].to_numpy()
 
-    fig, ax = plt.subplots(figsize=(fs.W_DOUBLE, 3.6))
-    x = np.arange(len(quarters))
+    # small multiples on ONE shared 0-40% scale: six lines on a single axis
+    # squash the low-frequency families into a flat line at zero
+    fig = plt.figure(figsize=(fs.W_DOUBLE, 7.3))
+    gs = fig.add_gridspec(4, 2, height_ratios=[1, 1, 1, 0.74],
+                          hspace=0.60, wspace=0.14,
+                          left=0.088, right=0.988, top=0.975, bottom=0.150)
 
-    # shaded post-revision period instead of a dashed line
-    i_cut = quarters.index("2025Q3")
-    ax.axvspan(i_cut - 0.5, len(quarters) - 0.5, color=fs.BAND, zorder=0)
-    ax.text(i_cut + 0.2, 22.3, "Post-label revision", fontsize=fs.S_SMALL,
-            color=fs.MUTED, style="italic", ha="left")
+    for k, fam in enumerate(fams):
+        ax = fig.add_subplot(gs[k // 2, k % 2])
+        c = fs.FAMILY_COLORS[FAMILY_LABELS[fam]]
+        kv = ts[fam].to_numpy()
+        lo, hi = zip(*(_wilson(int(a), int(b)) for a, b in zip(kv, n_n)))
 
-    ends = {}
-    for fam in fams:
-        c = fs.FAMILY_COLORS[labels[fam]]
-        ax.plot(x, ts[f"{fam}_pct"], color=c, lw=1.15, marker="o", ms=2.3,
-                markeredgewidth=0, zorder=2)
-        ends[fam] = ts[f"{fam}_pct"].iloc[-1]
+        ax.axvspan(i_cut - 0.5, x[-1] + 0.5, color=fs.BAND, zorder=0)
+        ax.axvline(i_cut - 0.5, color=fs.MUTED, ls=(0, (3, 2)), lw=0.7, zorder=1)
+        ax.fill_between(x, lo, hi, color=c, alpha=0.15, lw=0, zorder=2)
+        ax.plot(x, ts[f"{fam}_pct"], color=c, lw=1.25, marker="o", ms=2.4,
+                mfc=c, mec="white", mew=0.45, zorder=3)
 
-    # direct end labels with collision nudge
-    order = sorted(ends, key=ends.get)
-    min_gap = 0.9
-    placed = []
-    for fam in order:
-        yy = ends[fam]
-        if placed and yy - placed[-1] < min_gap:
-            yy = placed[-1] + min_gap
-        placed.append(yy)
-        c = fs.FAMILY_COLORS[labels[fam]]
-        ax.annotate(labels[fam], xy=(len(quarters) - 1 + 0.35, yy),
-                    fontsize=fs.S_SMALL, color=c, va="center",
-                    fontweight="bold")
+        ax.set_title(FAMILY_LABELS[fam], loc="left", fontsize=fs.S_TITLE,
+                     fontweight="bold", color=c, pad=5)
+        ax.set_ylim(0, 40)
+        ax.set_yticks([0, 10, 20, 30, 40])
+        ax.set_xlim(-0.6, x[-1] + 0.6)
+        ax.set_xticks(x)
+        fs.light_grid(ax, axis="y")
+        if k % 2:                       # right column: no duplicate y labels
+            ax.set_yticklabels([])
+        if k < 4:                       # only the bottom row carries quarter labels
+            ax.set_xticklabels([])
+        else:
+            ax.set_xticklabels(q, rotation=60, ha="right")
 
-    ax.set_xlim(-0.5, len(quarters) + 5.2)
-    ax.set_ylim(-0.6, 23.5)
-    ax.set_xticks(x)
-    ax.set_xticklabels(quarters, rotation=60, ha="right")
-    ax.set_ylabel("Proportion of rimegepant reports (%)")
-    ax.set_xlabel("FAERS quarter")
-    fs.light_grid(ax, axis="y")
+    # one shared y-axis title for the panel block
+    p0, p4 = fig.axes[0].get_position(), fig.axes[4].get_position()
+    fig.text(0.020, (p0.y1 + p4.y0) / 2, "Proportion of reports (%)",
+             rotation=90, va="center", ha="center", fontsize=fs.S_LABEL)
 
+    # denominators: the reader cannot judge a proportion without its base
+    axd = fig.add_subplot(gs[3, :])
+    axd.axvspan(i_cut - 0.5, x[-1] + 0.5, color=fs.BAND, zorder=0)
+    axd.axvline(i_cut - 0.5, color=fs.MUTED, ls=(0, (3, 2)), lw=0.7, zorder=1)
+    axd.bar(x, n_n, width=0.62, color="#B7C6D4", edgecolor="none", zorder=2)
+    for xi, v in zip(x, n_n):
+        axd.text(xi, v + n_n.max() * 0.02, f"{int(v)}", ha="center",
+                 va="bottom", fontsize=5.2, color=fs.MUTED)
+    axd.set_ylim(0, n_n.max() * 1.26)
+    axd.set_yticks([0, 500, 1000, 1500, 2000])
+    axd.set_xlim(-0.6, x[-1] + 0.6)
+    axd.set_xticks(x)
+    axd.set_xticklabels(q, rotation=60, ha="right")
+    axd.set_ylabel("Reports (n)")
+    axd.set_title("Quarterly denominators", loc="left", fontsize=fs.S_TITLE,
+                  fontweight="bold", color=fs.INK, pad=5)
+    axd.text(i_cut + 0.45, n_n.max() * 1.13, "Post-label revision",
+             fontsize=fs.S_SMALL, color=fs.MUTED, style="italic", ha="left")
+    fs.light_grid(axd, axis="y")
+
+    fs.note(fig, "Panels share a 0\u201340% scale. Ribbons: 95% Wilson interval. "
+                 "Shaded area: post-label-revision period (2025Q3 onward).", y=0.006)
     fs.save(fig, OUT / "Figure_2.png")
 
 
@@ -217,6 +259,11 @@ def fig3_shap() -> None:
             "(female sex): 12.9% vs 6.2%.",
             transform=ax.transAxes, fontsize=fs.S_SMALL, color=fs.MUTED)
 
+    ax.text(0.0, -0.178,
+            "Each point: one report. x: SHAP contribution (log-odds of the "
+            "composite endpoint); colour: feature value (red high, blue low, "
+            "grey missing). Rows ordered by mean |SHAP|.",
+            transform=ax.transAxes, fontsize=fs.S_SMALL, color=fs.MUTED)
     fs.save(fig, OUT / "Figure_3.png")
 
 
@@ -291,6 +338,9 @@ def fig4_network() -> None:
 
     fig.subplots_adjust(wspace=0.80, left=0.07, right=0.985, top=0.80,
                         bottom=0.14)
+    fs.note(fig, "Left: max Tanimoto similarity of predicted off-targets to the "
+                 "drug's ChEMBL anchors. Centre: top hub genes by degree in the "
+                 "bridged PPI network. Right: GO-BP enrichment of bridged genes.")
     fs.save(fig, OUT / "Figure_4.png")
 
 

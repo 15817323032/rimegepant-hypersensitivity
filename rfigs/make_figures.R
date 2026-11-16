@@ -89,54 +89,97 @@ fig1_forest <- function() {
   fig <- p1 +
     txt_panel(0.5, "cases", "Cases", TRUE) +
     txt_panel(0.08, "rest",  "Rest of database", FALSE) +
-    plot_layout(widths = c(5.8, 1.1, 2.0))
-  save_fig(fig, file.path(OUT, "Figure_1.png"), W_DOUBLE, 0.235 * n + 0.9)
+    plot_layout(widths = c(5.8, 1.1, 2.0)) +
+    plot_annotation(caption = paste("Points: ROR. Bars: 95% CI (arrowheads mark CIs truncated at",
+                                    "the axis limit). Red: positive signal under all four algorithms;",
+                                    "blue: not robust.")) &
+    theme(plot.caption = element_text(size = 6.5 / .pt, colour = MUTED,
+                                      hjust = 0, margin = margin(t = 5)))
+  save_fig(fig, file.path(OUT, "Figure_1.png"), W_DOUBLE, 0.235 * n + 1.25)
 }
 
 # ------------------------------------------------------------------ Fig 2 ---
+wilson_pct <- function(k, n, z = 1.959963985) {
+  p <- k / n
+  d <- 1 + z * z / n
+  ctr <- (p + z * z / (2 * n)) / d
+  hw  <- z * sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
+  c(pmax(0, (ctr - hw) * 100), pmin(100, (ctr + hw) * 100))
+}
+
 fig2_trend <- function() {
   ts <- read_csv(file.path(root, "results_label_change", "ts_quarterly_family.csv"),
                  show_col_types = FALSE)
   quarters <- ts$quarter
   fams <- names(FAMILY_FULL)
   nq <- length(quarters)
+  x  <- seq_len(nq) - 1
   i_cut <- match("2025Q3", quarters)   # 1-based; x axis is 0-based
 
   long <- do.call(rbind, lapply(fams, function(f)
-    data.frame(quarter = quarters, x = seq_len(nq) - 1, fam = f,
-               y = ts[[paste0(f, "_pct")]])))
+    data.frame(quarter = quarters, x = x, fam = f,
+               y = ts[[paste0(f, "_pct")]],
+               lo = mapply(function(k, n) wilson_pct(k, n)[1], ts[[f]], ts$n),
+               hi = mapply(function(k, n) wilson_pct(k, n)[2], ts[[f]], ts$n))))
+  long$fam <- factor(long$fam, levels = fams)   # keep the manuscript's family order
 
-  # direct end labels with the same collision nudge as the Python version
-  ends <- sapply(fams, function(f) tail(ts[[paste0(f, "_pct")]], 1))
-  ord  <- names(sort(ends))
-  min_gap <- 0.9; placed <- numeric(0)
-  lab <- data.frame(fam = character(0), y = numeric(0))
-  for (f in ord) {
-    yy <- ends[[f]]
-    if (length(placed) && yy - placed[length(placed)] < min_gap)
-      yy <- placed[length(placed)] + min_gap
-    placed <- c(placed, yy)
-    lab <- rbind(lab, data.frame(fam = f, y = yy))
-  }
-  lab$full <- unname(FAMILY_FULL[lab$fam])
-
-  fig <- ggplot() +
+  p_small <- ggplot(long) +
     annotate("rect", xmin = i_cut - 1.5, xmax = nq - 0.5,
              ymin = -Inf, ymax = Inf, fill = BAND) +
-    annotate("text", x = i_cut - 1.3, y = 22.3, label = "Post-label revision",
-             hjust = 0, colour = MUTED, size = 6.5 / .pt, fontface = "italic") +
-    geom_line(data = long, aes(x, y, colour = fam), linewidth = 0.32) +
-    geom_point(data = long, aes(x, y, colour = fam), size = 0.65, stroke = 0) +
-    geom_text(data = lab, aes(x = nq - 1 + 0.35, y = y, label = full, colour = fam),
-              hjust = 0, size = 6.5 / .pt, fontface = "bold") +
+    geom_ribbon(aes(x, ymin = lo, ymax = hi, fill = fam), alpha = 0.15,
+                colour = NA) +
+    geom_line(aes(x, y, colour = fam), linewidth = 0.32) +
+    geom_point(aes(x, y, fill = fam), shape = 21, size = 0.8,
+               colour = "white", stroke = 0.3) +
+    geom_vline(xintercept = i_cut - 1.5, colour = MUTED,
+               linewidth = 0.22, linetype = "33") +
     scale_colour_manual(values = FAMILY_COLORS, guide = "none") +
-    coord_cartesian(xlim = c(-0.5, nq + 5.2), ylim = c(-0.6, 23.5), clip = "off") +
-    scale_x_continuous(breaks = seq_len(nq) - 1, labels = quarters) +
-    labs(x = "FAERS quarter", y = "Proportion of rimegepant reports (%)") +
+    scale_fill_manual(values = FAMILY_COLORS, guide = "none") +
+    facet_wrap(~fam, ncol = 2, scales = "fixed",
+               labeller = labeller(fam = FAMILY_FULL)) +
+    coord_cartesian(ylim = c(0, 40), clip = "off") +
+    scale_y_continuous(breaks = c(0, 10, 20, 30, 40)) +
+    scale_x_continuous(breaks = x, labels = quarters) +
+    labs(x = NULL, y = "Proportion of reports (%)") +
     theme_pub() +
     theme(panel.grid.major.x = element_blank(),
+          strip.background = element_blank(),
+          strip.placement = "outside",
+          strip.text = element_text(size = 9.5 / .pt, face = "bold",
+                                    colour = INK, hjust = 0),
           axis.text.x = element_text(angle = 60, hjust = 1))
-  save_fig(fig, file.path(OUT, "Figure_2.png"), W_DOUBLE, 3.6)
+
+  # denominators: a proportion is unreadable without its base
+  den <- data.frame(x = x, n = ts$n, quarter = quarters)
+  p_denom <- ggplot(den) +
+    annotate("rect", xmin = i_cut - 1.5, xmax = nq - 0.5,
+             ymin = -Inf, ymax = Inf, fill = BAND) +
+    geom_col(aes(x, n), width = 0.62, fill = "#B7C6D4") +
+    geom_text(aes(x, n + max(ts$n) * 0.02, label = comma(n)), size = 5.2 / .pt,
+              colour = MUTED, vjust = 0) +
+    geom_vline(xintercept = i_cut - 1.5, colour = MUTED,
+               linewidth = 0.22, linetype = "33") +
+    annotate("text", x = i_cut - 1.05, y = max(ts$n) * 1.13,
+             label = "Post-label revision", hjust = 0, colour = MUTED,
+             size = 6.5 / .pt, fontface = "italic") +
+    scale_y_continuous(breaks = c(0, 500, 1000, 1500, 2000),
+                       limits = c(0, max(ts$n) * 1.26)) +
+    scale_x_continuous(breaks = x, labels = quarters) +
+    labs(x = NULL, y = "Reports (n)", title = "Quarterly denominators") +
+    theme_pub() +
+    theme(panel.grid.major.x = element_blank(),
+          axis.text.x = element_text(angle = 60, hjust = 1),
+          plot.title = element_text(size = 8.5 / .pt, face = "bold",
+                                    colour = INK, hjust = 0))
+
+  fig <- p_small + p_denom +
+    plot_layout(ncol = 1, heights = c(3, 1.05)) +
+    plot_annotation(caption = paste("Panels share a 0-40% scale. Ribbons: 95% Wilson",
+                                    "interval. Shaded area: post-label-revision period",
+                                    "(2025Q3 onward).")) &
+    theme(plot.caption = element_text(size = 6.5 / .pt, colour = MUTED,
+                                      hjust = 0, margin = margin(t = 5)))
+  save_fig(fig, file.path(OUT, "Figure_2.png"), W_DOUBLE, 7.3)
 }
 
 # ------------------------------------------------------------------ Fig 3 ---
@@ -195,11 +238,17 @@ fig3_shap <- function() {
     scale_x_continuous(expand = expansion(mult = c(0.02, 0.02))) +
     labs(x = "SHAP value (impact on model output)", y = NULL,
          caption = paste("Positivity in the top vs bottom quartile of the leading",
-                         "feature (female sex): 12.9% vs 6.2%.")) +
+                         "feature (female sex): 12.9% vs 6.2%.\n",
+                         "Each point: one report. x: SHAP contribution (log-odds of the",
+                         "composite endpoint); colour: feature value (red high, blue low,",
+                         "grey missing). Rows ordered by mean |SHAP|.")) +
     coord_cartesian(ylim = c(-0.9, n_feat - 0.1)) +
     theme_pub() +
     theme(panel.grid = element_blank(),
           axis.text.y = element_text(size = 6.5),
+          plot.caption = element_text(size = 6.5 / .pt, colour = MUTED,
+                                      hjust = 0, lineheight = 1.5,
+                                      margin = margin(t = 8)),
           plot.margin = margin(2, 8, 10, 2, unit = "pt"))
   save_fig(fig, file.path(OUT, "Figure_3.png"), W_15, 0.26 * n_feat + 1.9)
 }
@@ -244,8 +293,13 @@ fig4_network <- function() {
     theme(axis.text.y = element_text(size = 6.5), axis.ticks.y = element_blank(),
           axis.line.y = element_blank(), panel.grid.major.y = element_blank())
 
-  fig <- (p1 | p2 | p3) + plot_layout(widths = c(1.0, 1.1, 1.3))
-  save_fig(fig, file.path(OUT, "Figure_4.png"), W_DOUBLE, 3.1)
+  fig <- (p1 | p2 | p3) + plot_layout(widths = c(1.0, 1.1, 1.3)) +
+    plot_annotation(caption = paste("Left: max Tanimoto similarity of predicted off-targets to the drug's",
+                                    "ChEMBL anchors. Centre: top hub genes by degree in the bridged PPI",
+                                    "network. Right: GO-BP enrichment of bridged genes.")) &
+    theme(plot.caption = element_text(size = 6.5 / .pt, colour = MUTED,
+                                      hjust = 0, margin = margin(t = 5)))
+  save_fig(fig, file.path(OUT, "Figure_4.png"), W_DOUBLE, 3.35)
 }
 
 # ------------------------------------------------------------------ main ----

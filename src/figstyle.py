@@ -89,6 +89,16 @@ def light_grid(ax, axis="x") -> None:
     ax.set_axisbelow(True)
 
 
+def note(fig, text: str, y: float = 0.005, x: float = 0.008) -> None:
+    """One-line encoding guide inside the figure (what the marks mean).
+
+    Kept deliberately short and muted: the journal caption says what the
+    figure shows, this says how to read it, so the image is self-explanatory
+    when a reader meets it out of context.
+    """
+    fig.text(x, y, text, fontsize=S_SMALL, color=MUTED, ha="left", va="bottom")
+
+
 def save(fig, path: Path, pad: float = 0.02) -> Path:
     """Tight export; returns the written path."""
     path = Path(path)
