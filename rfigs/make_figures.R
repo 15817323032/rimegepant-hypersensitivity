@@ -325,25 +325,62 @@ fig4_network <- function() {
   kegg <- read_csv(file.path(ntd, "enrichment_kegg.csv"), show_col_types = FALSE) %>%
     mutate(nlp = -log10(pmax(adj_p_value, 1e-300)),
            term_wrap = vapply(term, function(t)
-             paste(strwrap(t, 32), collapse = "\n"), character(1)))
+             paste(strwrap(t, 32), collapse = "\n"), character(1))) %>%
+    arrange(desc(nlp))
   kegg_n <- 12
   kd <- kegg %>% slice_head(n = kegg_n)
-  p_kegg <- ggplot(kd, aes(nlp, reorder(term_wrap, nlp))) +
-    geom_point(aes(size = n_overlap, colour = nlp), alpha = 0.85) +
-    scale_colour_gradient(low = ACCENT, high = SIGNAL,
-                          name = expression(-log[10]*P[adj]),
-                          guide = guide_colourbar(barwidth = 1.1,
-                                                  barheight = 2.2)) +
-    scale_size_continuous(name = "Bridged genes\nin pathway",
-                          range = c(1.2, 4.2), breaks = c(20, 40, 60, 80)) +
-    scale_x_continuous(expand = expansion(mult = c(0.05, 0.10))) +
-    labs(x = expression(-log[10]*P[adj]), y = NULL,
-         title = paste0("KEGG pathway enrichment (top ", kegg_n,
-                        ", Enrichr BH-corrected)")) +
-    theme_pub() +
+  # broken x axis: chemokine signaling (nlp = 126) dwarfs the remaining
+  # terms (nlp 17-39), which would otherwise align into a vertical line;
+  # cut at 40 and show the three leading pathways in a compressed strip
+  BRK   <- 40
+  ylev  <- rev(kd$term_wrap)                      # kd sorted desc -> top = max nlp
+  nlp_rng <- range(kd$nlp)
+  kegg_theme <- theme_pub() +
     theme(axis.text.y = element_text(size = 6.5),
           axis.ticks.y = element_blank(), axis.line.y = element_blank(),
           panel.grid.major.y = element_blank())
+  kegg_cols <- function(guide = guide_colourbar(barwidth = 1.1,
+                                                barheight = 2.2))
+    scale_colour_gradient(low = ACCENT, high = SIGNAL, limits = nlp_rng,
+                          name = expression(-log[10]*P[adj]), guide = guide)
+  kegg_size <- scale_size_continuous(name = "Bridged genes\nin pathway",
+                                     range = c(1.2, 4.2),
+                                     breaks = c(20, 40, 60, 80))
+  # break marks: short slashes straddling the junction seam
+  slash <- function(x0, x1) annotation_custom(
+    linesGrob(x = unit(c(x0, x1), "npc"),
+              y = unit(c(-0.004, 0.048), "npc"),
+              gp = gpar(col = INK, lwd = 0.5)),
+    -Inf, Inf, -Inf, Inf)
+
+  p_kegg_lo <- ggplot(filter(kd, nlp <= BRK),
+                      aes(nlp, factor(term_wrap, levels = ylev))) +
+    geom_point(aes(size = n_overlap, colour = nlp), alpha = 0.85) +
+    kegg_cols() + kegg_size +
+    scale_y_discrete(limits = ylev, expand = expansion(add = c(0.6, 0.6))) +
+    scale_x_continuous(limits = c(0, BRK), breaks = seq(0, BRK, 10),
+                       expand = expansion(mult = c(0.03, 0.015))) +
+    coord_cartesian(clip = "off") + slash(0.985, 1.004) +
+    labs(x = expression(-log[10]*P[adj]), y = NULL,
+         title = paste0("KEGG pathway enrichment (top ", kegg_n,
+                        ", Enrichr BH-corrected)")) +
+    kegg_theme
+
+  p_kegg_hi <- ggplot(filter(kd, nlp > BRK),
+                      aes(nlp, factor(term_wrap, levels = ylev))) +
+    geom_point(aes(size = n_overlap, colour = nlp), alpha = 0.85) +
+    kegg_cols(guide = "none") + kegg_size +
+    scale_y_discrete(limits = ylev, expand = expansion(add = c(0.6, 0.6))) +
+    scale_x_continuous(limits = c(BRK, 130), breaks = c(60, 100, 126),
+                       expand = expansion(mult = c(0.01, 0.03))) +
+    coord_cartesian(clip = "off") + slash(-0.004, 0.015) +
+    guides(size = "none") +
+    labs(x = NULL, y = NULL) +
+    kegg_theme +
+    theme(axis.text.y = element_blank())
+
+  p_kegg <- (p_kegg_lo | p_kegg_hi) +
+    plot_layout(widths = c(4.6, 1.6), guides = "collect")
 
   top <- (p1 | p2 | p3) + plot_layout(widths = c(1.0, 1.1, 1.3))
   fig <- top / p_kegg +
@@ -353,7 +390,8 @@ fig4_network <- function() {
                                     "by degree in the bridged PPI network. Top right: GO-BP enrichment of bridged genes.",
                                     "Bottom: KEGG pathways of bridged\n",
                                     "genes (Enrichr, BH-corrected); bubble size = bridged genes in pathway,",
-                                    "colour = adjusted p.")) &
+                                    "colour = adjusted p; x-axis broken for readability, the leading",
+                                    "pathways are shown on the compressed right-hand segment.")) &
     theme(plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, lineheight = 1.5,
                                       margin = margin(t = 5)))
