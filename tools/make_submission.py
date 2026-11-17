@@ -27,6 +27,87 @@ for d in (TBL, FIG, SUP):
 FONT = "Times New Roman"
 
 # ---------------------------------------------------------------- style helpers
+_QN = __import__("docx").oxml.ns.qn
+
+# 数值样式单元（居中列判定用）：纯数字、百分数、±均值、科学计数、带比较符/缺失符
+_NUM_RE = re.compile(r"[<>≤≥±~]?\s*[-−+]?\d[\d,.]*(\s*[eE][-+]?\d+|\s*×\s*10)?\s*%?"
+                     r"(\s*±\s*\d[\d,.]*\s*(%?)\s*(\s*[eE][-+]?\d+)?)?")
+_NEUTRAL_RE = re.compile(r"^(—|–|-|NA|N/A|n/a|Ref\.?|reference|)$", re.I)
+
+
+def _set_tbl_borders(t, header_rows=1):
+    """三线表：顶线 1.5pt、表头底线 1pt、底线 1.5pt，无竖线、无内部横线。"""
+    tblPr = t._tbl.tblPr
+    borders = tblPr.find(_QN("w:tblBorders"))
+    if borders is None:
+        borders = tblPr.makeelement(_QN("w:tblBorders"), {})
+        tblPr.append(borders)
+    spec = {"w:top": ("single", 12), "w:bottom": ("single", 12),
+            "w:left": ("none", 0), "w:right": ("none", 0),
+            "w:insideH": ("none", 0), "w:insideV": ("none", 0)}
+    for tag, (val, sz) in spec.items():
+        el = borders.find(_QN(tag))
+        if el is None:
+            el = borders.makeelement(_QN(tag), {})
+            borders.append(el)
+        el.set(_QN("w:val"), val)
+        el.set(_QN("w:sz"), str(sz))
+        el.set(_QN("w:color"), "000000")
+    # 表头底线：写在表头各行单元格的 tcBorders 上（单元格边框覆盖表级 insideH）
+    for ri in range(min(header_rows, len(t.rows))):
+        for c in t.rows[ri].cells:
+            tcPr = c._tc.get_or_add_tcPr()
+            tcb = tcPr.find(_QN("w:tcBorders"))
+            if tcb is None:
+                tcb = tcPr.makeelement(_QN("w:tcBorders"), {})
+                tcPr.append(tcb)
+            bt = tcb.find(_QN("w:bottom"))
+            if bt is None:
+                bt = tcb.makeelement(_QN("w:bottom"), {})
+                tcb.append(bt)
+            bt.set(_QN("w:val"), "single")
+            bt.set(_QN("w:sz"), "8")
+            bt.set(_QN("w:color"), "000000")
+
+
+def _set_cell_margins(t, top=40, bottom=40, left=100, right=100):
+    """单元格内边距（dxa = 1/1440 英寸），默认上下 0.07cm、左右 0.18cm。"""
+    tblPr = t._tbl.tblPr
+    mar = tblPr.find(_QN("w:tblCellMar"))
+    if mar is None:
+        mar = tblPr.makeelement(_QN("w:tblCellMar"), {})
+        tblPr.append(mar)
+    for tag, v in (("w:top", top), ("w:left", left), ("w:bottom", bottom),
+                   ("w:right", right)):
+        el = mar.find(_QN(tag))
+        if el is None:
+            el = mar.makeelement(_QN(tag), {})
+            mar.append(el)
+        el.set(_QN("w:w"), str(v))
+        el.set(_QN("w:type"), "dxa")
+
+
+def _column_aligns(rows):
+    """按列内容判定对齐：数值列居中、文本列左对齐（首列一律左对齐）。"""
+    body = rows[1:]
+    aligns = ["left"]  # 首列（标签列）永远左对齐
+    for j in range(1, len(rows[0])):
+        col = [r[j].strip() for r in body if len(r) > j]
+        col = [c for c in col if c]
+        if not col:
+            aligns.append("left"); continue
+        neutral = sum(1 for c in col if _NEUTRAL_RE.match(c))
+        numeric = sum(1 for c in col if _NUM_RE.fullmatch(c))
+        judged = [c for c in col if not _NEUTRAL_RE.match(c)]
+        if judged and numeric / len(judged) >= 0.7:
+            aligns.append("center")
+        elif neutral and not judged:
+            aligns.append("center")
+        else:
+            aligns.append("left")
+    return aligns
+
+
 def set_normal_style(doc, spacing=2.0):
     st = doc.styles["Normal"]
     st.font.name = FONT
@@ -80,17 +161,29 @@ def add_md_table(doc, rows, landscape=False, font_size=10):
         sec.left_margin = sec.right_margin = Cm(1.5)
         sec.top_margin = sec.bottom_margin = Cm(1.5)
     t = doc.add_table(rows=len(rows), cols=len(rows[0]))
-    t.style = "Table Grid"
+    aligns = _column_aligns(rows)
+    _set_tbl_borders(t)
+    _set_cell_margins(t)
     for i, row in enumerate(rows):
         for j, cell in enumerate(row):
             c = t.cell(i, j)
             c.text = ""
             p = c.paragraphs[0]
-            add_runs(p, str(cell))
             p.paragraph_format.line_spacing = 1.0
+            p.paragraph_format.space_before = Pt(1)
+            p.paragraph_format.space_after = Pt(1)
+            if aligns[j] == "center":
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            add_runs(p, str(cell))
             for r in p.runs:
                 r.font.size = Pt(font_size)
-                if i == 0: r.bold = True
+                r.font.name = "Arial"
+                r._element.rPr.rFonts.set(_QN("w:eastAsia"), "Arial")
+                if i == 0:
+                    r.bold = True
+    # 表头跨页重复（Table 2 有 437 行，翻页不能丢表头）
+    trPr = t.rows[0]._tr.get_or_add_trPr()
+    trPr.append(trPr.makeelement(_QN("w:tblHeader"), {}))
     if landscape:  # back to portrait for subsequent content
         sec = doc.add_section()
         sec.orientation = WD_ORIENT.PORTRAIT
