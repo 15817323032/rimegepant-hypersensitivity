@@ -336,7 +336,7 @@ fig4_network <- function() {
                                                   barheight = 2.2)) +
     scale_size_continuous(name = "Bridged genes\nin pathway",
                           range = c(1.2, 4.2), breaks = c(5, 15, 40, 80)) +
-    scale_x_continuous(expand = expansion(mult = c(0, 0.10))) +
+    scale_x_continuous(expand = expansion(mult = c(0.05, 0.10))) +
     labs(x = expression(-log[10]*P[adj]), y = NULL,
          title = paste0("KEGG pathway enrichment (top ", kegg_n,
                         ", Enrichr BH-corrected)")) +
