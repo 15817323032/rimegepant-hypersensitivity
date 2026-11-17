@@ -274,7 +274,7 @@ fig3_shap <- function() {
                                     "the composite endpoint; colour: feature value (red high, blue low, grey missing).\n",
                                     "Positivity in the top vs bottom quartile of the female-sex SHAP contribution:",
                                     "12.9% vs 6.2%.\n",
-                                    "No feature carries a large effect (highest mean |SHAP| 0.030).")) &
+                                    "No feature carries a large effect (highest mean |SHAP| 0.031).")) &
     theme(plot.caption = element_text(size = 6.5, colour = MUTED, hjust = 0,
                                       lineheight = 1.5, margin = margin(t = 5)))
   save_fig(fig, file.path(OUT, "Figure_3.png"), W_DOUBLE, 0.26 * n_top + 1.9)
@@ -335,7 +335,7 @@ fig4_network <- function() {
                           guide = guide_colourbar(barwidth = 1.1,
                                                   barheight = 2.2)) +
     scale_size_continuous(name = "Bridged genes\nin pathway",
-                          range = c(1.2, 4.2), breaks = c(5, 15, 40, 80)) +
+                          range = c(1.2, 4.2), breaks = c(20, 40, 60, 80)) +
     scale_x_continuous(expand = expansion(mult = c(0.05, 0.10))) +
     labs(x = expression(-log[10]*P[adj]), y = NULL,
          title = paste0("KEGG pathway enrichment (top ", kegg_n,
