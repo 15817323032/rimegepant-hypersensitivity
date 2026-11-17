@@ -185,6 +185,9 @@ fig2_trend <- function() {
 }
 
 # ------------------------------------------------------------------ Fig 3 ---
+# Merged two-panel version (author pick A1): left = global importance bars,
+# right = SHAP beeswarm, both restricted to the top 15 features sharing one
+# y order (ascending mean |SHAP|). Replaces the former Table (SHAP importance).
 fig3_shap <- function() {
   sv <- read_csv(file.path(root, "results_ml_real", "ml_shap_values.csv"),
                  show_col_types = FALSE)
@@ -192,8 +195,10 @@ fig3_shap <- function() {
                  show_col_types = FALSE)
   feats <- setdiff(names(sv), SHAP_DROP)
   sv <- sv[, feats]
+  imp <- data.frame(feature = names(sv), mean_abs = colMeans(abs(sv))) %>%
+    arrange(desc(mean_abs))
   order <- names(sort(colMeans(abs(sv))))   # ascending -> y from bottom up
-  n_feat <- length(order)
+  n_top <- 15
 
   NBINS <- 60; LEVELS <- 13; STEP <- 0.055
   pts <- do.call(rbind, lapply(seq_along(order), function(i) {
@@ -225,7 +230,26 @@ fig3_shap <- function() {
     data.frame(x = df$x, y = (i - 1) + df$offs, v = vv, f = f)
   }))
 
-  fig <- ggplot(pts, aes(x, y, colour = v)) +
+  # importance bar panel: same y order as the beeswarm (ascending)
+  imp_asc <- imp[order(imp$mean_abs), ] %>% slice_tail(n = n_top) %>%
+    mutate(label = {m <- unname(FEATURE_LABELS[feature]); ifelse(is.na(m), feature, m)},
+           ypos  = match(feature, tail(order, n_top)) - 1)
+  p_bar <- ggplot(imp_asc, aes(mean_abs, ypos)) +
+    geom_col(fill = ACCENT, width = 0.62, orientation = "y") +
+    scale_y_continuous(breaks = imp_asc$ypos, labels = imp_asc$label,
+                       expand = c(0, 0)) +
+    scale_x_continuous(expand = expansion(mult = c(0, 0.08))) +
+    labs(x = "Mean |SHAP|", y = NULL,
+         title = "Feature importance\n(top 15 of 21)") +
+    theme_pub() +
+    theme(axis.text.y = element_text(size = 6.5),
+          axis.ticks.y = element_blank(), axis.line.y = element_blank(),
+          panel.grid.major.y = element_blank())
+
+  # beeswarm restricted to the same 15 features
+  pts15 <- pts[pts$f %in% tail(order, n_top), ]
+  pts15$y <- pts15$y - min(pts15$y)          # re-index to 0..14
+  p_swarm <- ggplot(pts15, aes(x, y, colour = v)) +
     geom_vline(xintercept = 0, colour = MUTED, linewidth = 0.25) +
     geom_point(size = 0.4, stroke = 0, alpha = 0.40) +
     scale_colour_gradientn(colours = SHAP_COLS, limits = c(0, 1),
@@ -234,26 +258,26 @@ fig3_shap <- function() {
                            guide = guide_colourbar(barwidth = 1.1,
                                                    barheight = 2.4,
                                                    ticks.linewidth = 0.2)) +
-    scale_y_continuous(breaks = 0:(n_feat - 1),
-                       labels = unname(FEATURE_LABELS[order]),
+    scale_y_continuous(breaks = 0:(n_top - 1), labels = NULL,
                        expand = c(0, 0)) +
     scale_x_continuous(expand = expansion(mult = c(0.02, 0.02))) +
     labs(x = "SHAP value (impact on model output)", y = NULL,
-         caption = paste("Positivity in the top vs bottom quartile of the leading",
-                         "feature (female sex): 12.9% vs 6.2%.\n",
-                         "Each point: one report. x: SHAP contribution (log-odds of the",
-                         "composite endpoint);\n",
-                         "colour: feature value (red high, blue low, grey missing).",
-                         "Rows ordered by mean |SHAP|.")) +
-    coord_cartesian(ylim = c(-0.9, n_feat - 0.1)) +
+         title = "SHAP distribution\n(each point: one report)") +
+    coord_cartesian(ylim = c(-0.9, n_top - 0.1)) +
     theme_pub() +
     theme(panel.grid = element_blank(),
-          axis.text.y = element_text(size = 6.5),
-          plot.caption = element_text(size = 6.5, colour = MUTED,
-                                      hjust = 0, lineheight = 1.5,
-                                      margin = margin(t = 8)),
           plot.margin = margin(2, 8, 10, 2, unit = "pt"))
-  save_fig(fig, file.path(OUT, "Figure_3.png"), W_15, 0.26 * n_feat + 1.9)
+
+  fig <- (p_bar | p_swarm) + plot_layout(widths = c(1.0, 1.7)) +
+    plot_annotation(caption = paste("Left: mean absolute SHAP value per feature (top 15 of 21). Right: SHAP",
+                                    "contributions of individual reports; x: SHAP value in log-odds of\n",
+                                    "the composite endpoint; colour: feature value (red high, blue low, grey missing).\n",
+                                    "Positivity in the top vs bottom quartile of the female-sex SHAP contribution:",
+                                    "12.9% vs 6.2%.\n",
+                                    "No feature carries a large effect (highest mean |SHAP| 0.030).")) &
+    theme(plot.caption = element_text(size = 6.5, colour = MUTED, hjust = 0,
+                                      lineheight = 1.5, margin = margin(t = 5)))
+  save_fig(fig, file.path(OUT, "Figure_3.png"), W_DOUBLE, 0.26 * n_top + 1.9)
 }
 
 # ------------------------------------------------------------------ Fig 4 ---
@@ -296,13 +320,44 @@ fig4_network <- function() {
     theme(axis.text.y = element_text(size = 6.5), axis.ticks.y = element_blank(),
           axis.line.y = element_blank(), panel.grid.major.y = element_blank())
 
-  fig <- (p1 | p2 | p3) + plot_layout(widths = c(1.0, 1.1, 1.3)) +
-    plot_annotation(caption = paste("Left: max Tanimoto similarity of predicted off-targets to the",
-                                    "drug's ChEMBL anchors.\nCentre: top hub genes by degree in the",
-                                    "bridged PPI network. Right: GO-BP enrichment of bridged genes.")) &
+  # KEGG dot-plot panel (author pick B1): merged below the triptych, replacing
+  # the former KEGG enrichment table in the main text
+  kegg <- read_csv(file.path(ntd, "enrichment_kegg.csv"), show_col_types = FALSE) %>%
+    mutate(nlp = -log10(pmax(adj_p_value, 1e-300)),
+           term_wrap = vapply(term, function(t)
+             paste(strwrap(t, 32), collapse = "\n"), character(1)))
+  kegg_n <- 12
+  kd <- kegg %>% slice_head(n = kegg_n)
+  p_kegg <- ggplot(kd, aes(nlp, reorder(term_wrap, nlp))) +
+    geom_point(aes(size = n_overlap, colour = nlp), alpha = 0.85) +
+    scale_colour_gradient(low = ACCENT, high = SIGNAL,
+                          name = expression(-log[10]*P[adj]),
+                          guide = guide_colourbar(barwidth = 1.1,
+                                                  barheight = 2.2)) +
+    scale_size_continuous(name = "Bridged genes\nin pathway",
+                          range = c(1.2, 4.2), breaks = c(5, 15, 40, 80)) +
+    scale_x_continuous(expand = expansion(mult = c(0, 0.10))) +
+    labs(x = expression(-log[10]*P[adj]), y = NULL,
+         title = paste0("KEGG pathway enrichment (top ", kegg_n,
+                        ", Enrichr BH-corrected)")) +
+    theme_pub() +
+    theme(axis.text.y = element_text(size = 6.5),
+          axis.ticks.y = element_blank(), axis.line.y = element_blank(),
+          panel.grid.major.y = element_blank())
+
+  top <- (p1 | p2 | p3) + plot_layout(widths = c(1.0, 1.1, 1.3))
+  fig <- top / p_kegg +
+    plot_layout(heights = c(1.0, 1.45)) +
+    plot_annotation(caption = paste("Top left: max Tanimoto similarity of predicted off-targets to the drug's ChEMBL anchors.",
+                                    "Top centre: top hub genes\n",
+                                    "by degree in the bridged PPI network. Top right: GO-BP enrichment of bridged genes.",
+                                    "Bottom: KEGG pathways of bridged\n",
+                                    "genes (Enrichr, BH-corrected); bubble size = bridged genes in pathway,",
+                                    "colour = adjusted p.")) &
     theme(plot.caption = element_text(size = 6.5, colour = MUTED,
-                                      hjust = 0, margin = margin(t = 5)))
-  save_fig(fig, file.path(OUT, "Figure_4.png"), W_DOUBLE, 3.35)
+                                      hjust = 0, lineheight = 1.5,
+                                      margin = margin(t = 5)))
+  save_fig(fig, file.path(OUT, "Figure_4.png"), W_DOUBLE, 3.35 + 3.3)
 }
 
 # ------------------------------------------------------------------ Fig S1 --

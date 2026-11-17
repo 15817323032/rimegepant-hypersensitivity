@@ -181,7 +181,7 @@ def main():
 
     note = doc.add_paragraph()
     mk.add_runs(note, (
-        "Contents: 4 main figures + 1 supplementary figure, 12 tables. Figures are the R/ggplot2 "
+        f"Contents: 4 main figures + 1 supplementary figure, {len(mk.TITLES)} numbered tables. Figures are the R/ggplot2 "
         "renders at 450 dpi (Arial, house palette); table content is read from the same result "
         "files that feed the submission suite. Figure and table numbers match the manuscript. "
         "This file exists so the visual material can be reviewed in one pass; the journal receives "

@@ -245,18 +245,14 @@ TITLES = {
         "Indication-bias control: migraine-symptom PTs (nausea, vomiting, headache, migraine, photophobia, phonophobia) excluded in recalculation. Exposure roles: PS (primary), PS+SS, ALL.", False),
     6: ("Machine-learning model comparison (repeated stratified 5-fold × 3 cross-validation)",
         "Label = composite-endpoint positivity (932/8,962, 10.4%); 23 features (demographics, report year and country, concomitant drug classes, time to onset and its missing indicators); serious outcomes and event counts excluded (leakage control). A sensitivity model that also included reporter category and formulation reached a random-forest AUC of 0.618 ± 0.017, with no model changing by more than 0.01 AUC. AUC, area under the ROC curve (mean ± SD); AP, average precision; Brier, Brier score computed after restoring the predicted probabilities to the observed 10.4% prevalence, because class weighting for an imbalanced label inflates them (uncorrected values are kept in the archived results file). Null model = a constant prediction at the observed prevalence, which has AUC 0.500 and AP equal to the prevalence by construction.", False),
-    7: ("SHAP global feature importance of the best model (random forest)",
-        "Mean absolute SHAP values over cross-validation folds; all 23 features of the primary model are shown. Reporter category, formulation and country completeness were not entered in the primary model because they describe how a report reached the database rather than the patient; they were evaluated in the sensitivity model (Table 6 footnote).", False),
-    8: ("Bridge genes from the bridged network-toxicology analysis",
+    7: ("Bridge genes from the bridged network-toxicology analysis",
         "BFS ≤ 4 hops from drug anchors (CALCRL/RAMP1/CALCA) on the anchor ∪ event-module STRING network (score ≥ 700); ranked by shortest-path traversal counts.", False),
-    9: ("KEGG pathway enrichment of the bridged network (Enrichr, BH-corrected)",
-         "Top 20 terms by adjusted p (q) value.", True),
-    10: ("Molecular docking results (AutoDock Vina 1.2.5, exhaustiveness 16, seed 42)",
+    8: ("Molecular docking results (AutoDock Vina 1.2.5, exhaustiveness 16, seed 42)",
          "Pre-registered criteria: CALCRL ΔG ≤ −8 kcal/mol validates the docking system; off-target Δ = ΔG(CALCRL) − ΔG(target) ≥ 2 kcal/mol = no receptor-level off-target evidence; Δ < 2 = grey zone.", False),
-    11: ("Reporting proportions of hypersensitivity families before vs after the August 2025 label revision (2025Q3 cut-off)",
+    9: ("Reporting proportions of hypersensitivity families before vs after the August 2025 label revision (2025Q3 cut-off)",
          "Within-drug proportions among rimegepant primary-suspect reports (pre n = 8,283; post n = 679); Fisher exact test.", False),
-    12: ("Leading bridge-gene modules and their mechanistic assignment",
-         "Module membership is curated from the highest-ranked bridge genes of each event module; bridge counts are the STRING-network traversal counts of the individual genes (Table 8) and min hops is the shortest anchor-to-event path. Mechanistic statements are plausible-link assignments, not confirmed mechanisms (cf. §2.8). The chemokine module has no single dominant bridge gene and is represented through KEGG pathway enrichment (Table 9).", False),
+    10: ("Leading bridge-gene modules and their mechanistic assignment",
+         "Module membership is curated from the highest-ranked bridge genes of each event module; bridge counts are the STRING-network traversal counts of the individual genes (Table 7) and min hops is the shortest anchor-to-event path. Mechanistic statements are plausible-link assignments, not confirmed mechanisms (cf. §2.8). The chemokine module has no single dominant bridge gene and is represented through KEGG pathway enrichment (Fig 4; Supplementary Table S4).", False),
 }
 
 SOURCES = {
@@ -266,12 +262,10 @@ SOURCES = {
     4: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table5_subgroup", None),
     5: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table6_sensitivity", None),
     6: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T7_ML_models", None),
-    7: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T8_SHAP_top15", None),
-    8: ("csv", ROOT / "results/network_tox/bridge_genes.csv", None, None),
-    9: ("csv", ROOT / "results/network_tox/enrichment_kegg.csv", None, 21),
-    10: ("xlsx", ROOT / "results_full/all_tables_supplement.xlsx", "T11_docking", None),
-    11: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T12_label_prepost", None),
-    12: ("csv", ROOT / "results_full/table13_bridge_assignment.csv", None, None),
+    7: ("csv", ROOT / "results/network_tox/bridge_genes.csv", None, None),
+    8: ("xlsx", ROOT / "results_full/all_tables_supplement.xlsx", "T11_docking", None),
+    9: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T12_label_prepost", None),
+    10: ("csv", ROOT / "results_full/table13_bridge_assignment.csv", None, None),
 }
 
 ROW_LIMIT_DOCX = 100  # larger tables go out as .xlsx (journal accepts xlsx supplements)
@@ -481,8 +475,8 @@ def build_main_manuscript():
 LEGENDS = [
     ("Figure 1.", "Forest plot of the 25 highest-ROR preferred terms within the oral/hypersensitivity focus cluster (49 PTs; FAERS/AEMS 2020Q2\u20132026Q2, primary-suspect role). Points represent ROR; horizontal bars represent 95% CIs (truncated with an arrowhead where they extend beyond the axis); the vertical dashed line marks ROR = 1. Red points are robust positive signals (all four algorithms concordant); dark blue points did not meet the signal criterion. The right-hand columns give the number of primary-suspect rimegepant cases and the number of reports in the rest of the database. All 19 positive signals are shown."),
     ("Figure 2.", "Quarterly reporting proportions of the six hypersensitivity-spectrum families, 2020Q2\u20132026Q2, shown as small multiples on a shared 0\u201340% scale with 95% Wilson intervals (shaded ribbons). The shaded band marks the post-label-revision period (2025Q3 onwards, following the August 2025 label revision). The bottom panel shows the quarterly report denominators underlying all proportions."),
-    ("Figure 3.", "SHAP summary plot of the best-performing model (random forest; AUC 0.621 \u00b1 0.015). Points are individual cases; the horizontal axis is the SHAP value in log-odds of the composite endpoint; colour encodes the feature value (red high, blue low; pale grey marks missing values). 21 of the 23 model features are shown: the male-sex mirror of female sex and the centred duplicate of report year are omitted. No feature dominates, and the largest mean absolute SHAP value is 0.030. Composite-endpoint positivity was 12.9% in the highest and 6.2% in the lowest quartile of the female-sex SHAP contribution."),
-    ("Figure 4.", "Bridged network-toxicology overview: predicted targets (ChEMBL similarity, CALCRL highlighted), PPI hub genes (STRING degree), and top-10 GO biological-process enrichment of the bridged network. Drug anchors CALCRL/RAMP1/CALCA and bridge genes GNG2/GNB1/GNAS, C3/C5 and PLCG1/SRC/MAPK1 connect the drug layer to the chemokine and leukocyte-chemotaxis modules."),
+    ("Figure 3.", "SHAP analysis of the best-performing model (random forest; AUC 0.621 ± 0.015). Left: mean absolute SHAP value per feature (top 15 of the 21 plotted features; the male-sex mirror of female sex and the centred duplicate of report year are omitted; the full 23-feature list is given in Supplementary Table S3). Right: SHAP contributions of individual cases; the horizontal axis is the SHAP value in log-odds of the composite endpoint; colour encodes the feature value (red high, blue low; pale grey marks missing values). No feature dominates, and the largest mean absolute SHAP value is 0.030. Composite-endpoint positivity was 12.9% in the highest and 6.2% in the lowest quartile of the female-sex SHAP contribution."),
+    ("Figure 4.", "Bridged network-toxicology overview. Top left: predicted targets (max Tanimoto similarity to the drug's ChEMBL anchors; CALCRL highlighted). Top centre: PPI hub genes by STRING degree. Top right: top-10 GO biological-process enrichment of the bridged network. Bottom: KEGG pathway enrichment of the bridged genes (top 12, Enrichr with Benjamini–Hochberg correction; bubble size = bridged genes in pathway, colour = adjusted p; the full top-20 list is given in Supplementary Table S4). Drug anchors CALCRL/RAMP1/CALCA and bridge genes GNG2/GNB1/GNAS, C3/C5 and PLCG1/SRC/MAPK1 connect the drug layer to the chemokine and leukocyte-chemotaxis modules."),
 ]
 
 SUPP_LEGENDS = [
@@ -529,7 +523,17 @@ SUPP_TITLES = {
            "Positive: ROR025 > 1, PRR ≥ 2 & χ² ≥ 4, IC025 > 0, EB05 > 2. 'Robust' = positive in ≥ 2 algorithms. "
            "Focus = within the pre-specified oral/hypersensitivity composite endpoint.",
            ("xlsx", ROOT / "results_full/all_tables.xlsx", "table2_all_signals", None)),
+    "S3": ("Supplementary Table S3. SHAP global feature importance of the best model (random forest)",
+           "Mean absolute SHAP values over cross-validation folds; all 23 features of the primary model are shown. "
+           "The top 15 are rendered as the left panel of Fig 3. Reporter category, formulation and country completeness "
+           "were not entered in the primary model because they describe how a report reached the database rather than "
+           "the patient; they were evaluated in the sensitivity model (Table 6 footnote).",
+           ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T8_SHAP_top15", None)),
+    "S4": ("Supplementary Table S4. KEGG pathway enrichment of the bridged network (Enrichr, BH-corrected)",
+           "Top 20 terms by adjusted p (q) value. The top 12 are rendered as the lower panel of Fig 4.",
+           ("csv", ROOT / "results/network_tox/enrichment_kegg.csv", None, 21)),
 }
+SUPP_SUFFIX = {"S2": "all_signals", "S3": "shap_importance", "S4": "kegg_enrichment"}
 
 def build_supplementary_tables():
     SUP.mkdir(parents=True, exist_ok=True)
@@ -546,7 +550,7 @@ def build_supplementary_tables():
         add_md_table(doc, rows, landscape=(ncols > 8), font_size=8)
         doc.add_paragraph()
         add_para(doc, footnote, spacing=1.0)
-        out = SUP / f"Supplementary_Table_{tag}_all_signals.docx"
+        out = SUP / f"Supplementary_Table_{tag}_{SUPP_SUFFIX.get(tag, 'misc')}.docx"
         doc.save(out)
         print("saved", out.name, f"({len(rows)-1} rows x {ncols} cols)")
 
