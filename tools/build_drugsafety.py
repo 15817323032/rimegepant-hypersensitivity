@@ -260,11 +260,31 @@ def md_to_docx(md, out_path):
     lines = md.splitlines()
     i = 0
     page_break_before = {"References", "Tables", "Figure legends"}
+
+    # 正文里的无编号内嵌表（连续 | 行）必须就地转真表格，否则原样漏进 docx。
+    pending: list[str] = []
+
+    def flush_table():
+        if not pending:
+            return
+        rows = _md_table_rows(pending)
+        pending.clear()
+        if rows:
+            wide = max(len(r) for r in rows) > 8
+            mk.add_md_table(doc, rows, landscape=wide,
+                            font_size=8 if wide else 7.5)
+
     while i < len(lines):
         line = lines[i].rstrip()
         if not line.strip():
+            flush_table()
             i += 1
             continue
+        if line.startswith("|"):
+            pending.append(line)
+            i += 1
+            continue
+        flush_table()
         if line.startswith("## "):
             doc.add_heading(line[3:].strip(), level=2)
             i += 1
@@ -312,6 +332,7 @@ def md_to_docx(md, out_path):
         mk.add_para(doc, line)
         i += 1
 
+    flush_table()
     add_line_numbers(doc, only_first=False)
     safe_save(doc, out_path)
     print("saved", out_path)
