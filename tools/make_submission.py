@@ -104,7 +104,9 @@ def xlsx_rows(path, sheet, max_rows=None):
     ws = wb[sheet]
     rows = []
     for r in ws.iter_rows(values_only=True):
-        rows.append(["" if v is None else str(v) for v in r])
+        rows.append(["" if v is None else
+                     (_fmt_float(v) if isinstance(v, float) else str(v))
+                     for v in r])
         if max_rows and len(rows) >= max_rows:
             break
     wb.close()
@@ -122,7 +124,18 @@ def csv_rows(path, max_rows=None):
     with open(path, newline="", encoding="utf-8-sig") as f:
         rows = list(csv.reader(f))
     if max_rows: rows = rows[:max_rows]
-    return rows
+    # 字符串形式的数值同样格式化；无法安全转 float 的标识符（3N7S、hsa04664、
+    # "0.621 ± 0.015"、基因列表等）原样保留。
+    out = []
+    for r in rows:
+        row = []
+        for c in r:
+            try:
+                row.append(_fmt_float(float(c)))
+            except (ValueError, TypeError):
+                row.append(c)
+        out.append(row)
+    return out
 
 TITLES = {
     1: ("Baseline characteristics of rimegepant primary-suspect reports compared with full-database and indication-matched reference populations",
@@ -149,6 +162,8 @@ TITLES = {
          "Pre-registered criteria: CALCRL ΔG ≤ −8 kcal/mol validates the docking system; off-target Δ = ΔG(CALCRL) − ΔG(target) ≥ 2 kcal/mol = no receptor-level off-target evidence; Δ < 2 = grey zone.", False),
     12: ("Reporting proportions of hypersensitivity families before vs after the August 2025 label revision (2025Q3 cut-off)",
          "Within-drug proportions among rimegepant primary-suspect reports (pre n = 8,283; post n = 679); Fisher exact test.", False),
+    13: ("Leading bridge-gene modules and their mechanistic assignment",
+         "Module membership is curated from the highest-ranked bridge genes of each event module; bridge counts are the STRING-network traversal counts of the individual genes (Table 9) and min hops is the shortest anchor-to-event path. Mechanistic statements are plausible-link assignments, not confirmed mechanisms (cf. §2.8). The chemokine module has no single dominant bridge gene and is represented through KEGG pathway enrichment (Table 10).", False),
 }
 
 SOURCES = {
@@ -164,11 +179,14 @@ SOURCES = {
     10: ("csv", ROOT / "results/network_tox/enrichment_kegg.csv", None, 21),
     11: ("xlsx", ROOT / "results_full/all_tables_supplement.xlsx", "T11_docking", None),
     12: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T12_label_prepost", None),
+    13: ("csv", ROOT / "results_full/table13_bridge_assignment.csv", None, None),
 }
 
 ROW_LIMIT_DOCX = 100  # larger tables go out as .xlsx (journal accepts xlsx supplements)
 
 ZH_MAP = {
+    "bridge_gene_module": "Bridge-gene module", "bridge_counts": "Bridge counts",
+    "min_hops": "Min hops", "mechanistic_assignment": "Mechanistic assignment",
     "特征": "Characteristic", "值": "Value", "病例数 N": "Cases, N",
     "年龄 中位数 (IQR)": "Age, median (IQR)", "年龄缺失": "Age missing",
     "女性": "Female", "男性": "Male", "性别缺失/未知": "Sex missing/unknown",
@@ -202,10 +220,27 @@ ZH_MAP = {
     "mean_top3": "Top-3 mean (kcal/mol)", "delta_vs_on_target": "Δ vs on-target (kcal/mol)",
 }
 
+def _fmt_float(v: float) -> str:
+    """Journal-facing float formatting: >=100 -> 1 dp, else 3 dp fixed;
+    |v| < 1e-3 keeps scientific notation; integral values lose the .0."""
+    if v != v or v in (float("inf"), float("-inf")):
+        return str(v)
+    a = abs(v)
+    if a == int(a) and a < 1e12:
+        return str(int(v))
+    if a != 0 and a < 1e-3:
+        return f"{v:.2e}"
+    s = f"{v:.1f}" if a >= 100 else f"{v:.3f}"
+    return s
+
 def translate_rows(rows):
     out = []
     for r in rows:
-        out.append([ZH_MAP.get(str(c).strip(), ZH_MAP.get(str(c), c)) for c in r])
+        row = [c for c in r]
+        for i, c in enumerate(row):
+            if isinstance(c, float):
+                row[i] = _fmt_float(c)
+        out.append([ZH_MAP.get(str(c).strip(), ZH_MAP.get(str(c), c)) for c in row])
     return out
 
 def build_table_files():

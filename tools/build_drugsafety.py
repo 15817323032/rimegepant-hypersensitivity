@@ -161,7 +161,7 @@ def build_markdown():
     parts.append("**Article type:** Original Research Article\n")
     n_refs = len([ln for ln in refs_lines if re.match(r"^\d+\.\s", ln)])
     parts.append(f"**Word count:** abstract {abs_words}; main text {body_words}; "
-                 f"tables 12; figures 4; references {n_refs}\n")
+                 f"tables {len(mk.TITLES)}; figures 4; references {n_refs}\n")
     parts.append("\u2020 Joint first authors\n")
 
     parts.append("# Key Points\n")

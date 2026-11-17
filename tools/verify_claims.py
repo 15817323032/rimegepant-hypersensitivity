@@ -38,11 +38,36 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 MD = ROOT / "docs" / "manuscript_en.md"
+TBLDIR = ROOT / "submission" / "tables"
 DOCK = ROOT / "results" / "docking"
 FULL = ROOT / "results_full"
 BOOK = FULL / "all_tables_full.xlsx"
 
 PASS, WARN, FAIL = "PASS", "WARN", "FAIL"
+
+
+def rendered_tables_text() -> str:
+    """编号表格（submission/tables/Table_*.docx|xlsx）的全部单元格文本。
+
+    编号表由数据文件直接渲染，其数值不再出现在正文段落里（如 T7 各模型
+    AUC、T12 逐家族 post/pre），因此回源语料必须包含渲染产物，否则这些
+    归档数字会被误判为「未在稿件中出现」。
+    """
+    import openpyxl
+    from docx import Document
+
+    parts: list[str] = []
+    for f in sorted(TBLDIR.glob("Table_*.docx")):
+        d = Document(f)
+        parts += [p.text for p in d.paragraphs]
+        parts += [c.text for t in d.tables for r in t.rows for c in r.cells]
+    for f in sorted(TBLDIR.glob("Table_*.xlsx")):
+        wb = openpyxl.load_workbook(f, read_only=True, data_only=True)
+        for ws in wb.worksheets:
+            for row in ws.iter_rows(values_only=True):
+                parts += [str(v) for v in row if v is not None]
+        wb.close()
+    return norm("\n".join(parts))
 TAG = {PASS: "  ok ", WARN: " warn", FAIL: " FAIL"}
 
 TARGET_ALIAS = {
@@ -304,7 +329,7 @@ def audit_label(md: str) -> None:
         fam = str(row["family"])
         ratio = float(row["ratio_post_vs_pre"])
         p = float(row["p_fisher"])
-        lvl = PASS if has_num(md, ratio, 2) else WARN
+        lvl = PASS if has_num(md, ratio, 3) else WARN
         add(lvl, "label", fam, f"post/pre={ratio:.2f}, p={p:.2f}")
 
 
@@ -743,6 +768,7 @@ def main() -> int:
     args = ap.parse_args()
 
     md = norm(MD.read_text(encoding="utf-8"))
+    md += "\n" + rendered_tables_text()
 
     audit_docking(md)
     audit_signals(md)

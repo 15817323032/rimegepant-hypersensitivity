@@ -1,0 +1,5 @@
+﻿bridge_gene_module,bridge_counts,min_hops,mechanistic_assignment
+GNG2 / GNB1 / GNAS,589/447/93,2,CGRP-receptor downstream G-protein axis (on-target background)
+C3 / C5,149/96,3,"Complement activation, plausibly driving angioedema and pharyngeal swelling"
+PLCG1 / SRC / MAPK1,63/64/65,2–3,FcεRI-downstream mast-cell activation
+CCL2 / CX3CL1 / CCR7,36/97/34,3,Chemokine axis (enrichment-dominated; no single dominant bridge gene)
