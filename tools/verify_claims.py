@@ -61,6 +61,10 @@ def rendered_tables_text() -> str:
         d = Document(f)
         parts += [p.text for p in d.paragraphs]
         parts += [c.text for t in d.tables for r in t.rows for c in r.cells]
+    for f in sorted((ROOT / "submission" / "supplementary").glob("Supplementary_Table_*.docx")):
+        d = Document(f)
+        parts += [p.text for p in d.paragraphs]
+        parts += [c.text for t in d.tables for r in t.rows for c in r.cells]
     for f in sorted(TBLDIR.glob("Table_*.xlsx")):
         wb = openpyxl.load_workbook(f, read_only=True, data_only=True)
         for ws in wb.worksheets:

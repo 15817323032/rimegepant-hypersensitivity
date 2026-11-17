@@ -408,9 +408,16 @@ def build_supplementary_readus():
     out = OUT / "Supplementary_Table_S1_READUS-PV.docx"
     safe_save(doc, out)
     print("saved", out)
-    out = OUT / "Supplementary_Table_S1_READUS-PV.docx"
-    safe_save(doc, out)
-    print("saved", out)
+
+    # S2（全部阳性信号，由 make_submission 生成）随投稿包同步
+    s2 = ROOT / "submission" / "supplementary" / "Supplementary_Table_S2_all_signals.docx"
+    if s2.exists():
+        dst = OUT / s2.name
+        try:
+            open(dst, "wb").write(s2.read_bytes())
+            print("copied", dst.name)
+        except PermissionError:
+            print("LOCKED:", dst.name)
 
 
 def build_cover_letter():

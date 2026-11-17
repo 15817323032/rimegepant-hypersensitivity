@@ -53,7 +53,8 @@ def _set_tbl_borders(t, header_rows=1):
         el.set(_QN("w:val"), val)
         el.set(_QN("w:sz"), str(sz))
         el.set(_QN("w:color"), "000000")
-    # 表头底线：写在表头各行单元格的 tcBorders 上（单元格边框覆盖表级 insideH）
+    # 表头底线：只写在表头行单元格的 tcBorders 上（单元格边框覆盖表级 insideH）；
+    # 正文格不逐格处理——437 行 x 24 列的大表逐格写 XML 会拖垮构建
     for ri in range(min(header_rows, len(t.rows))):
         for c in t.rows[ri].cells:
             tcPr = c._tc.get_or_add_tcPr()
@@ -233,46 +234,44 @@ def csv_rows(path, max_rows=None):
 TITLES = {
     1: ("Baseline characteristics of rimegepant primary-suspect reports compared with full-database and indication-matched reference populations",
         "Cohort = rimegepant primary-suspect cases (n = 8,962). Full database = all other deduplicated reports in the same 25 quarterly extracts (n = 9,085,192), i.e. the denominator of the disproportionality analysis. Indication-matched = deduplicated reports whose INDI (indication) records contained a migraine term, excluding rimegepant primary-suspect cases (n = 75,155); this comparator absorbs confounding by indication, asking whether a contrast survives when the cohort is compared with other migraine-treatment reports rather than with the database at large. Percentages for composition rows (missing, reporter, country) take all reports in the column as denominator; for age bands and sex the denominator is reports with that variable recorded, so that differential completeness does not leak into the SMD. SMD, standardised mean difference (cohort minus the comparator in the same row) calculated on row proportions; |SMD| > 0.10 indicates a meaningful imbalance. p values are deliberately not reported: against more than nine million reference reports, any difference regardless of size reaches significance. \u2014 = not applicable.", False),
-    2: ("All positive disproportionality signals for rimegepant (a ≥ 3, BH-FDR corrected)",
-        "ROR, reporting odds ratio; PRR, proportional reporting ratio; IC025, lower bound of the Bayesian confidence propagation neural network information component; EB05, lower bound of the empirical Bayes geometric mean. Positive: ROR025 > 1, PRR ≥ 2 & χ² ≥ 4, IC025 > 0, EB05 > 2. 'Robust' = positive in ≥ 2 algorithms. Focus = within the pre-specified oral/hypersensitivity composite endpoint.", True),
-    3: ("Core disproportionality signals in the oral/hypersensitivity focus cluster",
-        "Sorted by ROR. a = number of deduplicated rimegepant primary-suspect reports with the PT; ROR025 = lower bound of the 95% CI.", False),
-    4: ("Time-to-onset distribution of composite-endpoint events",
+    2: ("Core disproportionality signals in the oral/hypersensitivity focus cluster",
+        "Sorted by ROR. a = number of deduplicated rimegepant primary-suspect reports with the PT; ROR (95% CI) computed on the 2 x 2 table against the full database; algorithms = number of the four disproportionality algorithms (ROR, PRR, BCPNN/IC025, MGPS/EB05) reaching their positivity threshold. Endpoint subset = pre-specified composite-endpoint subset. The full 28-column worksheet for these 49 PTs is archived in the repository data package.",
+        False),
+    3: ("Time-to-onset distribution of composite-endpoint events",
         "TTO = event date \u2212 start date of the first-listed drug (rimegepant in all cases analysed), in days. Of the 8,962 primary-suspect cases, 1,060 (11.8%) had both dates recorded; 208 negative intervals, in which the event was dated before drug start, and 4 intervals longer than 730 days were excluded, leaving 848 (9.5%) in the analysis.", False),
-    5: ("Focus-cluster signals by subgroup (sex, age group, report year)",
+    4: ("Focus-cluster signals by subgroup (sex, age group, report year)",
         "Within-drug reporting proportions with Wilson 95% CIs.", False),
-    6: ("Sensitivity analyses: indication-PT exclusion and triple exposure roles",
+    5: ("Sensitivity analyses: indication-PT exclusion and triple exposure roles",
         "Indication-bias control: migraine-symptom PTs (nausea, vomiting, headache, migraine, photophobia, phonophobia) excluded in recalculation. Exposure roles: PS (primary), PS+SS, ALL.", False),
-    7: ("Machine-learning model comparison (repeated stratified 5-fold × 3 cross-validation)",
+    6: ("Machine-learning model comparison (repeated stratified 5-fold × 3 cross-validation)",
         "Label = composite-endpoint positivity (932/8,962, 10.4%); 23 features (demographics, report year and country, concomitant drug classes, time to onset and its missing indicators); serious outcomes and event counts excluded (leakage control). A sensitivity model that also included reporter category and formulation reached a random-forest AUC of 0.618 ± 0.017, with no model changing by more than 0.01 AUC. AUC, area under the ROC curve (mean ± SD); AP, average precision; Brier, Brier score computed after restoring the predicted probabilities to the observed 10.4% prevalence, because class weighting for an imbalanced label inflates them (uncorrected values are kept in the archived results file). Null model = a constant prediction at the observed prevalence, which has AUC 0.500 and AP equal to the prevalence by construction.", False),
-    8: ("SHAP global feature importance of the best model (random forest)",
-        "Mean absolute SHAP values over cross-validation folds; all 23 features of the primary model are shown. Reporter category, formulation and country completeness were not entered in the primary model because they describe how a report reached the database rather than the patient; they were evaluated in the sensitivity model (Table 7 footnote).", False),
-    9: ("Bridge genes from the bridged network-toxicology analysis",
+    7: ("SHAP global feature importance of the best model (random forest)",
+        "Mean absolute SHAP values over cross-validation folds; all 23 features of the primary model are shown. Reporter category, formulation and country completeness were not entered in the primary model because they describe how a report reached the database rather than the patient; they were evaluated in the sensitivity model (Table 6 footnote).", False),
+    8: ("Bridge genes from the bridged network-toxicology analysis",
         "BFS ≤ 4 hops from drug anchors (CALCRL/RAMP1/CALCA) on the anchor ∪ event-module STRING network (score ≥ 700); ranked by shortest-path traversal counts.", False),
-    10: ("KEGG pathway enrichment of the bridged network (Enrichr, BH-corrected)",
+    9: ("KEGG pathway enrichment of the bridged network (Enrichr, BH-corrected)",
          "Top 20 terms by adjusted p (q) value.", True),
-    11: ("Molecular docking results (AutoDock Vina 1.2.5, exhaustiveness 16, seed 42)",
+    10: ("Molecular docking results (AutoDock Vina 1.2.5, exhaustiveness 16, seed 42)",
          "Pre-registered criteria: CALCRL ΔG ≤ −8 kcal/mol validates the docking system; off-target Δ = ΔG(CALCRL) − ΔG(target) ≥ 2 kcal/mol = no receptor-level off-target evidence; Δ < 2 = grey zone.", False),
-    12: ("Reporting proportions of hypersensitivity families before vs after the August 2025 label revision (2025Q3 cut-off)",
+    11: ("Reporting proportions of hypersensitivity families before vs after the August 2025 label revision (2025Q3 cut-off)",
          "Within-drug proportions among rimegepant primary-suspect reports (pre n = 8,283; post n = 679); Fisher exact test.", False),
-    13: ("Leading bridge-gene modules and their mechanistic assignment",
-         "Module membership is curated from the highest-ranked bridge genes of each event module; bridge counts are the STRING-network traversal counts of the individual genes (Table 9) and min hops is the shortest anchor-to-event path. Mechanistic statements are plausible-link assignments, not confirmed mechanisms (cf. §2.8). The chemokine module has no single dominant bridge gene and is represented through KEGG pathway enrichment (Table 10).", False),
+    12: ("Leading bridge-gene modules and their mechanistic assignment",
+         "Module membership is curated from the highest-ranked bridge genes of each event module; bridge counts are the STRING-network traversal counts of the individual genes (Table 8) and min hops is the shortest anchor-to-event path. Mechanistic statements are plausible-link assignments, not confirmed mechanisms (cf. §2.8). The chemokine module has no single dominant bridge gene and is represented through KEGG pathway enrichment (Table 9).", False),
 }
 
 SOURCES = {
     1: ("csv", ROOT / "results_full/table1_with_reference.csv", None, None),
-    2: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table2_all_signals", None),
-    3: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table3_focus_signals", None),
-    4: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table4_tto", None),
-    5: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table5_subgroup", None),
-    6: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table6_sensitivity", None),
-    7: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T7_ML_models", None),
-    8: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T8_SHAP_top15", None),
-    9: ("csv", ROOT / "results/network_tox/bridge_genes.csv", None, None),
-    10: ("csv", ROOT / "results/network_tox/enrichment_kegg.csv", None, 21),
-    11: ("xlsx", ROOT / "results_full/all_tables_supplement.xlsx", "T11_docking", None),
-    12: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T12_label_prepost", None),
-    13: ("csv", ROOT / "results_full/table13_bridge_assignment.csv", None, None),
+    2: ("xlsx", ROOT / "results_full/table3_focus_slim.xlsx", "table3_focus_slim", None),
+    3: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table4_tto", None),
+    4: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table5_subgroup", None),
+    5: ("xlsx", ROOT / "results_full/all_tables.xlsx", "table6_sensitivity", None),
+    6: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T7_ML_models", None),
+    7: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T8_SHAP_top15", None),
+    8: ("csv", ROOT / "results/network_tox/bridge_genes.csv", None, None),
+    9: ("csv", ROOT / "results/network_tox/enrichment_kegg.csv", None, 21),
+    10: ("xlsx", ROOT / "results_full/all_tables_supplement.xlsx", "T11_docking", None),
+    11: ("xlsx", ROOT / "results_full/all_tables_full.xlsx", "T12_label_prepost", None),
+    12: ("csv", ROOT / "results_full/table13_bridge_assignment.csv", None, None),
 }
 
 ROW_LIMIT_DOCX = 100  # larger tables go out as .xlsx (journal accepts xlsx supplements)
@@ -487,7 +486,7 @@ LEGENDS = [
 ]
 
 SUPP_LEGENDS = [
-    ("Supplementary Figure S1.", "Receiver operating characteristic (left) and precision\u2013recall (right) curves of the four machine-learning models under repeated stratified 5-fold \u00d7 3 cross-validation, computed from out-of-fold predictions. The dashed diagonal is the no-discrimination line in the ROC panel; the dashed horizontal line is chance precision at the observed prevalence of 10.4% in the precision\u2013recall panel. All four curves lie close to chance, which is the result reported in Table 7."),
+    ("Supplementary Figure S1.", "Receiver operating characteristic (left) and precision\u2013recall (right) curves of the four machine-learning models under repeated stratified 5-fold \u00d7 3 cross-validation, computed from out-of-fold predictions. The dashed diagonal is the no-discrimination line in the ROC panel; the dashed horizontal line is chance precision at the observed prevalence of 10.4% in the precision\u2013recall panel. All four curves lie close to chance, which is the result reported in Table 6."),
 ]
 
 def add_figure_legends(doc):
@@ -523,8 +522,37 @@ def copy_figures():
         stale.unlink()
         print("removed stale Figure_5.png")
 
+SUPP_TITLES = {
+    "S2": ("Supplementary Table S2. All positive disproportionality signals for rimegepant (a ≥ 3, BH-FDR corrected)",
+           "ROR, reporting odds ratio; PRR, proportional reporting ratio; IC025, lower bound of the Bayesian confidence "
+           "propagation neural network information component; EB05, lower bound of the empirical Bayes geometric mean. "
+           "Positive: ROR025 > 1, PRR ≥ 2 & χ² ≥ 4, IC025 > 0, EB05 > 2. 'Robust' = positive in ≥ 2 algorithms. "
+           "Focus = within the pre-specified oral/hypersensitivity composite endpoint.",
+           ("xlsx", ROOT / "results_full/all_tables.xlsx", "table2_all_signals", None)),
+}
+
+def build_supplementary_tables():
+    SUP.mkdir(parents=True, exist_ok=True)
+    for tag, (title, footnote, spec) in SUPP_TITLES.items():
+        kind, path, sheet, cap = spec
+        rows = (xlsx_rows(path, sheet, cap) if kind == "xlsx" else csv_rows(path, cap))
+        rows = translate_rows(rows)
+        doc = Document()
+        set_normal_style(doc, spacing=1.0); style_heading(doc)
+        add_para(doc, f"Supplementary Table {tag[1:]}.", bold=True, spacing=1.0)
+        add_para(doc, title.split(". ", 1)[1], bold=True, spacing=1.0)
+        doc.add_paragraph()
+        ncols = max(len(r) for r in rows) if rows else 0
+        add_md_table(doc, rows, landscape=(ncols > 8), font_size=8)
+        doc.add_paragraph()
+        add_para(doc, footnote, spacing=1.0)
+        out = SUP / f"Supplementary_Table_{tag}_all_signals.docx"
+        doc.save(out)
+        print("saved", out.name, f"({len(rows)-1} rows x {ncols} cols)")
+
 if __name__ == "__main__":
     copy_figures()
     build_table_files()
+    build_supplementary_tables()
     build_main_manuscript()
     print("DONE")
