@@ -27,6 +27,31 @@ def main(path: str) -> int:
         for t in hits:
             print("  -", t[:140])
 
+    # 内嵌表漏转换防线：docx 中不得有以竖线开头的段落（原始 md 管道表残留）
+    pipes = [t for t in paras if t.strip().startswith("|")]
+    print(f"管道表残留: {len(pipes)}")
+    if pipes:
+        fails += 1
+        for t in pipes[:10]:
+            print("  -", t[:110])
+
+    # 浮点全精度裸奔防线：表格单元格不得出现 str(float) 级全精度（>=6 位小数；
+    # 数据文件中刻意保留的 4 位小数如 Brier 0.0912 不受影响）
+    import re as _re
+    fp = _re.compile(r"\d+\.\d{6,}")
+    bad_fp = []
+    for ti, tb in enumerate(d.tables, 1):
+        for r in tb.rows:
+            for c in r.cells:
+                m = fp.search(c.text)
+                if m:
+                    bad_fp.append((ti, m.group(0)))
+    print(f"浮点全精度残留: {len(bad_fp)}")
+    if bad_fp:
+        fails += 1
+        for ti, m in bad_fp[:10]:
+            print(f"  - Table#{ti}: {m}")
+
     for probe in ("49.8% vs 43.2%", "15.6% vs 19.0%", "SMD \u22120.45",
                   "converting every non-year code", "38.8% aged 65"):
         ok = any(probe in t for t in paras)
