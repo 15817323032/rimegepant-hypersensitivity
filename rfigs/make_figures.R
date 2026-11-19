@@ -358,7 +358,7 @@ fig4_network <- function() {
     geom_point(aes(size = n_overlap, colour = nlp), alpha = 0.85) +
     kegg_cols() + kegg_size +
     scale_y_discrete(limits = ylev, expand = expansion(add = c(0.6, 0.6))) +
-    scale_x_continuous(limits = c(0, BRK), breaks = seq(0, BRK, 10),
+    scale_x_continuous(limits = c(20, BRK), breaks = seq(20, BRK, 10),
                        expand = expansion(mult = c(0.03, 0.015))) +
     coord_cartesian(clip = "off") + slash(0.985, 1.004) +
     labs(x = expression(-log[10]*P[adj]), y = NULL,
