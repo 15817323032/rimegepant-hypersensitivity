@@ -78,7 +78,7 @@ DECLARATIONS = [
     ("VII. Code availability",
      "The complete analysis pipeline, configuration files and pre-specified case definitions are "
      "openly available at https://github.com/15817323032/rimegepant-hypersensitivity and "
-     "permanently archived at Zenodo (DOI 10.5281/zenodo.24134724, version 1.0.1) under an MIT "
+     "permanently archived at Zenodo (DOI 10.5281/zenodo.24134724) under an MIT "
      "licence."),
     ("VIII. Author contributions",
      "LiQing Chen: conceptualization, methodology, software, formal analysis, data curation, "

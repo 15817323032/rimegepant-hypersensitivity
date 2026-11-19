@@ -131,7 +131,12 @@ print()
 print("=" * 78)
 print("4) PACKAGE PARITY (zip vs folder)")
 print("=" * 78)
-zp = ROOT.parent / "submission_drugsafety_2026-11-18.zip"
+_zips = sorted(ROOT.parent.glob("submission_drugsafety_*.zip"),
+               key=lambda p: p.stat().st_mtime)
+if not _zips:
+    sys.exit("no submission_drugsafety_*.zip found next to the project folder")
+zp = _zips[-1]
+print(f"archive under check: {zp.name}")
 with zipfile.ZipFile(zp) as z:
     znames = set(z.namelist())
     bad = z.getinfo("submission_drugsafety/main_manuscript_updated.docx") if "submission_drugsafety/main_manuscript_updated.docx" in znames else None
@@ -145,6 +150,19 @@ with zipfile.ZipFile(zp) as z:
     print(f"zip entries: {len(znames)} | folder files: {len(fnames)}")
     print(f"[{'ok  ' if not only_zip else 'WARN'}] zip-only extras: {sorted(only_zip) or 'none'}")
     print(f"[{'ok  ' if not only_dir else 'WARN'}] folder-only (not zipped): {sorted(only_dir) or 'none'}")
+
+    # byte-level: the manuscript inside the archive must be the folder copy.
+    # Filename parity alone cannot see a stale archive (rebuilt after packing).
+    with zipfile.ZipFile(zp) as z2:
+        _zm = z2.read("submission_drugsafety/main_manuscript.docx")
+    _dm = (PKG / "main_manuscript.docx").read_bytes()
+    if _zm != _dm:
+        FAILS.append("main_manuscript.docx inside the archive is stale "
+                     "(archive packed before the last rebuild) -- repack")
+        print("[FAIL] zip manuscript == folder manuscript: NO (stale archive)")
+    else:
+        OKS.append("archive manuscript identical to folder")
+        print("[ok  ] zip manuscript == folder manuscript")
 
 # Figure_4 in package == latest 20-40 render?
 def md5(p): return hashlib.md5(Path(p).read_bytes()).hexdigest()[:10]
