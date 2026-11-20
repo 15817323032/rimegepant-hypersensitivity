@@ -94,7 +94,7 @@ EXTRA_REFS = []
 
 READUS_SENTENCE = (
     "Reporting follows the READUS-PV guideline for disproportionality analyses based on individual "
-    "case safety reports [14,15], and the completed checklist is provided as Supplementary "
+    "case safety reports [15,16], and the completed checklist is provided as Supplementary "
     "Table S1."
 )
 
@@ -162,16 +162,17 @@ def build_markdown():
     parts.append("**Article type:** Original Research Article\n")
     n_refs = len([ln for ln in refs_lines if re.match(r"^\d+\.\s", ln)])
     parts.append(f"**Word count:** abstract {abs_words}; main text {body_words}; "
-                 f"tables {len(mk.TITLES)}; figures 4; references {n_refs}\n")
+                 f"tables {len(mk.TITLES)}; figures 4 (plus 2 supplementary); references {n_refs}\n")
     parts.append("\u2020 Joint first authors\n")
+
+    parts.append("# Abstract\n")
+    parts.append(clean(abstract))
+    parts.append("")
 
     parts.append("# Key Points\n")
     for kp in KEY_POINTS:
         parts.append(f"- {kp}")
     parts.append("")
-
-    parts.append("# Abstract\n")
-    parts.append(clean(abstract))
 
     parts.append("\n" + body.strip())
 

@@ -769,18 +769,18 @@ def audit_reference_binding(md: str) -> None:
     else:
         add(FAIL, "references", "参考文献编号", f"编号不连续：{nums}")
 
-    cited = [s for s in sentences(md) if "[30]" in s]
+    cited = [s for s in sentences(md) if "[31]" in s]
     if not cited:
-        add(WARN, "references", "基准引用 [30]", "正文未出现该引用")
+        add(WARN, "references", "基准引用 [31]", "正文未出现该引用")
     else:
         s = cited[0]
         ok = ("398" in s) and has_num(s, 0.69, 2) and ("OMOP" in s)
-        add(PASS if ok else FAIL, "references", "基准引用 [30]",
+        add(PASS if ok else FAIL, "references", "基准引用 [31]",
             "OMOP 398 对 / AUC 0.69 与编号同位" if ok else "数值与编号不同位")
 
-    entry = "\n".join(ln for ln in block.splitlines() if ln.startswith("30."))
+    entry = "\n".join(ln for ln in block.splitlines() if ln.startswith("31."))
     ok_ref = ("Pham" in entry) and ("Drug Saf" in entry) and ("s40264-018-00792-0" in entry)
-    add(PASS if ok_ref else FAIL, "references", "条目 30 完整性",
+    add(PASS if ok_ref else FAIL, "references", "条目 31 完整性",
         "Pham 2019 Drug Saf 42(6):743-750" if ok_ref else (entry[:70] or "缺失"))
 
 

@@ -23,10 +23,13 @@ fig1_forest <- function() {
   d <- d %>%
     filter(is.finite(ROR), ROR > 0, is.finite(ROR025), is.finite(ROR975)) %>%
     arrange(ROR) %>% tail(25) %>%
-    mutate(label = toTitleCase(tolower(PT)),
+    mutate(robust = is_robust_signal == TRUE | is_robust_signal == "True",
+           label = toTitleCase(tolower(PT)),
            row   = dplyr::row_number() - 1,
-           lab   = ifelse(is_robust_signal, "Robust signal (\u22652 of 4 algorithms)",
-                          "Signal not robust"))
+           # ASCII scale keys only: on non-UTF-8 Windows locales the >= glyph
+           # breaks name matching between data values and palette names,
+           # which silently recolours points to grey50 and drops the legend key
+           key   = ifelse(robust, "rob", "notrob"))
 
   XMAX <- 150
   off  <- d$ROR975 > XMAX
@@ -37,26 +40,29 @@ fig1_forest <- function() {
   n <- nrow(d)
   ylim <- c(-0.8, n + 0.8)
 
-  pal <- c("Robust signal (\u22652 of 4 algorithms)" = SIGNAL,
-           "Signal not robust"              = NEUTRAL,
-           "ROR = 1 (null)"                 = MUTED,
-           "95% CI (truncated at axis edge)" = CICOL)
+  pal <- c(rob     = SIGNAL,
+           notrob  = NEUTRAL,
+           null    = MUTED,
+           ci      = CICOL)
+  leg_labs <- c("Robust signal (\u22652 of 4 algorithms)", "Signal not robust",
+                "ROR = 1 (null)", "95% CI (truncated at axis edge)")
 
   p1 <- ggplot(d) +
     # CI whiskers (legend key)
     geom_segment(aes(x = lo, xend = hi, y = row, yend = row,
-                     colour = "95% CI (truncated at axis edge)"),
+                     colour = "ci"),
                  linewidth = 0.28, show.legend = TRUE) +
     # truncation arrows where the CI runs off the axis (no legend key)
     geom_segment(data = d[off, ],
                  aes(x = XMAX * 0.93, xend = XMAX * 0.99, y = row, yend = row),
                  colour = CICOL, linewidth = 0.28, show.legend = FALSE,
                  arrow = arrow(length = unit(4, "pt"), type = "closed")) +
-    geom_point(aes(x = plot_r, y = row, colour = lab), size = 1.25, stroke = 0) +
+    geom_point(aes(x = plot_r, y = row, colour = key), size = 1.25, stroke = 0) +
     # null line (legend key)
-    geom_vline(aes(xintercept = 1, colour = "ROR = 1 (null)"),
+    geom_vline(aes(xintercept = 1, colour = "null"),
                linewidth = 0.25, linetype = "33") +
-    scale_colour_manual(values = pal, name = NULL, drop = FALSE) +
+    scale_colour_manual(values = pal, breaks = names(pal),
+                        labels = leg_labs, name = NULL, drop = FALSE) +
     scale_x_log10(limits = c(0.3, XMAX * 1.02), labels = comma) +
     scale_y_continuous(limits = ylim, breaks = 0:(n - 1), labels = d$label,
                        expand = c(0, 0)) +
@@ -133,6 +139,8 @@ fig2_trend <- function() {
                colour = "white", stroke = 0.3) +
     geom_vline(xintercept = i_cut - 1.5, colour = MUTED,
                linewidth = 0.22, linetype = "33") +
+    geom_vline(xintercept = i_cut - 0.5, colour = MUTED,
+               linewidth = 0.18, linetype = "11") +
     scale_colour_manual(values = FAMILY_COLORS, guide = "none") +
     scale_fill_manual(values = FAMILY_COLORS, guide = "none") +
     facet_wrap(~fam, ncol = 2, scales = "fixed",
@@ -161,8 +169,13 @@ fig2_trend <- function() {
               colour = MUTED, vjust = 0) +
     geom_vline(xintercept = i_cut - 1.5, colour = MUTED,
                linewidth = 0.22, linetype = "33") +
-    annotate("text", x = i_cut - 1.05, y = max(ts$n) * 1.13,
-             label = "Post-label revision", hjust = 0, colour = MUTED,
+    geom_vline(xintercept = i_cut - 0.5, colour = MUTED,
+               linewidth = 0.18, linetype = "11") +
+    annotate("text", x = i_cut - 1, y = max(ts$n) * 1.13,
+             label = "Transition", hjust = 0.5, colour = MUTED,
+             size = 6.5 / .pt, fontface = "italic") +
+    annotate("text", x = i_cut + 0.12, y = max(ts$n) * 1.13,
+             label = "Post-revision", hjust = 0, colour = MUTED,
              size = 6.5 / .pt, fontface = "italic") +
     scale_y_continuous(breaks = c(0, 500, 1000, 1500, 2000),
                        limits = c(0, max(ts$n) * 1.26)) +
@@ -177,8 +190,9 @@ fig2_trend <- function() {
   fig <- p_small + p_denom +
     plot_layout(ncol = 1, heights = c(3, 1.05)) +
     plot_annotation(caption = paste("Panels share a 0-40% scale. Ribbons: 95% Wilson",
-                                    "interval. Shaded area: post-label-revision period",
-                                    "(2025Q3 onward).")) &
+                                    "interval. Shaded area: transition quarter 2025Q3",
+                                    "(excluded from the primary pre/post comparison) and",
+                                    "the post-revision period 2025Q4-2026Q2.")) &
     theme(plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, margin = margin(t = 5)))
   save_fig(fig, file.path(OUT, "Figure_2.png"), W_DOUBLE, 7.3)
@@ -240,7 +254,7 @@ fig3_shap <- function() {
                        expand = c(0, 0)) +
     scale_x_continuous(expand = expansion(mult = c(0, 0.08))) +
     labs(x = "Mean |SHAP|", y = NULL,
-         title = "Feature importance\n(top 15 of 21)") +
+         title = "Feature importance\n(top 15 of 23)") +
     theme_pub() +
     theme(axis.text.y = element_text(size = 6.5),
           axis.ticks.y = element_blank(), axis.line.y = element_blank(),
@@ -269,7 +283,9 @@ fig3_shap <- function() {
           plot.margin = margin(2, 8, 10, 2, unit = "pt"))
 
   fig <- (p_bar | p_swarm) + plot_layout(widths = c(1.0, 1.7)) +
-    plot_annotation(caption = paste("Left: mean absolute SHAP value per feature (top 15 of 21). Right: SHAP",
+    plot_annotation(caption = paste("Left: mean absolute SHAP value per feature (top 15 of the",
+                                    "23-feature primary model; 21 shown after omitting two mirror",
+                                    "features, sex male and centred report year). Right: SHAP",
                                     "contributions of individual reports; x: SHAP value in log-odds of\n",
                                     "the composite endpoint; colour: feature value (red high, blue low, grey missing).\n",
                                     "Positivity in the top vs bottom quartile of the female-sex SHAP contribution:",

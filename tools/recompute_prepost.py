@@ -50,7 +50,17 @@ def compare(pre, post):
                          post_ci_lo=100 * ci_post[0], post_ci_hi=100 * ci_post[1],
                          ratio_post_vs_pre=rr, ratio_lo=lo, ratio_hi=hi,
                          p_fisher=p_fisher))
-    return pd.DataFrame(rows), n_pre, n_post
+    df = pd.DataFrame(rows)
+    # Benjamini-Hochberg q across the six family comparisons (review round 2, #1)
+    pvals = df["p_fisher"].values
+    m = len(pvals)
+    order = np.argsort(pvals)
+    q_sorted = pvals[order] * m / np.arange(1, m + 1)
+    q_sorted = np.minimum.accumulate(q_sorted[::-1])[::-1]  # enforce monotonicity
+    qv = np.empty(m)
+    qv[order] = q_sorted
+    df["q_BH"] = qv
+    return df, n_pre, n_post
 
 
 def main():
@@ -83,7 +93,7 @@ def main():
     ws = wb.create_sheet("T12_label_prepost")
     cols = ["family", "pre_cases", "pre_pct", "pre_ci_lo", "pre_ci_hi",
             "post_cases", "post_pct", "post_ci_lo", "post_ci_hi",
-            "ratio_post_vs_pre", "ratio_lo", "ratio_hi", "p_fisher"]
+            "ratio_post_vs_pre", "ratio_lo", "ratio_hi", "p_fisher", "q_BH"]
     ws.append(cols)
     for _, r in df.iterrows():
         ws.append([r[c] for c in cols])
