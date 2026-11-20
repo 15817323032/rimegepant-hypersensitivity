@@ -61,9 +61,10 @@ def load_rows(n: int) -> list[list[str]]:
 
 def main() -> None:
     figs = sorted(FIG_DIR.glob("Figure_*.png"))
-    sup = OUT / "Supplementary_Figure_S1.png"
-    if sup.exists():
-        figs.append(sup)
+    for name in ("Supplementary_Figure_S1.png", "Supplementary_Figure_S2.png"):
+        sup = OUT / name
+        if sup.exists():
+            figs.append(sup)
 
     parts = [
         "<!DOCTYPE html><html><head><meta charset=\"utf-8\">"
@@ -71,24 +72,27 @@ def main() -> None:
         f"<style>{STYLE}</style></head><body>",
         "<h1>图表核对页 — rimegepant FAERS/AEMS 投稿包（Drug Safety 版）</h1>",
         '<div class="toc">'
-        f"共 {len(TITLES)} 张表、{len(figs)} 张图（含 Supplementary Fig S1）。"
+        f"共 {len(TITLES)} 张表、{len(figs)} 张图（正文图 {len(figs) - 2} 张 + 补充图 S1/S2）。"
         "本页由 <code>tools/build_check_page.py</code> 直接从投稿件的同一数据源生成，"
         "不另行维护数字；单元格若与 Table_XX 文件不一致，说明结果文件在生成后被改动过，"
         "应重跑 <code>tools/make_submission.py</code> 与 <code>tools/build_drugsafety.py</code>。"
-        "最近一次修订：年龄按 age_cod 单位归一化（修复 DEC 编码成人被计为婴幼儿），"
-        "表 1 与表 5 的 &lt;18 计数已统一。"
         "</div>",
         f'<div class="meta">generated {date.today().isoformat()}</div>',
     ]
 
     for f in figs:
         label = f.stem.replace("_", " ")
+        if f.parent == OUT:
+            label = f.stem.replace("_", " ")  # supplementary figures live at package root
+            src = f.name
+        else:
+            src = f"figures/{f.name}"
         parts.append(
             f'<div class="figblock"><div class="cap">{html.escape(label)}</div>'
-            f'<img src="figures/{f.name}"></div>'
+            f'<img src="{src}"></div>'
         )
 
-    parts.append("<h2>二、表（Tables 1–12）</h2>")
+    parts.append(f"<h2>二、表（Tables 1–{max(TITLES)}）</h2>")
     for n in sorted(TITLES):
         title, footnote, _ = TITLES[n]
         rows = load_rows(n)

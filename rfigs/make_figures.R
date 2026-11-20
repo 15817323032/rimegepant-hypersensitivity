@@ -190,8 +190,7 @@ fig2_trend <- function() {
   fig <- p_small + p_denom +
     plot_layout(ncol = 1, heights = c(3, 1.05)) +
     plot_annotation(caption = paste("Panels share a 0-40% scale. Ribbons: 95% Wilson",
-                                    "interval. Shaded area: transition quarter 2025Q3",
-                                    "(excluded from the primary pre/post comparison) and",
+                                    "intervals. Shaded area: transition quarter 2025Q3 and",
                                     "the post-revision period 2025Q4-2026Q2.")) &
     theme(plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, margin = margin(t = 5)))

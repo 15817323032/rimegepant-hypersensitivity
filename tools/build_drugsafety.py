@@ -70,8 +70,8 @@ DECLARATIONS = [
      "during this study are included in the electronic supplementary material."),
     ("IV. Ethics approval",
      "FAERS/AEMS is a public, de-identified spontaneous-report database containing no identifiable "
-     "personal information. Under 45 CFR 46.102 this study is non-human-subjects research and is "
-     "exempt from institutional review board approval."),
+     "personal information. Under 45 CFR 46.102 this study does not constitute human-subjects "
+     "research; institutional review board approval and informed consent were therefore not required."),
     ("V. Consent to participate",
      "Not applicable."),
     ("VI. Consent for publication",

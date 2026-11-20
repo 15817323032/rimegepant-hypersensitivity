@@ -598,11 +598,20 @@ def derived_pcts() -> tuple[dict[float, str], list[str]]:
             g = pd.read_csv(drug_f, dtype=str, usecols=["primaryid", "role_cod", "dose_form"],
                             low_memory=False)
             g = g[g["primaryid"].isin(ps) & (g["role_cod"].fillna("").str.upper() == "PS")]
-            share = 100 * g["dose_form"].fillna("").str.upper().str.contains(
-                "DISINTEGRAT|ORODISPERS|ODT").mean()
+            f = g["dose_form"].fillna("").str.upper()
+            odt = f.str.contains("DISINTEGRAT|ORODISPERS|ODT")
+            share = 100 * odt.mean()
             out[round(share, 1)] = f"PS 用药行 ODT 剂型 {share:.1f}%"
+            blank = f == ""
+            share_blank = 100 * blank.mean()
+            out[round(share_blank, 1)] = f"PS 用药行剂型未记录 {share_blank:.1f}%"
+            tab = (~odt) & (~blank) & f.str.contains("TABLET")
+            share_tab = 100 * tab.mean()
+            out[round(share_tab, 1)] = f"PS 用药行记录为普通片剂 {share_tab:.1f}%"
+            share_rec = 100 * (~blank).mean()
+            out[round(share_rec, 1)] = f"PS 用药行剂型有记录 {share_rec:.1f}%"
     else:
-        notes.append("原始数据包缺失：48.4% / 79% 两项未校验")
+        notes.append("原始数据包缺失：48.4% / 79% / 18% / 3% / 97% 等剂型与 INDI 项未校验")
     return out, notes
 
 

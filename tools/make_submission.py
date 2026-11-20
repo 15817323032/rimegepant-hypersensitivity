@@ -165,9 +165,12 @@ def add_md_table(doc, rows, landscape=False, font_size=10):
     aligns = _column_aligns(rows)
     _set_tbl_borders(t)
     _set_cell_margins(t)
+    # python-docx 的 t.cell(i, j) 每次访问都重建整表单元格列表（O(n²)），
+    # 437 行 × 24 列会跑 40 分钟；快照一次 _cells 后按索引访问是 O(1)。
+    cells = t._cells
     for i, row in enumerate(rows):
         for j, cell in enumerate(row):
-            c = t.cell(i, j)
+            c = cells[i * len(rows[0]) + j]
             c.text = ""
             p = c.paragraphs[0]
             p.paragraph_format.line_spacing = 1.0
@@ -474,8 +477,8 @@ def build_main_manuscript():
 
 LEGENDS = [
     ("Figure 1.", "Forest plot of the 25 highest-ROR preferred terms within the oral/hypersensitivity focus cluster (49 PTs; FAERS/AEMS 2020Q2\u20132026Q2, primary-suspect role). Points represent ROR; horizontal bars represent 95% CIs (truncated with an arrowhead where they extend beyond the axis); the vertical dashed line marks ROR = 1. Red points are robust positive signals (positive under at least two of the four algorithms); dark blue points did not meet the signal criterion. The right-hand columns give the number of primary-suspect rimegepant cases and the number of reports in the rest of the database. All 19 positive signals of the cluster are shown (18 of them robust)."),
-    ("Figure 2.", "Quarterly reporting proportions of the six hypersensitivity-spectrum families, 2020Q2\u20132026Q2, shown as small multiples on a shared 0\u201340% scale with 95% Wilson intervals (shaded ribbons). The shaded band marks 2025Q3, the transition quarter that contains the August 2025 label revision and is excluded from the primary pre/post comparison (Table 9). The bottom panel shows the quarterly report denominators underlying all proportions."),
-    ("Figure 3.", "SHAP analysis of the best-performing model (random forest; AUC 0.621 ± 0.015). Left: mean absolute SHAP value per feature (top 15 of the 21 plotted features; the male-sex mirror of female sex and the centred duplicate of report year are omitted; the full 23-feature list is given in Supplementary Table S3). Right: SHAP contributions of individual cases; the horizontal axis is the SHAP value in log-odds of the composite endpoint; colour encodes the feature value (red high, blue low; pale grey marks missing values). No feature dominates, and the largest mean absolute SHAP value is 0.031. Composite-endpoint positivity was 12.9% in the highest and 6.2% in the lowest quartile of the female-sex SHAP contribution."),
+    ("Figure 2.", "Quarterly reporting proportions of the six hypersensitivity-spectrum families, 2020Q2\u20132026Q2, shown as small multiples on a shared 0\u201340% scale with 95% Wilson intervals (shaded ribbons). The shaded area marks the transition quarter (2025Q3), which contains the August 2025 label revision and is excluded from the primary pre/post comparison, and the post-revision period (2025Q4\u20132026Q2) (Table 9). The bottom panel shows the quarterly report denominators underlying all proportions."),
+    ("Figure 3.", "SHAP analysis of the best-performing model (random forest; AUC 0.621 ± 0.015). Left: mean absolute SHAP value per feature. The figure displays the top 15 of the 21 non-redundant features; the primary model initially contained 23 features, from which two mirror/duplicate features (the male-sex mirror of female sex and the centred duplicate of report year) were omitted (the full 23-feature list is given in Supplementary Table S3). Right: SHAP contributions of individual cases; the horizontal axis is the SHAP value in log-odds of the composite endpoint; colour encodes the feature value (red high, blue low; pale grey marks missing values). No feature dominates, and the largest mean absolute SHAP value is 0.031. Composite-endpoint positivity was 12.9% in the highest and 6.2% in the lowest quartile of the female-sex SHAP contribution."),
     ("Figure 4.", "Bridged network-toxicology overview. Top left: predicted targets (max Tanimoto similarity to the drug's ChEMBL anchors; CALCRL highlighted). Top centre: PPI hub genes by STRING degree. Top right: top-10 GO biological-process enrichment of the bridged network. Bottom: KEGG pathway enrichment of the bridged genes (top 12, Enrichr with Benjamini–Hochberg correction; bubble size = bridged genes in pathway, colour = adjusted p). The x-axis of the bottom panel is broken for readability: chemokine signaling is orders of magnitude more enriched than the remaining pathways, so the leading pathways are displayed on a compressed right-hand segment (the full top-20 list is given in Supplementary Table S4). Drug anchors CALCRL/RAMP1/CALCA and bridge genes GNG2/GNB1/GNAS, C3/C5 and PLCG1/SRC/MAPK1 connect the drug layer to the chemokine and leukocyte-chemotaxis modules."),
 ]
 
