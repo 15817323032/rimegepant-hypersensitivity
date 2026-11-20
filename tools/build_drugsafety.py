@@ -46,14 +46,15 @@ KEY_POINTS = [
     ("In the US adverse event database, rimegepant orally disintegrating tablets generated a "
      "reproducible and internally consistent cluster of oral, pharyngeal and systemic "
      "hypersensitivity reports\u2014swollen tongue, throat swelling and oral paraesthesia among "
-     "them\u2014that is corroborated by four independent published analyses and is not explained "
-     "by the 2025 label change."),
-    ("The rapid onset (median same day) and the pathway-level analysis point to local activation "
-     "of mast cells and complement in the mouth and throat, rather than to off-target effects on "
-     "the CGRP receptor; docking excluded a direct SYK-level interaction."),
-    ("Characteristics recorded in spontaneous reports cannot identify which patients are at risk, "
-     "so prospective treatment registries are needed, and the Chinese label does not yet carry "
-     "these oropharyngeal warnings."),
+     "them\u2014that matches the signals reported in earlier published analyses."),
+    ("Exploratory pathway-level analysis suggests local activation of mast cells and complement "
+     "in the mouth and throat as a hypothesis that still needs experimental testing; docking to "
+     "the tested SYK and BTK domains gave no support for off-target binding, and kinase catalytic "
+     "domains were not evaluated."),
+    ("Reports of oral swelling increased after the August 2025 label revision, so some stimulated "
+     "reporting cannot be excluded. Characteristics recorded in spontaneous reports cannot identify "
+     "which patients are at risk, so prospective treatment registries are needed, and neither label "
+     "describes these oropharyngeal events."),
 ]
 
 DECLARATIONS = [

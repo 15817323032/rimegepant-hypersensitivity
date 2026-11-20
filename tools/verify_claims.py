@@ -333,7 +333,8 @@ def audit_label(md: str) -> None:
         fam = str(row["family"])
         ratio = float(row["ratio_post_vs_pre"])
         p = float(row["p_fisher"])
-        lvl = PASS if has_num(md, ratio, 3) else WARN
+        # 正文按 2 位小数引用（表内保留全精度），3 位或 2 位命中均可
+        lvl = PASS if (has_num(md, ratio, 3) or has_num(md, ratio, 2)) else WARN
         add(lvl, "label", fam, f"post/pre={ratio:.2f}, p={p:.2f}")
 
 
@@ -573,6 +574,15 @@ def derived_pcts() -> tuple[dict[float, str], list[str]]:
         for _, r in s[s["feature"] == "sex_female"].iterrows():
             out[round(100 * float(r["positive_rate"]), 1)] = f"sex_female {r['quartile']} 阳性率"
 
+    # pre/post 标签比较（主分析 + 保留 Q3 敏感性）的家族百分比
+    for tag in ("prepost_family_comparison_primary", "prepost_family_comparison_sens_keepq3"):
+        fp = ROOT / "results_label_change" / f"{tag}.csv"
+        if fp.exists():
+            d = pd.read_csv(fp)
+            for _, r in d.iterrows():
+                out[float(r["pre_pct"])] = f"{tag} {r['family']} pre%"
+                out[float(r["post_pct"])] = f"{tag} {r['family']} post%"
+
     raw = ROOT / "raw_data_package" / "01_faers_source_rows"
     cmap = ROOT / "raw_data_package" / "02_case_id_map" / "case_id_inclusion_map.csv"
     if raw.exists() and cmap.exists():
@@ -729,10 +739,20 @@ def audit_pct_pairing(md: str) -> None:
             continue
         bad.append(f"{m.group(1)}% vs {m.group(2)}%")
     for b in dict.fromkeys(bad):
-        add(WARN, "pct:pairing", "配对可疑", b + "：两值均在表内，但不属同一行/同一列")
+        if b in ALLOWED_PAIRS:
+            add(PASS, "pct:pairing", "登记配对", b + "：" + ALLOWED_PAIRS[b])
+        else:
+            add(WARN, "pct:pairing", "配对可疑", b + "：两值均在表内，但不属同一行/同一列")
 
     if not bad:
         add(PASS, "pct:pairing", "百分比配对", "每个「a% vs b%」都能对应到表中同一行或同一列")
+
+
+# 表结构覆盖不到的合法配对：SHAP 四分位阳性率对比（sex_female 最高/最低
+# 四分位来自 ml_top_feature_strata 的不同行，属设计使然而非错位引用）
+ALLOWED_PAIRS = {
+    "12.9% vs 6.2%": "sex_female SHAP 最高 vs 最低四分位阳性率（ml_top_feature_strata Q4/Q1）",
+}
 
 
 def audit_reference_binding(md: str) -> None:

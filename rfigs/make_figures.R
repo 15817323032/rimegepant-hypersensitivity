@@ -25,7 +25,7 @@ fig1_forest <- function() {
     arrange(ROR) %>% tail(25) %>%
     mutate(label = toTitleCase(tolower(PT)),
            row   = dplyr::row_number() - 1,
-           lab   = ifelse(is_robust_signal, "Robust signal (4/4 algorithms)",
+           lab   = ifelse(is_robust_signal, "Robust signal (\u22652 of 4 algorithms)",
                           "Signal not robust"))
 
   XMAX <- 150
@@ -37,7 +37,7 @@ fig1_forest <- function() {
   n <- nrow(d)
   ylim <- c(-0.8, n + 0.8)
 
-  pal <- c("Robust signal (4/4 algorithms)" = SIGNAL,
+  pal <- c("Robust signal (\u22652 of 4 algorithms)" = SIGNAL,
            "Signal not robust"              = NEUTRAL,
            "ROR = 1 (null)"                 = MUTED,
            "95% CI (truncated at axis edge)" = CICOL)
@@ -91,8 +91,8 @@ fig1_forest <- function() {
     txt_panel(0.08, "rest",  "Rest of database", FALSE) +
     plot_layout(widths = c(5.8, 1.1, 2.0)) +
     plot_annotation(caption = paste("Points: ROR. Bars: 95% CI (arrowheads mark CIs truncated at",
-                                    "the axis limit). Red: positive signal under all four algorithms;",
-                                    "blue: not robust.")) &
+                                    "the axis limit). Red: robust positive signal (positive under at",
+                                    "least two of the four algorithms); blue: not robust.")) &
     theme(plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, margin = margin(t = 5)))
   save_fig(fig, file.path(OUT, "Figure_1.png"), W_DOUBLE, 0.235 * n + 1.25)
