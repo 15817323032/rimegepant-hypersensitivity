@@ -496,11 +496,14 @@ def add_figure_legends(doc):
         p.paragraph_format.line_spacing = 2.0
 
 def copy_figures():
+    # 投稿包图件唯一来源是 R 渲染目录 figures_r/（含 Fig1-4 与补充图 S1）。
+    # 不得从 results_full/、results_label_change/、figures/ 等旧路径复制——
+    # 上一轮 Fig2 裁切复发正是因为从这里拿走了旧渲染。
     figs = {
-        1: ROOT / "results_full/forest_focus.png",
-        2: ROOT / "results_label_change/label_change_trend.png",
-        3: ROOT / "figures/shap_summary.png",
-        4: ROOT / "results/network_tox/figures/network_tox_summary.png",
+        1: ROOT / "figures_r/Figure_1.png",
+        2: ROOT / "figures_r/Figure_2.png",
+        3: ROOT / "figures_r/Figure_3.png",
+        4: ROOT / "figures_r/Figure_4.png",
     }
     for n, src in figs.items():
         dst = FIG / f"Figure_{n}.png"
@@ -509,7 +512,7 @@ def copy_figures():
 
     # ROC/PR 曲线改为补充材料图 S1（正文只留 SHAP）
     SUP.mkdir(parents=True, exist_ok=True)
-    s1 = ROOT / "figures/roc_pr_curves.png"
+    s1 = ROOT / "figures_r/Supplementary_Figure_S1.png"
     if s1.exists():
         shutil.copy2(s1, SUP / "Supplementary_Figure_S1.png")
         print("copied Supplementary_Figure_S1.png <-", s1.name)

@@ -164,11 +164,21 @@ with zipfile.ZipFile(zp) as z:
         OKS.append("archive manuscript identical to folder")
         print("[ok  ] zip manuscript == folder manuscript")
 
-# Figure_4 in package == latest 20-40 render?
+# All figures in package == latest figures_r renders (single source of truth)
 def md5(p): return hashlib.md5(Path(p).read_bytes()).hexdigest()[:10]
-f4a, f4b = md5(PKG / "figures" / "Figure_4.png"), md5(ROOT / "figures_r" / "Figure_4.png")
-print(f"[{'ok  ' if f4a == f4b else 'WARN'}] Figure_4.png == latest render ({f4a})")
-if f4a != f4b: WARNS.append("Figure_4 in package differs from figures_r render")
+for _n in (1, 2, 3, 4):
+    _a, _b = md5(PKG / "figures" / f"Figure_{_n}.png"), md5(ROOT / "figures_r" / f"Figure_{_n}.png")
+    print(f"[{'ok  ' if _a == _b else 'WARN'}] Figure_{_n}.png == figures_r render ({_a})")
+    if _a != _b:
+        WARNS.append(f"Figure_{_n} in package differs from figures_r render")
+if (ROOT / "figures_r" / "Supplementary_Figure_S1.png").exists():
+    _s1 = PKG / "Supplementary_Figure_S1.png"      # S1 位于包根目录
+    if not _s1.exists():
+        _s1 = PKG / "supplementary" / "Supplementary_Figure_S1.png"
+    _a, _b = md5(_s1), md5(ROOT / "figures_r" / "Supplementary_Figure_S1.png")
+    print(f"[{'ok  ' if _a == _b else 'WARN'}] Supplementary_Figure_S1.png == figures_r render ({_a})")
+    if _a != _b:
+        WARNS.append("Supplementary_Figure_S1 in package differs from figures_r render")
 
 print()
 print("=" * 78)

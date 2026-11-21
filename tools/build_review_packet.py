@@ -172,8 +172,8 @@ def main():
     p.paragraph_format.space_after = Pt(14)
 
     sub = doc.add_paragraph()
-    r = sub.add_run("Oral and hypersensitivity-spectrum adverse events of rimegepant orally "
-                    "disintegrating tablets: a disproportionality analysis of the FDA Adverse "
+    r = sub.add_run("Oral and hypersensitivity-spectrum adverse-event signals associated with "
+                    "rimegepant: a disproportionality analysis of the FDA Adverse "
                     "Event Reporting System (FAERS), 2020–2026, with machine-learning, "
                     "network-toxicology and docking follow-up")
     r.font.size = Pt(11)

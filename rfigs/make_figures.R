@@ -189,9 +189,9 @@ fig2_trend <- function() {
 
   fig <- p_small + p_denom +
     plot_layout(ncol = 1, heights = c(3, 1.05)) +
-    plot_annotation(caption = paste("Panels share a 0-40% scale. Ribbons: 95% Wilson",
-                                    "intervals. Shaded area: transition quarter 2025Q3 and",
-                                    "the post-revision period 2025Q4-2026Q2.")) &
+    plot_annotation(caption = paste("Panels share a 0-40% scale. Ribbons: 95% Wilson intervals.\n",
+                                    "Shaded area: transition quarter 2025Q3 (excluded from the",
+                                    "primary pre/post comparison) and the post-revision period 2025Q4-2026Q2.")) &
     theme(plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, margin = margin(t = 5)))
   save_fig(fig, file.path(OUT, "Figure_2.png"), W_DOUBLE, 7.3)
@@ -253,7 +253,7 @@ fig3_shap <- function() {
                        expand = c(0, 0)) +
     scale_x_continuous(expand = expansion(mult = c(0, 0.08))) +
     labs(x = "Mean |SHAP|", y = NULL,
-         title = "Feature importance\n(top 15 of 23)") +
+         title = "Feature importance\n(top 15 of 21)") +
     theme_pub() +
     theme(axis.text.y = element_text(size = 6.5),
           axis.ticks.y = element_blank(), axis.line.y = element_blank(),
@@ -282,14 +282,14 @@ fig3_shap <- function() {
           plot.margin = margin(2, 8, 10, 2, unit = "pt"))
 
   fig <- (p_bar | p_swarm) + plot_layout(widths = c(1.0, 1.7)) +
-    plot_annotation(caption = paste("Left: mean absolute SHAP value per feature (top 15 of the",
-                                    "23-feature primary model; 21 shown after omitting two mirror",
-                                    "features, sex male and centred report year). Right: SHAP",
-                                    "contributions of individual reports; x: SHAP value in log-odds of\n",
-                                    "the composite endpoint; colour: feature value (red high, blue low, grey missing).\n",
-                                    "Positivity in the top vs bottom quartile of the female-sex SHAP contribution:",
-                                    "12.9% vs 6.2%.\n",
-                                    "No feature carries a large effect (highest mean |SHAP| 0.031).")) &
+    plot_annotation(caption = paste("Left: mean absolute SHAP value per feature (top 15 of the 21",
+                                    "non-redundant features; the primary model contained 23, two of\n",
+                                    "which are mirror/duplicate and are omitted). Right: SHAP contributions",
+                                    "of individual reports; x: SHAP value in log-odds of the composite\n",
+                                    "endpoint; colour: feature value (red high, blue low, grey missing).",
+                                    "Positivity in the top vs bottom quartile of the female-sex SHAP\n",
+                                    "contribution: 12.9% vs 6.2%. No feature carries a large effect",
+                                    "(highest mean |SHAP| 0.031).")) &
     theme(plot.caption = element_text(size = 6.5, colour = MUTED, hjust = 0,
                                       lineheight = 1.5, margin = margin(t = 5)))
   save_fig(fig, file.path(OUT, "Figure_3.png"), W_DOUBLE, 0.26 * n_top + 1.9)

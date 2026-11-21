@@ -40,9 +40,9 @@ BOXES = [
 ]
 
 SIDE = [
-    ("Machine-learning module: composite-endpoint label",
+    ("Machine-learning module:\ncomposite-endpoint label",
      "932 cases (10.4% of the cohort)"),
-    ("Time-to-onset subset: both dates recorded",
+    ("Time-to-onset subset:\nboth dates recorded",
      "1,060 cases (11.8%); after excluding 208 negative\n"
      "intervals and 4 intervals > 730 days: 848 (9.5%)"),
 ]
@@ -78,16 +78,16 @@ bx = [0.44, 0.44]
 branch_y = 0.145
 for i, (title, sub) in enumerate(SIDE):
     bxc = 0.27 if i == 0 else 0.71
-    box = FancyBboxPatch((bxc - 0.21, branch_y - 0.075), 0.42, 0.15,
+    box = FancyBboxPatch((bxc - 0.21, branch_y - 0.082), 0.42, 0.164,
                          boxstyle="round,pad=0.008,rounding_size=0.012",
                          fc="#FFFFFF", ec=EDGE, lw=0.8, ls="--")
     ax.add_patch(box)
-    ax.text(bxc, branch_y + 0.038, title, ha="center", va="center",
-            fontsize=7.6, color=INK, fontweight="bold")
-    ax.text(bxc, branch_y - 0.028, sub, ha="center", va="center",
-            fontsize=7.0, color=MUTED)
+    ax.text(bxc, branch_y + 0.046, title, ha="center", va="center",
+            fontsize=7.0, color=INK, fontweight="bold", linespacing=1.25)
+    ax.text(bxc, branch_y - 0.038, sub, ha="center", va="center",
+            fontsize=6.8, color=MUTED, linespacing=1.3)
     ax.add_patch(FancyArrowPatch((cx, ys[-1] - BH / 2 - 0.004),
-                                 (bxc, branch_y + 0.075),
+                                 (bxc, branch_y + 0.082),
                                  connectionstyle="arc3,rad=0.18" if i == 1
                                  else "arc3,rad=-0.18",
                                  arrowstyle="-|>", mutation_scale=11,

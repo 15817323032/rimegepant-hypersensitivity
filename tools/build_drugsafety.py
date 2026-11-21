@@ -36,21 +36,20 @@ spec = importlib.util.spec_from_file_location("mk", ROOT / "tools/make_submissio
 mk = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mk)
 
-TITLE = ("Oral and hypersensitivity-spectrum adverse events of rimegepant orally "
-         "disintegrating tablets: a disproportionality analysis of the FDA Adverse Event "
-         "Reporting System (FAERS), 2020\u20132026, with machine-learning, "
-         "network-toxicology and docking follow-up")
+TITLE = ("Oral and hypersensitivity-spectrum adverse-event signals associated with rimegepant: "
+         "a disproportionality analysis of the FDA Adverse Event Reporting System (FAERS), "
+         "2020\u20132026, with machine-learning, network-toxicology and docking follow-up")
 RUNNING_HEAD = "Rimegepant oral/hypersensitivity signals in FAERS: a disproportionality analysis"
 
 KEY_POINTS = [
-    ("In the US adverse event database, rimegepant orally disintegrating tablets generated a "
+    ("In the US adverse event database, FAERS reports for rimegepant showed a "
      "reproducible and internally consistent cluster of oral, pharyngeal and systemic "
      "hypersensitivity reports\u2014swollen tongue, throat swelling and oral paraesthesia among "
      "them\u2014that matches the signals reported in earlier published analyses."),
-    ("Exploratory pathway-level analysis suggests local activation of mast cells and complement "
-     "in the mouth and throat as a hypothesis that still needs experimental testing; docking to "
-     "the tested SYK and BTK domains gave no support for off-target binding, and kinase catalytic "
-     "domains were not evaluated."),
+    ("Exploratory pathway-level analysis suggests local mast-cell and complement involvement "
+     "as a hypothesis requiring experimental testing. Docking showed markedly weaker binding "
+     "at the tested SYK domain, whereas results for the tested BTK PH domain remained "
+     "inconclusive. Neither kinase catalytic domain was evaluated."),
     ("Reports of oral swelling increased after the August 2025 label revision, so some stimulated "
      "reporting cannot be excluded. Characteristics recorded in spontaneous reports cannot identify "
      "which patients are at risk, so prospective treatment registries are needed, and neither label "

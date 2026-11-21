@@ -4,7 +4,7 @@ A four-layer, fully reproducible Python pipeline for post-marketing safety analy
 
 **Layers:** FAERS disproportionality signal detection → machine-learning reporting-feature profiling → bridged network toxicology → AutoDock Vina molecular docking, plus a pre/post label-revision (notoriety-bias) natural experiment.
 
-Companion manuscript: *Oral and hypersensitivity-spectrum adverse events of rimegepant ODT: a multi-layer pharmacovigilance analysis of FAERS 2020–2026* (under preparation; DOI will be added at submission).
+Companion manuscript: *Oral and hypersensitivity-spectrum adverse-event signals associated with rimegepant: a disproportionality analysis of FAERS 2020–2026* (under preparation; DOI will be added at submission).
 
 > 中文说明见 [README_zh.md](README_zh.md)
 
