@@ -314,9 +314,10 @@ fig4_network <- function() {
     scale_fill_manual(values = c(`FALSE` = ACCENT, `TRUE` = SIGNAL), guide = "none") +
     scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
     labs(x = "Similarity score", y = NULL,
-         title = "Predicted targets\n(ChEMBL similarity)") +
+         title = "Predicted targets\n(ChEMBL)") +
     theme_pub() +
-    theme(axis.text.y = element_text(size = 7), axis.ticks.y = element_blank(),
+    theme(plot.title = element_text(size = 9),
+          axis.text.y = element_text(size = 7), axis.ticks.y = element_blank(),
           axis.line.y = element_blank(), panel.grid.major.y = element_blank())
 
   p2 <- ggplot(hubs, aes(degree, reorder(gene, degree))) +
@@ -324,7 +325,8 @@ fig4_network <- function() {
     scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
     labs(x = "STRING degree", y = NULL, title = "PPI hub genes") +
     theme_pub() +
-    theme(axis.text.y = element_text(size = 7), axis.ticks.y = element_blank(),
+    theme(plot.title = element_text(size = 9),
+          axis.text.y = element_text(size = 7), axis.ticks.y = element_blank(),
           axis.line.y = element_blank(), panel.grid.major.y = element_blank())
 
   p3 <- ggplot(go, aes(nlp, reorder(term_wrap, nlp))) +
@@ -332,7 +334,8 @@ fig4_network <- function() {
     scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
     labs(x = expression(-log[10]*P[adj]), y = NULL, title = "GO-BP enrichment") +
     theme_pub() +
-    theme(axis.text.y = element_text(size = 6.5), axis.ticks.y = element_blank(),
+    theme(plot.title = element_text(size = 9),
+          axis.text.y = element_text(size = 6.5), axis.ticks.y = element_blank(),
           axis.line.y = element_blank(), panel.grid.major.y = element_blank())
 
   # KEGG dot-plot panel (author pick B1): merged below the triptych, replacing
@@ -397,16 +400,13 @@ fig4_network <- function() {
   p_kegg <- (p_kegg_lo | p_kegg_hi) +
     plot_layout(widths = c(4.6, 1.6), guides = "collect")
 
-  top <- (p1 | p2 | p3) + plot_layout(widths = c(1.0, 1.1, 1.3))
+  top <- (p1 | p2 | p3) + plot_layout(widths = c(1.15, 1.1, 1.2))
   fig <- top / p_kegg +
     plot_layout(heights = c(1.0, 1.45)) +
-    plot_annotation(caption = paste("Top left: max Tanimoto similarity of predicted off-targets to the drug's ChEMBL anchors.",
-                                    "Top centre: top hub genes\n",
-                                    "by degree in the bridged PPI network. Top right: GO-BP enrichment of bridged genes.",
-                                    "Bottom: KEGG pathways of bridged\n",
-                                    "genes (Enrichr, BH-corrected); bubble size = bridged genes in pathway,",
-                                    "colour = adjusted p; x-axis broken for readability, the leading",
-                                    "pathways are shown on the compressed right-hand segment.")) &
+    plot_annotation(caption = paste("Top left: max Tanimoto similarity of predicted off-targets to the drug's ChEMBL anchors. Top centre: top hub\n",
+                                    "genes by degree in the bridged PPI network. Top right: GO-BP enrichment of bridged genes.\n",
+                                    "Bottom: KEGG pathways of bridged genes (Enrichr, BH-corrected); bubble size = bridged genes in pathway,\n",
+                                    "colour = adjusted p; x-axis broken for readability, the leading pathways are shown on the compressed right-hand segment.")) &
     theme(plot.caption = element_text(size = 6.5, colour = MUTED,
                                       hjust = 0, lineheight = 1.5,
                                       margin = margin(t = 5)))
