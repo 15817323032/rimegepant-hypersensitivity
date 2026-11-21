@@ -162,8 +162,8 @@ def table4_tto(demo, ther, reac, ids, focus_only=True) -> pd.DataFrame:
     # 且与 ml_risk.py 的 tto_days 窗口 (0-730) 保持一致。
     mg = mg[(mg["tto_days"] >= 0) & (mg["tto_days"] <= 730)]
 
-    bins = [-0.1, 1, 7, 30, 90, 730]
-    labels = ["<=1d", "2-7d", "8-30d", "31-90d", ">90d"]
+    bins = [-0.1, 0.5, 1, 7, 30, 90, 730]
+    labels = ["0d", "1d", "2-7d", "8-30d", "31-90d", ">90d"]
     mg["tto_cat"] = pd.cut(mg["tto_days"], bins, labels=labels)
 
     tot = len(mg)

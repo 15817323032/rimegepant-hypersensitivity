@@ -521,7 +521,7 @@ def audit_table_pcts() -> set[float]:
     t4 = read_table("table4_tto")
     kv = dict(zip(t4["指标"].astype(str), t4["值"].astype(str)))
     base = {"两日期均完整": 8962, "可分析 TTO 的病例数": 8962,
-            "<=1d": 848, "2-7d": 848, "8-30d": 848, "31-90d": 848, ">90d": 848}
+            "0d": 848, "1d": 848, "2-7d": 848, "8-30d": 848, "31-90d": 848, ">90d": 848}
     bad4 = []
     for k, v in kv.items():
         m = CELL.search(v)
