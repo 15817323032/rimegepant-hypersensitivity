@@ -50,10 +50,10 @@ KEY_POINTS = [
      "as a hypothesis requiring experimental testing. Docking showed markedly weaker binding "
      "at the tested SYK domain, whereas results for the tested BTK PH domain remained "
      "inconclusive. Neither kinase catalytic domain was evaluated."),
-    ("Reports of oral swelling increased after the August 2025 label revision, so some stimulated "
-     "reporting cannot be excluded. Characteristics recorded in spontaneous reports cannot identify "
-     "which patients are at risk, so prospective treatment registries are needed, and neither label "
-     "describes these oropharyngeal events."),
+    ("The oral mucosal reporting proportion showed a nominal increase after the August 2025 label "
+     "revision (BH q = 0.056), so stimulated reporting cannot be excluded. Characteristics recorded in "
+     "spontaneous reports cannot identify which patients are at risk; prospective treatment registries "
+     "are needed, and neither label describes these oropharyngeal events."),
 ]
 
 DECLARATIONS = [
