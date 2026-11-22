@@ -339,19 +339,29 @@ def md_to_docx(md, out_path):
     print("saved", out_path)
 
 
+def _copy_robust(src: Path, dst: Path):
+    """copy2, falling back to in-place byte overwrite when the destination is
+    locked by a preview panel / file monitor (WinError 32)."""
+    try:
+        shutil.copy2(src, dst)
+    except PermissionError:
+        dst.write_bytes(src.read_bytes())
+        print("    (in-place overwrite:", dst.name, "-- destination was locked)")
+
+
 def copy_assets():
     tdir = OUT / "tables"
     fdir = OUT / "figures"
     tdir.mkdir(parents=True, exist_ok=True)
     fdir.mkdir(parents=True, exist_ok=True)
     for f in sorted((ROOT / "submission/tables").glob("Table_*")):
-        shutil.copy2(f, tdir / f.name)
+        _copy_robust(f, tdir / f.name)
     for f in sorted((ROOT / "submission/figures").glob("Figure_*")):
-        shutil.copy2(f, fdir / f.name)
+        _copy_robust(f, fdir / f.name)
     sup_src = ROOT / "submission/supplementary"
     if sup_src.exists():
         for f in sorted(sup_src.glob("Supplementary_*")):
-            shutil.copy2(f, OUT / f.name)
+            _copy_robust(f, OUT / f.name)
     print("copied tables:", len(list(tdir.iterdir())), "figures:", len(list(fdir.iterdir())))
 
 
